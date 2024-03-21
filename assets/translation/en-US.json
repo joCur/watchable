@@ -1,0 +1,40 @@
+{
+  "app": {
+    "title": "Watchable"
+  },
+  "profile": {
+    "title": "Profile",
+    "completionHeadline": "Complete your Profile",
+    "name": "Name",
+    "pictureTitle": "Profile Picture",
+    "deleteProfileConfirmation": "Are you sure you want to delete your profile? This action cannot be undone.",
+    "deleteAccountConfirmation": "Are you sure you want to delete your account? This action cannot be undone.",
+    "deleteAccountButton": "Delete Account",
+    "deleteProfileButton": "Delete Profile"
+  },
+  "groups": {
+    "title": "Groups",
+    "fields": {
+      "name": "Name",
+      "description": "Description",
+      "anyoneCanJoin": "Anybody find and join this group"
+    },
+    "notInAGroup": {
+      "title": "You don't have a group yet",
+      "description": "Create your own group or join an existing one to share movie recommendations with your friends and plan your next watch party together."
+    },
+    "create": {
+      "title": "Create a Group",
+      "button": "Create Group",
+      "save": "Create",
+      "abort": "Cancel"
+    },
+    "join": {
+      "button": "Join Group"
+    }
+  },
+  "errors": {
+    "couldNotCreateGroup": "Could not create group.",
+    "unknown": "An unknown error occurred."
+  }
+}
