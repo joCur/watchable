@@ -20,12 +20,17 @@ Future<Profile?> findCurrentUserProfile(FindCurrentUserProfileRef ref) async {
   return profiles.findByIdAsync(supabase.auth.currentUser!.id);
 }
 
+@riverpod
+Future<Profile> getProfileById(GetProfileByIdRef ref, String id) async {
+  return ref.watch(profileRepositoryProvider).getByIdAsync(id);
+}
+
 class ProfileRepository {
   final supabase = Supabase.instance.client;
   final table = 'profiles';
 
   Future<List<Profile>> listByGroupIdAsync(String groupId) async {
-    final response = await supabase.from(table).select("*, group_users(user_id,group_id").eq('group_id', groupId);
+    final response = await supabase.from(table).select("*, group_users!inner(user_id,group_id").eq('group_id', groupId);
     return response.map((e) => Profile.fromJson(e)).toList();
   }
 

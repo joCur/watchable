@@ -12,8 +12,14 @@
     "deleteAccountButton": "Delete Account",
     "deleteProfileButton": "Delete Profile"
   },
+  "home": {
+    "title": "Home",
+    "headline": "Welcome to Watchable!",
+    "description": "Watchable is a platform to share movie recommendations with your friends and plan your next watch party together. Create your own group or join an existing one to get started."
+  },
   "groups": {
     "title": "Groups",
+    "members": "Members",
     "fields": {
       "name": "Name",
       "description": "Description",

@@ -4,15 +4,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/app_sizes.dart';
-import 'package:watchable/src/extensions/build_context_extensions.dart';
 import 'package:watchable/src/features/home/presentation/home_screen.dart';
 import 'package:watchable/src/features/profile/application/update_profile_controller.dart';
 
 import '../../../constants/locale_keys.dart';
 
 class CreateProfileScreen extends HookConsumerWidget {
-  static const route = "/profile";
-  static const name = "Profile";
+  static const route = "create-profile";
+  static const name = "CreateProfile";
 
   const CreateProfileScreen({super.key});
 

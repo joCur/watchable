@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:watchable/src/features/groups/data/join_request_repository.dart';
 
 import '../../startup/application/startup_providers.dart';
 import '../domain/group.dart';
@@ -17,9 +18,23 @@ Future<List<Group>> listGroups(ListGroupsRef ref) async {
 }
 
 @riverpod
+Future<List<Group>> listOtherGroupsForCurrentUser(ListOtherGroupsForCurrentUserRef ref) async {
+  final ownGroups = await ref.watch(listCurrentUserGroupsProvider.future);
+  final allGroups = await ref.watch(listGroupsProvider.future);
+  final joinRequests = await ref.watch(listCurrentUserJoinRequestsProvider.future);
+
+  return allGroups.where((group) => !ownGroups.contains(group) && !joinRequests.any((request) => request.groupId == group.id)).toList();
+}
+
+@riverpod
 Future<List<Group>> listCurrentUserGroups(ListCurrentUserGroupsRef ref) async {
   final supabase = ref.watch(supabaseProvider);
   return ref.watch(groupRepositoryProvider).listByUserIdAsync(supabase.auth.currentUser!.id);
+}
+
+@riverpod
+Future<Group> getGroupById(GetGroupByIdRef ref, String id) async {
+  return ref.watch(groupRepositoryProvider).getByIdAsync(id);
 }
 
 class GroupRepository {
@@ -32,7 +47,7 @@ class GroupRepository {
   }
 
   Future<List<Group>> listByUserIdAsync(String userId) async {
-    final response = await supabase.from(table).select("*, group_users(user_id,group_id)").eq('group_users.user_id', userId);
+    final response = await supabase.from(table).select("*, group_users!inner(user_id,group_id)").eq('group_users.user_id', userId);
     return response.map((e) => Group.fromJson(e)).toList();
   }
 

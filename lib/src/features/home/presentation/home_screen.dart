@@ -6,10 +6,9 @@ import 'package:watchable/src/constants/app_sizes.dart';
 import 'package:watchable/src/features/groups/data/group_repository.dart';
 import 'package:watchable/src/features/groups/presentation/components/user_has_no_group_widget.dart';
 import 'package:watchable/src/features/groups/presentation/group_list_screen.dart';
-import 'package:watchable/src/features/profile/presentation/create_profile_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
-  static const route = "/home";
+  static const route = "/";
   static const name = "Home";
 
   const HomeScreen({super.key});

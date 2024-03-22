@@ -4,7 +4,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:loading_icon_button/loading_icon_button.dart';
 import 'package:watchable/src/constants/locale_keys.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
 import 'package:watchable/src/features/groups/application/create_group_controller.dart';

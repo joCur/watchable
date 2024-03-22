@@ -3,17 +3,22 @@ import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 import 'package:watchable/src/features/autentication/presentation/login_screen.dart';
-import 'package:watchable/src/features/groups/presentation/create_group_modal.dart';
+import 'package:watchable/src/features/groups/presentation/group_detail_screen.dart';
 import 'package:watchable/src/features/groups/presentation/group_list_screen.dart';
+import 'package:watchable/src/features/groups/presentation/group_members_screen.dart';
 import 'package:watchable/src/features/profile/presentation/create_profile_screen.dart';
 import 'package:watchable/src/features/home/presentation/home_screen.dart';
 
+import '../features/groups/domain/group.dart';
 import '../features/profile/data/profile_repository.dart';
 import 'go_router_refresh_stream.dart';
+import 'navigation/scaffold_with_nested_navigation.dart';
 
 part 'router.g.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
+final _homeShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
+final _groupShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'groups');
 
 @riverpod
 GoRouter router(RouterRef ref) {
@@ -36,28 +41,62 @@ GoRouter router(RouterRef ref) {
         name: LoginScreen.name,
         path: LoginScreen.route,
         pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const LoginScreen()),
+        routes: [
+          GoRoute(
+            name: CreateProfileScreen.name,
+            path: CreateProfileScreen.route,
+            redirect: (context, state) async {
+              final profile = await ref.read(findCurrentUserProfileProvider.future);
+              if (profile != null) return HomeScreen.route;
+              return null;
+            },
+            pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const CreateProfileScreen()),
+          ),
+        ],
       ),
-      GoRoute(
-        name: HomeScreen.name,
-        path: HomeScreen.route,
-        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const HomeScreen()),
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) => ScaffoldWithNestedNavigation(navigationShell: navigationShell),
+        branches: [
+          StatefulShellBranch(
+            navigatorKey: _homeShellNavigatorKey,
+            routes: [
+              GoRoute(
+                name: HomeScreen.name,
+                path: HomeScreen.route,
+                pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const HomeScreen()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _groupShellNavigatorKey,
+            routes: [
+              GoRoute(
+                name: GroupListScreen.name,
+                path: GroupListScreen.route,
+                pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const GroupListScreen()),
+                routes: [
+                  GoRoute(
+                    name: GroupDetailScreen.name,
+                    path: GroupDetailScreen.route,
+                    pageBuilder: (context, state) => NoTransitionPage(
+                      key: state.pageKey,
+                      child: GroupDetailScreen(state.pathParameters['id']!, group: state.extra as Group?),
+                    ),
+                  ),
+                  GoRoute(
+                    name: GroupMembersScreen.name,
+                    path: GroupMembersScreen.route,
+                    pageBuilder: (context, state) => NoTransitionPage(
+                      key: state.pageKey,
+                      child: GroupMembersScreen(state.pathParameters['id']!),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
       ),
-      GoRoute(
-        name: CreateProfileScreen.name,
-        path: CreateProfileScreen.route,
-        redirect: (context, state) async {
-          final profile = await ref.read(findCurrentUserProfileProvider.future);
-          // ToDo: if profile has error show error page
-          if (profile != null) return HomeScreen.route;
-          return null;
-        },
-        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const CreateProfileScreen()),
-      ),
-      GoRoute(
-        name: GroupListScreen.name,
-        path: GroupListScreen.route,
-        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const GroupListScreen()),
-      )
     ],
   );
 }
