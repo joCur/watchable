@@ -8,9 +8,11 @@ import 'package:watchable/src/features/groups/presentation/group_list_screen.dar
 import 'package:watchable/src/features/groups/presentation/group_members_screen.dart';
 import 'package:watchable/src/features/profile/presentation/create_profile_screen.dart';
 import 'package:watchable/src/features/home/presentation/home_screen.dart';
+import 'package:watchable/src/features/tmdb/presentation/movie_detail_screen.dart';
 
 import '../features/groups/domain/group.dart';
 import '../features/profile/data/profile_repository.dart';
+import '../features/tmdb/presentation/discover_screen.dart';
 import 'go_router_refresh_stream.dart';
 import 'navigation/scaffold_with_nested_navigation.dart';
 
@@ -18,6 +20,7 @@ part 'router.g.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _homeShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'home');
+final _discoverShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'discover');
 final _groupShellNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'groups');
 
 @riverpod
@@ -64,6 +67,26 @@ GoRouter router(RouterRef ref) {
                 name: HomeScreen.name,
                 path: HomeScreen.route,
                 pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const HomeScreen()),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            navigatorKey: _discoverShellNavigatorKey,
+            routes: [
+              GoRoute(
+                name: DiscoverScreen.name,
+                path: DiscoverScreen.route,
+                pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const DiscoverScreen()),
+                routes: [
+                  GoRoute(
+                    name: MovieDetailScreen.name,
+                    path: MovieDetailScreen.route,
+                    pageBuilder: (context, state) => NoTransitionPage(
+                      key: state.pageKey,
+                      child: MovieDetailScreen(int.parse(state.pathParameters['id']!)),
+                    ),
+                  )
+                ],
               ),
             ],
           ),

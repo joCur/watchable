@@ -14,9 +14,13 @@ class Sizes {
 }
 
 // constant edge insets
-const screenPadding = EdgeInsets.all(Sizes.p16);
+const screenPadding = EdgeInsets.all(Sizes.p8);
 const cardPadding = EdgeInsets.all(Sizes.p16);
 const modalPadding = EdgeInsets.only(left: Sizes.p16, right: Sizes.p16, bottom: Sizes.p16, top: Sizes.p24);
+
+const divider = Divider(indent: Sizes.p16, endIndent: Sizes.p16);
+
+final borderRadius = BorderRadius.circular(8);
 
 /// Constant gap widths
 const gapW4 = SizedBox(width: Sizes.p4);

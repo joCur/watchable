@@ -25,6 +25,7 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
         selectedIndex: navigationShell.currentIndex,
         destinations: [
           NavigationDestination(label: LocaleKeys.home_title.tr(), icon: const Icon(Icons.home)),
+          NavigationDestination(label: LocaleKeys.discover_title.tr(), icon: const Icon(Icons.search)),
           NavigationDestination(label: LocaleKeys.groups_title.tr(), icon: const Icon(Icons.groups)),
         ],
         onDestinationSelected: _goBranch,

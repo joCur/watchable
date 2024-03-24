@@ -17,9 +17,19 @@
     "headline": "Welcome to Watchable!",
     "description": "Watchable is a platform to share movie recommendations with your friends and plan your next watch party together. Create your own group or join an existing one to get started."
   },
+  "discover": {
+    "title": "Discover",
+    "headline": "Discover Movies",
+    "description": "Find new movies to watch and add them to your watchlist.",
+    "all": "All",
+    "movies": "Movies",
+    "tv": "TV Shows"
+  },
   "groups": {
     "title": "Groups",
+    "joinRequests": "Join Requests",
     "members": "Members",
+    "memberSince": "Member since {}",
     "fields": {
       "name": "Name",
       "description": "Description",
