@@ -40,7 +40,7 @@ jobs:
         echo "storeFile=/tmp/key.jks" >> ./android/key.properties
         echo "storePassword=${{ secrets.GOOGLE_PLAY_SIGNING_KEY_STORE_PASSWORD }}" >> ./android/key.properties
         echo "keyPassword=${{ secrets.GOOGLE_PLAY_SIGNING_KEY_PASSWORD }}" >> ./android/key.properties
-        echo "keyAlias=${{ vars.GOOGLE_PLAY_SIGNING_KEY_ALIAS }}" >> ./android/key.properties
+        echo "keyAlias=upload" >> ./android/key.properties
 
     - name: Generate build number
       id: buildnumber
