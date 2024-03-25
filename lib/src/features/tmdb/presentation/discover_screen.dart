@@ -5,6 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/locale_keys.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/tab_chip.dart';
 import 'package:watchable/src/features/tmdb/presentation/discover_all_tab.dart';
+import 'package:watchable/src/features/tmdb/presentation/discover_movies_tab.dart';
+import 'package:watchable/src/features/tmdb/presentation/discover_tv_tab.dart';
 
 import '../../../constants/app_sizes.dart';
 
@@ -18,8 +20,8 @@ class DiscoverScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const content = [
       DiscoverAllTab(),
-      Text('Movies'),
-      Text('TV Shows'),
+      DiscoverMoviesTab(),
+      DiscoverTvTab(),
     ];
 
     final index = useState(0);

@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:watchable/src/constants/locale_keys.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
-import 'package:watchable/src/features/groups/application/join_group_controller.dart';
 import 'package:watchable/src/features/groups/data/group_repository.dart';
 import 'package:watchable/src/features/groups/presentation/components/joinable_group_item.dart';
 
@@ -33,16 +34,23 @@ class JoinGroupModal extends ConsumerWidget {
                 backgroundColor: Colors.transparent,
                 automaticallyImplyLeading: false,
                 actions: [
-                  IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+                  // IconButton(icon: const Icon(Icons.search), onPressed: () {}),
                 ],
               ),
               state.when(
-                data: (data) => SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) => JoinableGroupItem(data[index]),
-                    childCount: data.length,
-                  ),
-                ),
+                data: (data) => data.isEmpty
+                    ? SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 100,
+                          child: Center(child: Text(LocaleKeys.groups_noGroupsFound.tr(), style: context.textTheme.bodyLarge)),
+                        ),
+                      )
+                    : SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) => JoinableGroupItem(data[index]),
+                          childCount: data.length,
+                        ),
+                      ),
                 error: (error, stackTrace) => SliverToBoxAdapter(child: Text(error.toString())),
                 loading: () => const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator())),
               ),

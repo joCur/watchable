@@ -30,6 +30,7 @@
     "joinRequests": "Beitrittsanfragen",
     "members": "Mitglieder",
     "memberSince": "Mitglied seit {}",
+    "noGroupsFound": "Keine Gruppen gefunden.",
     "fields": {
       "name": "Name",
       "description": "Beschreibung",

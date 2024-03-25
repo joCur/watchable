@@ -23,7 +23,7 @@ class GroupListScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text(LocaleKeys.groups_title.tr()),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          // IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () => JoinOrCreateGroupModal.show(context),

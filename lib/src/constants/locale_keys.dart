@@ -27,6 +27,7 @@ abstract class  LocaleKeys {
   static const groups_joinRequests = 'groups.joinRequests';
   static const groups_members = 'groups.members';
   static const groups_memberSince = 'groups.memberSince';
+  static const groups_noGroupsFound = 'groups.noGroupsFound';
   static const groups_fields_name = 'groups.fields.name';
   static const groups_fields_description = 'groups.fields.description';
   static const groups_fields_anyoneCanJoin = 'groups.fields.anyoneCanJoin';

@@ -30,6 +30,7 @@
     "joinRequests": "Join Requests",
     "members": "Members",
     "memberSince": "Member since {}",
+    "noGroupsFound": "No groups found.",
     "fields": {
       "name": "Name",
       "description": "Description",

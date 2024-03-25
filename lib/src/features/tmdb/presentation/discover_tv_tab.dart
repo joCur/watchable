@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/features/common/presentation/not_yet_available_banner.dart';
 
-class DiscoverMoviesTab extends ConsumerStatefulWidget {
-  const DiscoverMoviesTab({super.key});
+class DiscoverTvTab extends ConsumerStatefulWidget {
+  const DiscoverTvTab({super.key});
 
   @override
-  ConsumerState createState() => _DiscoverMoviesTabState();
+  ConsumerState createState() => _DiscoverTvTabState();
 }
 
-class _DiscoverMoviesTabState extends ConsumerState<DiscoverMoviesTab> {
+class _DiscoverTvTabState extends ConsumerState<DiscoverTvTab> {
   @override
   Widget build(BuildContext context) {
     return const Center(
