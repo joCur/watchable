@@ -42,11 +42,11 @@ jobs:
         echo "keyPassword=${{ secrets.GOOGLE_PLAY_SIGNING_KEY_PASSWORD }}" >> ./android/key.properties
         echo "keyAlias=upload" >> ./android/key.properties
 
-    - name: Generate build number
-      id: buildnumber
-      uses: onyxmueller/build-tag-number@v1
-      with:
-        token: ${{secrets.github_token}}
+#    - name: Generate build number
+#      id: buildnumber
+#      uses: onyxmueller/build-tag-number@v1
+#      with:
+#        token: ${{secrets.github_token}}
 
     - name: Build for Android
       working-directory: .
