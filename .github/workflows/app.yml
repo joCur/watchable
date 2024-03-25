@@ -72,7 +72,7 @@ jobs:
       with:
         serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
         packageName: dev.curth.watchable
-        releaseFiles: ./app-prod-release.aab
+        releaseFiles: ./app-release.aab
         track: internal
 
        
@@ -87,6 +87,6 @@ jobs:
       uses: kevin-david/promote-play-release@v1.0.0
       with:
         service-account-json-raw: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-        package-name: dev.curth.hero
+        package-name: dev.curth.watchable
         from-track: internal
         to-track: beta
