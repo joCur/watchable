@@ -50,7 +50,7 @@ jobs:
 
     - name: Build for Android
       working-directory: .
-      run: flutter build appbundle --release --no-tree-shake-icons --build-number=0.0.${{github.run_number}}
+      run: flutter build appbundle --release --no-tree-shake-icons --build-number=${{github.run_number}}
 
     - uses: actions/upload-artifact@v2
       name: Upload android appbundle artifact 
