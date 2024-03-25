@@ -2,12 +2,8 @@ name: Build for Android publish to Play Store
 
 on: 
   push:
-    paths: 
-      - '*'
     branches: [ "main" ]
   pull_request:
-    paths: 
-      - '*'
     branches: [ "main" ]
 
 env:

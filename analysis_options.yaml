@@ -7,3 +7,4 @@ analyzer:
     - "**/*.freezed.dart"
     - "**/*.g.dart"
     - "lib/src/constants/locale_keys.dart"
+    - "android/**"
