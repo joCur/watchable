@@ -26,7 +26,7 @@ class MovieTagline extends StatelessWidget {
         gapW8,
         _buildItem(Icons.schedule, movie.runtime.toString()),
         gapW8,
-        _buildItem(Icons.language, movie.originalLanguage),
+        _buildItem(Icons.language, movie.spokenLanguages.firstOrNull?.name ?? ''),
         gapW8,
         _buildItem(Icons.videocam_outlined, movie.status),
       ],

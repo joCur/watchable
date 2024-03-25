@@ -7,34 +7,6 @@ import 'package:watchable/src/features/tmdb/presentation/components/movie_taglin
 
 import '../../common/presentation/spinner.dart';
 
-class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  _SliverCustomHeaderDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-
-  @override
-  double get minExtent => minHeight;
-
-  @override
-  double get maxExtent => maxHeight;
-
-  @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand(child: child);
-  }
-
-  @override
-  bool shouldRebuild(_SliverCustomHeaderDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight || minHeight != oldDelegate.minHeight || child != oldDelegate.child;
-  }
-}
-
 class MovieDetailScreen extends ConsumerWidget {
   static const String route = 'movies/:id';
   static const String name = 'MovieDetail';
@@ -54,11 +26,7 @@ class MovieDetailScreen extends ConsumerWidget {
           ? const Center(child: Spinner())
           : NestedScrollView(
               headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                SliverAppBar(
-                  pinned: true,
-                  floating: false,
-                  flexibleSpace: FlexibleSpaceBar(title: Text(movie.value!.title)),
-                ),
+                SliverAppBar(pinned: true, floating: true, snap: true),
                 SliverToBoxAdapter(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

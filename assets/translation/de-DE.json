@@ -1,0 +1,56 @@
+{
+  "app": {
+    "title": "Watchable"
+  },
+  "profile": {
+    "title": "Profil",
+    "completionHeadline": "Vervollständige dein Profil",
+    "name": "Name",
+    "pictureTitle": "Profilbild",
+    "deleteProfileConfirmation": "Bist du sicher, dass du dein Profil löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteAccountConfirmation": "Bist du sicher, dass du dein Konto löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteAccountButton": "Konto löschen",
+    "deleteProfileButton": "Profil löschen"
+  },
+  "home": {
+    "title": "Startseite",
+    "headline": "Willkommen bei Watchable!",
+    "description": "Watchable ist eine Plattform, um Filmtipps mit deinen Freunden zu teilen und gemeinsam die nächste Filmnacht zu planen. Erstelle deine eigene Gruppe oder trete einer bestehenden bei, um zu beginnen."
+  },
+  "discover": {
+    "title": "Entdecken",
+    "headline": "Filme entdecken",
+    "description": "Finde neue Filme zum Anschauen und füge sie deiner Watchlist hinzu.",
+    "all": "Alle",
+    "movies": "Filme",
+    "tv": "Fernsehshows"
+  },
+  "groups": {
+    "title": "Gruppen",
+    "joinRequests": "Beitrittsanfragen",
+    "members": "Mitglieder",
+    "memberSince": "Mitglied seit {}",
+    "fields": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "anyoneCanJoin": "Jeder kann dieser Gruppe beitreten"
+    },
+    "notInAGroup": {
+      "title": "Du bist noch in keiner Gruppe",
+      "description": "Erstelle deine eigene Gruppe oder trete einer bestehenden bei, um Filmtipps mit deinen Freunden zu teilen und gemeinsam die nächste Filmnacht zu planen."
+    },
+    "create": {
+      "title": "Eine Gruppe erstellen",
+      "button": "Gruppe erstellen",
+      "save": "Erstellen",
+      "abort": "Abbrechen"
+    },
+    "join": {
+      "button": "Gruppe beitreten"
+    }
+  },
+  "errors": {
+    "couldNotCreateGroup": "Gruppe konnte nicht erstellt werden.",
+    "unknown": "Ein unbekannter Fehler ist aufgetreten."
+  }
+}
