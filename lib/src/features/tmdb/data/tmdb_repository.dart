@@ -6,6 +6,7 @@ import '../domain/media_preview.dart';
 import '../domain/movie_details.dart';
 import '../domain/movie_preview.dart';
 import '../domain/pagination.dart';
+import '../domain/person_preview.dart';
 import '../domain/tv_preview.dart';
 import '../domain/videos.dart';
 import '../extensions/map_extensions.dart';
@@ -27,23 +28,16 @@ TMDB tmdb(TmdbRef ref) {
 @riverpod
 Future<Pagination<Media>> getTrending(GetTrendingRef ref, TimeWindow timeWindow, int page) async {
   final tmdb = ref.watch(tmdbProvider);
-  final response = await tmdb.v3.trending.getTrending(mediaType: MediaType.movie, timeWindow: TimeWindow.week, page: page);
-
-  if (response["results"] is List<Map<dynamic, dynamic>>) {
-    final results = response["results"] as List<Map<dynamic, dynamic>>;
-    for (final result in results) {
-      if (result["media_type"] == MediaType.person) {
-        results.remove(result);
-      }
-    }
-  }
+  final response = await tmdb.v3.trending.getTrending(mediaType: MediaType.all, timeWindow: TimeWindow.week, page: page);
 
   return Pagination<Media>.fromJson(response.toJsonMap(), (json) {
     final map = json as Map<String, dynamic>;
     switch (map['media_type']) {
-      case MediaType.tv:
+      case 'tv':
         return TvPreview.fromJson(map);
-      case MediaType.movie:
+      case 'person':
+        return PersonPreview.fromJson(map);
+      case 'movie':
       default:
         return MoviePreview.fromJson(map);
     }

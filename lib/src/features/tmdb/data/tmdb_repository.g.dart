@@ -20,7 +20,7 @@ final tmdbProvider = AutoDisposeProvider<TMDB>.internal(
 );
 
 typedef TmdbRef = AutoDisposeProviderRef<TMDB>;
-String _$getTrendingHash() => r'4ddd8b1b09d10bf7fdb10fc4595b7156b11fdea0';
+String _$getTrendingHash() => r'56d10e2ba63087971c5708426671af00faeece49';
 
 /// Copied from Dart SDK
 class _SystemHash {

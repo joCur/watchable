@@ -23,7 +23,8 @@
     "description": "Find new movies to watch and add them to your watchlist.",
     "all": "All",
     "movies": "Movies",
-    "tv": "TV Shows"
+    "tv": "TV Shows",
+    "runtime": "{} min"
   },
   "groups": {
     "title": "Groups",

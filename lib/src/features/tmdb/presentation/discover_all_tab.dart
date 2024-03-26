@@ -8,6 +8,7 @@ import 'package:watchable/src/features/tmdb/data/tmdb_repository.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/media_preview_item.dart';
 
 import '../domain/media_preview.dart';
+import '../domain/person_preview.dart';
 
 class DiscoverAllTab extends ConsumerStatefulWidget {
   const DiscoverAllTab({super.key});
@@ -30,11 +31,13 @@ class _DiscoverAllTabState extends ConsumerState<DiscoverAllTab> {
     try {
       final data = await ref.read(getTrendingProvider(TimeWindow.week, pageKey).future);
       final isLastPage = data.page == data.totalPages;
+      final results = data.results.where((element) => element is! PersonPreview).toList();
+
       if (isLastPage) {
-        _pagingController.appendLastPage(data.results);
+        _pagingController.appendLastPage(results);
       } else {
         final nextPageKey = pageKey + 1;
-        _pagingController.appendPage(data.results, nextPageKey);
+        _pagingController.appendPage(results, nextPageKey);
       }
     } catch (error) {
       _pagingController.error = error;

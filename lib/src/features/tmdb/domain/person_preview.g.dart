@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tv_preview.dart';
+part of 'person_preview.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TvPreviewImpl _$$TvPreviewImplFromJson(Map<String, dynamic> json) =>
-    _$TvPreviewImpl(
+_$PersonPreviewImpl _$$PersonPreviewImplFromJson(Map<String, dynamic> json) =>
+    _$PersonPreviewImpl(
       adult: json['adult'] as bool,
       id: json['id'] as int,
       overview: json['overview'] as String,
@@ -16,7 +16,7 @@ _$TvPreviewImpl _$$TvPreviewImplFromJson(Map<String, dynamic> json) =>
       backdropPath: json['backdrop_path'] as String?,
     );
 
-Map<String, dynamic> _$$TvPreviewImplToJson(_$TvPreviewImpl instance) =>
+Map<String, dynamic> _$$PersonPreviewImplToJson(_$PersonPreviewImpl instance) =>
     <String, dynamic>{
       'adult': instance.adult,
       'id': instance.id,

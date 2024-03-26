@@ -22,6 +22,7 @@ abstract class  LocaleKeys {
   static const discover_all = 'discover.all';
   static const discover_movies = 'discover.movies';
   static const discover_tv = 'discover.tv';
+  static const discover_runtime = 'discover.runtime';
   static const discover = 'discover';
   static const groups_title = 'groups.title';
   static const groups_joinRequests = 'groups.joinRequests';

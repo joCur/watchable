@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'tv_preview.dart';
+part of 'person_preview.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-TvPreview _$TvPreviewFromJson(Map<String, dynamic> json) {
-  return _TvPreview.fromJson(json);
+PersonPreview _$PersonPreviewFromJson(Map<String, dynamic> json) {
+  return _PersonPreview.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TvPreview {
+mixin _$PersonPreview {
   bool get adult => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
@@ -32,14 +32,15 @@ mixin _$TvPreview {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TvPreviewCopyWith<TvPreview> get copyWith =>
+  $PersonPreviewCopyWith<PersonPreview> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TvPreviewCopyWith<$Res> {
-  factory $TvPreviewCopyWith(TvPreview value, $Res Function(TvPreview) then) =
-      _$TvPreviewCopyWithImpl<$Res, TvPreview>;
+abstract class $PersonPreviewCopyWith<$Res> {
+  factory $PersonPreviewCopyWith(
+          PersonPreview value, $Res Function(PersonPreview) then) =
+      _$PersonPreviewCopyWithImpl<$Res, PersonPreview>;
   @useResult
   $Res call(
       {bool adult,
@@ -51,9 +52,9 @@ abstract class $TvPreviewCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TvPreviewCopyWithImpl<$Res, $Val extends TvPreview>
-    implements $TvPreviewCopyWith<$Res> {
-  _$TvPreviewCopyWithImpl(this._value, this._then);
+class _$PersonPreviewCopyWithImpl<$Res, $Val extends PersonPreview>
+    implements $PersonPreviewCopyWith<$Res> {
+  _$PersonPreviewCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -100,11 +101,11 @@ class _$TvPreviewCopyWithImpl<$Res, $Val extends TvPreview>
 }
 
 /// @nodoc
-abstract class _$$TvPreviewImplCopyWith<$Res>
-    implements $TvPreviewCopyWith<$Res> {
-  factory _$$TvPreviewImplCopyWith(
-          _$TvPreviewImpl value, $Res Function(_$TvPreviewImpl) then) =
-      __$$TvPreviewImplCopyWithImpl<$Res>;
+abstract class _$$PersonPreviewImplCopyWith<$Res>
+    implements $PersonPreviewCopyWith<$Res> {
+  factory _$$PersonPreviewImplCopyWith(
+          _$PersonPreviewImpl value, $Res Function(_$PersonPreviewImpl) then) =
+      __$$PersonPreviewImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -117,11 +118,11 @@ abstract class _$$TvPreviewImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TvPreviewImplCopyWithImpl<$Res>
-    extends _$TvPreviewCopyWithImpl<$Res, _$TvPreviewImpl>
-    implements _$$TvPreviewImplCopyWith<$Res> {
-  __$$TvPreviewImplCopyWithImpl(
-      _$TvPreviewImpl _value, $Res Function(_$TvPreviewImpl) _then)
+class __$$PersonPreviewImplCopyWithImpl<$Res>
+    extends _$PersonPreviewCopyWithImpl<$Res, _$PersonPreviewImpl>
+    implements _$$PersonPreviewImplCopyWith<$Res> {
+  __$$PersonPreviewImplCopyWithImpl(
+      _$PersonPreviewImpl _value, $Res Function(_$PersonPreviewImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -134,7 +135,7 @@ class __$$TvPreviewImplCopyWithImpl<$Res>
     Object? voteAverage = null,
     Object? backdropPath = freezed,
   }) {
-    return _then(_$TvPreviewImpl(
+    return _then(_$PersonPreviewImpl(
       adult: null == adult
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
@@ -165,8 +166,8 @@ class __$$TvPreviewImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TvPreviewImpl implements _TvPreview {
-  const _$TvPreviewImpl(
+class _$PersonPreviewImpl implements _PersonPreview {
+  const _$PersonPreviewImpl(
       {required this.adult,
       required this.id,
       required this.overview,
@@ -174,8 +175,8 @@ class _$TvPreviewImpl implements _TvPreview {
       @JsonKey(name: "vote_average") required this.voteAverage,
       @JsonKey(name: "backdrop_path") this.backdropPath});
 
-  factory _$TvPreviewImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TvPreviewImplFromJson(json);
+  factory _$PersonPreviewImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PersonPreviewImplFromJson(json);
 
   @override
   final bool adult;
@@ -195,14 +196,14 @@ class _$TvPreviewImpl implements _TvPreview {
 
   @override
   String toString() {
-    return 'TvPreview(adult: $adult, id: $id, overview: $overview, posterPath: $posterPath, voteAverage: $voteAverage, backdropPath: $backdropPath)';
+    return 'PersonPreview(adult: $adult, id: $id, overview: $overview, posterPath: $posterPath, voteAverage: $voteAverage, backdropPath: $backdropPath)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TvPreviewImpl &&
+            other is _$PersonPreviewImpl &&
             (identical(other.adult, adult) || other.adult == adult) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.overview, overview) ||
@@ -223,29 +224,29 @@ class _$TvPreviewImpl implements _TvPreview {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TvPreviewImplCopyWith<_$TvPreviewImpl> get copyWith =>
-      __$$TvPreviewImplCopyWithImpl<_$TvPreviewImpl>(this, _$identity);
+  _$$PersonPreviewImplCopyWith<_$PersonPreviewImpl> get copyWith =>
+      __$$PersonPreviewImplCopyWithImpl<_$PersonPreviewImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TvPreviewImplToJson(
+    return _$$PersonPreviewImplToJson(
       this,
     );
   }
 }
 
-abstract class _TvPreview implements TvPreview, Media {
-  const factory _TvPreview(
+abstract class _PersonPreview implements PersonPreview, Media {
+  const factory _PersonPreview(
           {required final bool adult,
           required final int id,
           required final String overview,
           @JsonKey(name: "poster_path") required final String posterPath,
           @JsonKey(name: "vote_average") required final double voteAverage,
           @JsonKey(name: "backdrop_path") final String? backdropPath}) =
-      _$TvPreviewImpl;
+      _$PersonPreviewImpl;
 
-  factory _TvPreview.fromJson(Map<String, dynamic> json) =
-      _$TvPreviewImpl.fromJson;
+  factory _PersonPreview.fromJson(Map<String, dynamic> json) =
+      _$PersonPreviewImpl.fromJson;
 
   @override
   bool get adult;
@@ -264,6 +265,6 @@ abstract class _TvPreview implements TvPreview, Media {
   String? get backdropPath;
   @override
   @JsonKey(ignore: true)
-  _$$TvPreviewImplCopyWith<_$TvPreviewImpl> get copyWith =>
+  _$$PersonPreviewImplCopyWith<_$PersonPreviewImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
