@@ -20,7 +20,7 @@ final tmdbProvider = AutoDisposeProvider<TMDB>.internal(
 );
 
 typedef TmdbRef = AutoDisposeProviderRef<TMDB>;
-String _$getTrendingHash() => r'56d10e2ba63087971c5708426671af00faeece49';
+String _$getTrendingHash() => r'9befe89599d5539140937696b23be77e989a903c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -48,7 +48,7 @@ class _SystemHash {
 const getTrendingProvider = GetTrendingFamily();
 
 /// See also [getTrending].
-class GetTrendingFamily extends Family<AsyncValue<Pagination<Media>>> {
+class GetTrendingFamily extends Family<AsyncValue<Pagination<MediaPreview>>> {
   /// See also [getTrending].
   const GetTrendingFamily();
 
@@ -89,7 +89,8 @@ class GetTrendingFamily extends Family<AsyncValue<Pagination<Media>>> {
 }
 
 /// See also [getTrending].
-class GetTrendingProvider extends AutoDisposeFutureProvider<Pagination<Media>> {
+class GetTrendingProvider
+    extends AutoDisposeFutureProvider<Pagination<MediaPreview>> {
   /// See also [getTrending].
   GetTrendingProvider(
     TimeWindow timeWindow,
@@ -129,7 +130,7 @@ class GetTrendingProvider extends AutoDisposeFutureProvider<Pagination<Media>> {
 
   @override
   Override overrideWith(
-    FutureOr<Pagination<Media>> Function(GetTrendingRef provider) create,
+    FutureOr<Pagination<MediaPreview>> Function(GetTrendingRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -147,7 +148,7 @@ class GetTrendingProvider extends AutoDisposeFutureProvider<Pagination<Media>> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<Pagination<Media>> createElement() {
+  AutoDisposeFutureProviderElement<Pagination<MediaPreview>> createElement() {
     return _GetTrendingProviderElement(this);
   }
 
@@ -168,7 +169,7 @@ class GetTrendingProvider extends AutoDisposeFutureProvider<Pagination<Media>> {
   }
 }
 
-mixin GetTrendingRef on AutoDisposeFutureProviderRef<Pagination<Media>> {
+mixin GetTrendingRef on AutoDisposeFutureProviderRef<Pagination<MediaPreview>> {
   /// The parameter `timeWindow` of this provider.
   TimeWindow get timeWindow;
 
@@ -177,7 +178,7 @@ mixin GetTrendingRef on AutoDisposeFutureProviderRef<Pagination<Media>> {
 }
 
 class _GetTrendingProviderElement
-    extends AutoDisposeFutureProviderElement<Pagination<Media>>
+    extends AutoDisposeFutureProviderElement<Pagination<MediaPreview>>
     with GetTrendingRef {
   _GetTrendingProviderElement(super.provider);
 
@@ -316,6 +317,133 @@ class _GetMovieByIdProviderElement
   int get id => (origin as GetMovieByIdProvider).id;
 }
 
+String _$getTvByIdHash() => r'45d4ddd1e38f63465ca23637fcc5234dc216ce5c';
+
+/// See also [getTvById].
+@ProviderFor(getTvById)
+const getTvByIdProvider = GetTvByIdFamily();
+
+/// See also [getTvById].
+class GetTvByIdFamily extends Family<AsyncValue<TvDetails>> {
+  /// See also [getTvById].
+  const GetTvByIdFamily();
+
+  /// See also [getTvById].
+  GetTvByIdProvider call(
+    int id,
+  ) {
+    return GetTvByIdProvider(
+      id,
+    );
+  }
+
+  @override
+  GetTvByIdProvider getProviderOverride(
+    covariant GetTvByIdProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getTvByIdProvider';
+}
+
+/// See also [getTvById].
+class GetTvByIdProvider extends AutoDisposeFutureProvider<TvDetails> {
+  /// See also [getTvById].
+  GetTvByIdProvider(
+    int id,
+  ) : this._internal(
+          (ref) => getTvById(
+            ref as GetTvByIdRef,
+            id,
+          ),
+          from: getTvByIdProvider,
+          name: r'getTvByIdProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getTvByIdHash,
+          dependencies: GetTvByIdFamily._dependencies,
+          allTransitiveDependencies: GetTvByIdFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  GetTvByIdProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final int id;
+
+  @override
+  Override overrideWith(
+    FutureOr<TvDetails> Function(GetTvByIdRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetTvByIdProvider._internal(
+        (ref) => create(ref as GetTvByIdRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<TvDetails> createElement() {
+    return _GetTvByIdProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetTvByIdProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetTvByIdRef on AutoDisposeFutureProviderRef<TvDetails> {
+  /// The parameter `id` of this provider.
+  int get id;
+}
+
+class _GetTvByIdProviderElement
+    extends AutoDisposeFutureProviderElement<TvDetails> with GetTvByIdRef {
+  _GetTvByIdProviderElement(super.provider);
+
+  @override
+  int get id => (origin as GetTvByIdProvider).id;
+}
+
 String _$getMovieVideosByIdHash() =>
     r'8fd2f15618c13cdb801a4e65214c57399f2ad435';
 
@@ -444,6 +572,134 @@ class _GetMovieVideosByIdProviderElement
 
   @override
   int get id => (origin as GetMovieVideosByIdProvider).id;
+}
+
+String _$getTvVideosByIdHash() => r'8b0d225d57c6c91b580be73f35de50ec75e360bc';
+
+/// See also [getTvVideosById].
+@ProviderFor(getTvVideosById)
+const getTvVideosByIdProvider = GetTvVideosByIdFamily();
+
+/// See also [getTvVideosById].
+class GetTvVideosByIdFamily extends Family<AsyncValue<Videos>> {
+  /// See also [getTvVideosById].
+  const GetTvVideosByIdFamily();
+
+  /// See also [getTvVideosById].
+  GetTvVideosByIdProvider call(
+    int id,
+  ) {
+    return GetTvVideosByIdProvider(
+      id,
+    );
+  }
+
+  @override
+  GetTvVideosByIdProvider getProviderOverride(
+    covariant GetTvVideosByIdProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getTvVideosByIdProvider';
+}
+
+/// See also [getTvVideosById].
+class GetTvVideosByIdProvider extends AutoDisposeFutureProvider<Videos> {
+  /// See also [getTvVideosById].
+  GetTvVideosByIdProvider(
+    int id,
+  ) : this._internal(
+          (ref) => getTvVideosById(
+            ref as GetTvVideosByIdRef,
+            id,
+          ),
+          from: getTvVideosByIdProvider,
+          name: r'getTvVideosByIdProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getTvVideosByIdHash,
+          dependencies: GetTvVideosByIdFamily._dependencies,
+          allTransitiveDependencies:
+              GetTvVideosByIdFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  GetTvVideosByIdProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final int id;
+
+  @override
+  Override overrideWith(
+    FutureOr<Videos> Function(GetTvVideosByIdRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetTvVideosByIdProvider._internal(
+        (ref) => create(ref as GetTvVideosByIdRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Videos> createElement() {
+    return _GetTvVideosByIdProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetTvVideosByIdProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetTvVideosByIdRef on AutoDisposeFutureProviderRef<Videos> {
+  /// The parameter `id` of this provider.
+  int get id;
+}
+
+class _GetTvVideosByIdProviderElement
+    extends AutoDisposeFutureProviderElement<Videos> with GetTvVideosByIdRef {
+  _GetTvVideosByIdProviderElement(super.provider);
+
+  @override
+  int get id => (origin as GetTvVideosByIdProvider).id;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

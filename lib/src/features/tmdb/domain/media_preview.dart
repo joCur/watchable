@@ -1,4 +1,4 @@
-abstract class Media {
+abstract class MediaPreview {
   bool get adult;
   int get id;
   String get overview;

@@ -235,7 +235,7 @@ class _$PersonPreviewImpl implements _PersonPreview {
   }
 }
 
-abstract class _PersonPreview implements PersonPreview, Media {
+abstract class _PersonPreview implements PersonPreview, MediaPreview {
   const factory _PersonPreview(
           {required final bool adult,
           required final int id,

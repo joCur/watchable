@@ -7,6 +7,7 @@ import '../domain/movie_details.dart';
 import '../domain/movie_preview.dart';
 import '../domain/pagination.dart';
 import '../domain/person_preview.dart';
+import '../domain/tv_details.dart';
 import '../domain/tv_preview.dart';
 import '../domain/videos.dart';
 import '../extensions/map_extensions.dart';
@@ -26,11 +27,11 @@ TMDB tmdb(TmdbRef ref) {
 }
 
 @riverpod
-Future<Pagination<Media>> getTrending(GetTrendingRef ref, TimeWindow timeWindow, int page) async {
+Future<Pagination<MediaPreview>> getTrending(GetTrendingRef ref, TimeWindow timeWindow, int page) async {
   final tmdb = ref.watch(tmdbProvider);
   final response = await tmdb.v3.trending.getTrending(mediaType: MediaType.all, timeWindow: TimeWindow.week, page: page);
 
-  return Pagination<Media>.fromJson(response.toJsonMap(), (json) {
+  return Pagination<MediaPreview>.fromJson(response.toJsonMap(), (json) {
     final map = json as Map<String, dynamic>;
     switch (map['media_type']) {
       case 'tv':
@@ -53,9 +54,25 @@ Future<MovieDetails> getMovieById(GetMovieByIdRef ref, int id) async {
 }
 
 @riverpod
+Future<TvDetails> getTvById(GetTvByIdRef ref, int id) async {
+  final tmdb = ref.watch(tmdbProvider);
+  final response = await tmdb.v3.tv.getDetails(id);
+
+  return TvDetails.fromJson(response.toJsonMap());
+}
+
+@riverpod
 Future<Videos> getMovieVideosById(GetMovieVideosByIdRef ref, int id) async {
   final tmdb = ref.watch(tmdbProvider);
   final response = await tmdb.v3.movies.getVideos(id);
+
+  return Videos.fromJson(response.toJsonMap());
+}
+
+@riverpod
+Future<Videos> getTvVideosById(GetTvVideosByIdRef ref, int id) async {
+  final tmdb = ref.watch(tmdbProvider);
+  final response = await tmdb.v3.tv.getVideos(id.toString());
 
   return Videos.fromJson(response.toJsonMap());
 }

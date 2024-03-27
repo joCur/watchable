@@ -23,7 +23,18 @@
     "description": "Finde neue Filme zum Anschauen und füge sie deiner Watchlist hinzu.",
     "all": "Alle",
     "movies": "Filme",
-    "tv": "Fernsehshows"
+    "tv": "Fernsehshows",
+    "runtime": "{} Min",
+    "episodes": {
+      "zero": "0 Folgen",
+      "one": "1 Folge",
+      "other": "{} Folgen"
+    },
+    "seasonCount": {
+      "zero": "0 Staffeln",
+      "one": "1 Staffel",
+      "other": "{} Staffeln"
+    }
   },
   "groups": {
     "title": "Gruppen",

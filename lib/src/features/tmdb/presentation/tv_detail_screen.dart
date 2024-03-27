@@ -12,19 +12,19 @@ import 'package:watchable/src/features/tmdb/presentation/components/videos_list.
 
 import '../../common/presentation/spinner.dart';
 
-class MovieDetailScreen extends HookConsumerWidget {
-  static const String route = 'movies/:id';
-  static const String name = 'MovieDetail';
+class TvDetailScreen extends HookConsumerWidget {
+  static const String route = 'tv/:id';
+  static const String name = 'TvDetail';
 
   final int id;
 
-  const MovieDetailScreen(this.id, {super.key});
+  const TvDetailScreen(this.id, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final movie = ref.watch(getMovieByIdProvider(id));
-    final videos = ref.watch(getMovieVideosByIdProvider(id));
-    final isLoading = movie.maybeWhen(data: (_) => false, orElse: () => true);
+    final tv = ref.watch(getTvByIdProvider(id));
+    final videos = ref.watch(getTvVideosByIdProvider(id));
+    final isLoading = tv.maybeWhen(data: (_) => false, orElse: () => true);
 
     final scrollController = useScrollController();
 
@@ -37,16 +37,12 @@ class MovieDetailScreen extends HookConsumerWidget {
                 child: CustomScrollView(
                   slivers: [
                     const SliverAppBar(pinned: true),
-                    MediaHeader(movie.value!),
+                    MediaHeader(tv.value!),
                     const SliverPadding(padding: EdgeInsets.all(Sizes.p8)),
-                    MediaOverview(movie.value!),
-                    SliverPadding(
-                      padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
-                      sliver: SliverToBoxAdapter(child: Text(movie.value!.overview)),
-                    ),
-                    AddToWatchlist(movie.value!, onPressed: null),
-                    const SliverPadding(padding: screenPadding),
-                    GenreList(movie.value!.genres),
+                    MediaOverview(tv.value!),
+                    const SliverPadding(padding: EdgeInsets.all(Sizes.p16)),
+                    AddToWatchlist(tv.value!, onPressed: null),
+                    GenreList(tv.value!.genres),
                     VideosList(videos.value!),
                   ],
                 ),

@@ -24,7 +24,17 @@
     "all": "All",
     "movies": "Movies",
     "tv": "TV Shows",
-    "runtime": "{} min"
+    "runtime": "{} min",
+    "episodes": {
+      "zero": "0 Episodes",
+      "one": "1 Episode",
+      "other": "{} Episodes"
+    },
+    "seasonCount": {
+      "zero": "0 Seasons",
+      "one": "1 Season",
+      "other": "{} Seasons"
+    }
   },
   "groups": {
     "title": "Groups",

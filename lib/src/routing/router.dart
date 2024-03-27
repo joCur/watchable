@@ -6,9 +6,10 @@ import 'package:watchable/src/features/autentication/presentation/login_screen.d
 import 'package:watchable/src/features/groups/presentation/group_detail_screen.dart';
 import 'package:watchable/src/features/groups/presentation/group_list_screen.dart';
 import 'package:watchable/src/features/groups/presentation/group_members_screen.dart';
-import 'package:watchable/src/features/profile/presentation/create_profile_screen.dart';
 import 'package:watchable/src/features/home/presentation/home_screen.dart';
+import 'package:watchable/src/features/profile/presentation/create_profile_screen.dart';
 import 'package:watchable/src/features/tmdb/presentation/movie_detail_screen.dart';
+import 'package:watchable/src/features/tmdb/presentation/tv_detail_screen.dart';
 
 import '../features/groups/domain/group.dart';
 import '../features/profile/data/profile_repository.dart';
@@ -84,6 +85,14 @@ GoRouter router(RouterRef ref) {
                     pageBuilder: (context, state) => NoTransitionPage(
                       key: state.pageKey,
                       child: MovieDetailScreen(int.parse(state.pathParameters['id']!)),
+                    ),
+                  ),
+                  GoRoute(
+                    name: TvDetailScreen.name,
+                    path: TvDetailScreen.route,
+                    pageBuilder: (context, state) => NoTransitionPage(
+                      key: state.pageKey,
+                      child: TvDetailScreen(int.parse(state.pathParameters['id']!)),
                     ),
                   )
                 ],

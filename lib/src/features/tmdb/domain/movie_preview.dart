@@ -6,8 +6,8 @@ part 'movie_preview.freezed.dart';
 part 'movie_preview.g.dart';
 
 @freezed
-sealed class MoviePreview with _$MoviePreview implements Media {
-  @Implements<Media>()
+sealed class MoviePreview with _$MoviePreview implements MediaPreview {
+  @Implements<MediaPreview>()
   const factory MoviePreview({
     required bool adult,
     required int id,

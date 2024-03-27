@@ -234,7 +234,7 @@ class _$TvPreviewImpl implements _TvPreview {
   }
 }
 
-abstract class _TvPreview implements TvPreview, Media {
+abstract class _TvPreview implements TvPreview, MediaPreview {
   const factory _TvPreview(
           {required final bool adult,
           required final int id,

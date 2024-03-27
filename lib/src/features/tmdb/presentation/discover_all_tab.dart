@@ -18,7 +18,7 @@ class DiscoverAllTab extends ConsumerStatefulWidget {
 }
 
 class _DiscoverAllTabState extends ConsumerState<DiscoverAllTab> {
-  final PagingController<int, Media> _pagingController = PagingController(firstPageKey: 1);
+  final PagingController<int, MediaPreview> _pagingController = PagingController(firstPageKey: 1);
   final _scrollController = ScrollController();
 
   @override
@@ -62,7 +62,7 @@ class _DiscoverAllTabState extends ConsumerState<DiscoverAllTab> {
               const SliverAppBar(
                 title: Text('Trending'),
               ),
-              PagedSliverGrid<int, Media>(
+              PagedSliverGrid<int, MediaPreview>(
                 pagingController: _pagingController,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
@@ -70,7 +70,7 @@ class _DiscoverAllTabState extends ConsumerState<DiscoverAllTab> {
                   crossAxisSpacing: Sizes.p8,
                   childAspectRatio: 2 / 3,
                 ),
-                builderDelegate: PagedChildBuilderDelegate<Media>(
+                builderDelegate: PagedChildBuilderDelegate<MediaPreview>(
                   itemBuilder: (context, item, index) => MediaPreviewItem(item),
                 ),
               ),

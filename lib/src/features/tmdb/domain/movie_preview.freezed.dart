@@ -235,7 +235,7 @@ class _$MoviePreviewImpl implements _MoviePreview {
   }
 }
 
-abstract class _MoviePreview implements MoviePreview, Media {
+abstract class _MoviePreview implements MoviePreview, MediaPreview {
   const factory _MoviePreview(
           {required final bool adult,
           required final int id,

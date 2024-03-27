@@ -1,19 +1,22 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:watchable/src/features/tmdb/domain/production_country.dart';
+
 import 'genre.dart';
 import 'language.dart';
+import 'media_details.dart';
 import 'production_company.dart';
 
 part 'movie_details.freezed.dart';
 part 'movie_details.g.dart';
 
 @freezed
-class MovieDetails with _$MovieDetails {
+class MovieDetails with _$MovieDetails implements MediaDetails {
+  @Implements<MediaDetails>()
   const factory MovieDetails(
     int id,
     bool adult,
-    @JsonKey(name: "backdrop_path") backdropPath,
-    @JsonKey(name: "belongs_to_collection") belongsToCollection,
+    @JsonKey(name: "backdrop_path") String backdropPath,
+    @JsonKey(name: "belongs_to_collection") String? belongsToCollection,
     int budget,
     List<Genre> genres,
     String homepage,

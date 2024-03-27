@@ -1,15 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:watchable/src/features/tmdb/domain/tv_preview.dart';
-import 'package:watchable/src/features/tmdb/presentation/movie_detail_screen.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../domain/media_preview.dart';
 import '../../domain/movie_preview.dart';
+import '../../domain/tv_preview.dart';
+import '../movie_detail_screen.dart';
+import '../tv_detail_screen.dart';
 
 class MediaPreviewItem extends StatelessWidget {
-  final Media item;
+  final MediaPreview item;
 
   const MediaPreviewItem(this.item, {super.key});
 
@@ -17,7 +18,7 @@ class MediaPreviewItem extends StatelessWidget {
     if (item is MoviePreview) {
       context.pushNamed(MovieDetailScreen.name, pathParameters: {'id': item.id.toString()});
     } else if (item is TvPreview) {
-      // context.navigator.pushNamed('tv-shows/${item.id}');
+      context.pushNamed(TvDetailScreen.name, pathParameters: {'id': item.id.toString()});
     }
   }
 

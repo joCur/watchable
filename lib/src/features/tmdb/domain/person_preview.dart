@@ -6,8 +6,8 @@ part 'person_preview.freezed.dart';
 part 'person_preview.g.dart';
 
 @freezed
-class PersonPreview with _$PersonPreview implements Media {
-  @Implements<Media>()
+class PersonPreview with _$PersonPreview implements MediaPreview {
+  @Implements<MediaPreview>()
   const factory PersonPreview({
     required bool adult,
     required int id,

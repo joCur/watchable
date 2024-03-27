@@ -6,8 +6,8 @@ part 'tv_preview.freezed.dart';
 part 'tv_preview.g.dart';
 
 @freezed
-sealed class TvPreview with _$TvPreview implements Media {
-  @Implements<Media>()
+sealed class TvPreview with _$TvPreview implements MediaPreview {
+  @Implements<MediaPreview>()
   const factory TvPreview({
     required bool adult,
     required int id,

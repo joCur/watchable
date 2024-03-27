@@ -23,9 +23,9 @@ mixin _$MovieDetails {
   int get id => throw _privateConstructorUsedError;
   bool get adult => throw _privateConstructorUsedError;
   @JsonKey(name: "backdrop_path")
-  dynamic get backdropPath => throw _privateConstructorUsedError;
+  String get backdropPath => throw _privateConstructorUsedError;
   @JsonKey(name: "belongs_to_collection")
-  dynamic get belongsToCollection => throw _privateConstructorUsedError;
+  String? get belongsToCollection => throw _privateConstructorUsedError;
   int get budget => throw _privateConstructorUsedError;
   List<Genre> get genres => throw _privateConstructorUsedError;
   String get homepage => throw _privateConstructorUsedError;
@@ -75,8 +75,8 @@ abstract class $MovieDetailsCopyWith<$Res> {
   $Res call(
       {int id,
       bool adult,
-      @JsonKey(name: "backdrop_path") dynamic backdropPath,
-      @JsonKey(name: "belongs_to_collection") dynamic belongsToCollection,
+      @JsonKey(name: "backdrop_path") String backdropPath,
+      @JsonKey(name: "belongs_to_collection") String? belongsToCollection,
       int budget,
       List<Genre> genres,
       String homepage,
@@ -117,7 +117,7 @@ class _$MovieDetailsCopyWithImpl<$Res, $Val extends MovieDetails>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = freezed,
+    Object? backdropPath = null,
     Object? belongsToCollection = freezed,
     Object? budget = null,
     Object? genres = null,
@@ -150,14 +150,14 @@ class _$MovieDetailsCopyWithImpl<$Res, $Val extends MovieDetails>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      backdropPath: freezed == backdropPath
+      backdropPath: null == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String,
       belongsToCollection: freezed == belongsToCollection
           ? _value.belongsToCollection
           : belongsToCollection // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as String?,
       budget: null == budget
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
@@ -257,8 +257,8 @@ abstract class _$$MovieDetailsImplCopyWith<$Res>
   $Res call(
       {int id,
       bool adult,
-      @JsonKey(name: "backdrop_path") dynamic backdropPath,
-      @JsonKey(name: "belongs_to_collection") dynamic belongsToCollection,
+      @JsonKey(name: "backdrop_path") String backdropPath,
+      @JsonKey(name: "belongs_to_collection") String? belongsToCollection,
       int budget,
       List<Genre> genres,
       String homepage,
@@ -297,7 +297,7 @@ class __$$MovieDetailsImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? adult = null,
-    Object? backdropPath = freezed,
+    Object? backdropPath = null,
     Object? belongsToCollection = freezed,
     Object? budget = null,
     Object? genres = null,
@@ -330,10 +330,14 @@ class __$$MovieDetailsImplCopyWithImpl<$Res>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      freezed == backdropPath ? _value.backdropPath! : backdropPath,
+      null == backdropPath
+          ? _value.backdropPath
+          : backdropPath // ignore: cast_nullable_to_non_nullable
+              as String,
       freezed == belongsToCollection
-          ? _value.belongsToCollection!
-          : belongsToCollection,
+          ? _value.belongsToCollection
+          : belongsToCollection // ignore: cast_nullable_to_non_nullable
+              as String?,
       null == budget
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
@@ -467,10 +471,10 @@ class _$MovieDetailsImpl implements _MovieDetails {
   final bool adult;
   @override
   @JsonKey(name: "backdrop_path")
-  final dynamic backdropPath;
+  final String backdropPath;
   @override
   @JsonKey(name: "belongs_to_collection")
-  final dynamic belongsToCollection;
+  final String? belongsToCollection;
   @override
   final int budget;
   final List<Genre> _genres;
@@ -562,10 +566,10 @@ class _$MovieDetailsImpl implements _MovieDetails {
             other is _$MovieDetailsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.adult, adult) || other.adult == adult) &&
-            const DeepCollectionEquality()
-                .equals(other.backdropPath, backdropPath) &&
-            const DeepCollectionEquality()
-                .equals(other.belongsToCollection, belongsToCollection) &&
+            (identical(other.backdropPath, backdropPath) ||
+                other.backdropPath == backdropPath) &&
+            (identical(other.belongsToCollection, belongsToCollection) ||
+                other.belongsToCollection == belongsToCollection) &&
             (identical(other.budget, budget) || other.budget == budget) &&
             const DeepCollectionEquality().equals(other._genres, _genres) &&
             (identical(other.homepage, homepage) ||
@@ -607,8 +611,8 @@ class _$MovieDetailsImpl implements _MovieDetails {
         runtimeType,
         id,
         adult,
-        const DeepCollectionEquality().hash(backdropPath),
-        const DeepCollectionEquality().hash(belongsToCollection),
+        backdropPath,
+        belongsToCollection,
         budget,
         const DeepCollectionEquality().hash(_genres),
         homepage,
@@ -646,12 +650,12 @@ class _$MovieDetailsImpl implements _MovieDetails {
   }
 }
 
-abstract class _MovieDetails implements MovieDetails {
+abstract class _MovieDetails implements MovieDetails, MediaDetails {
   const factory _MovieDetails(
       final int id,
       final bool adult,
-      @JsonKey(name: "backdrop_path") final dynamic backdropPath,
-      @JsonKey(name: "belongs_to_collection") final dynamic belongsToCollection,
+      @JsonKey(name: "backdrop_path") final String backdropPath,
+      @JsonKey(name: "belongs_to_collection") final String? belongsToCollection,
       final int budget,
       final List<Genre> genres,
       final String homepage,
@@ -685,10 +689,10 @@ abstract class _MovieDetails implements MovieDetails {
   bool get adult;
   @override
   @JsonKey(name: "backdrop_path")
-  dynamic get backdropPath;
+  String get backdropPath;
   @override
   @JsonKey(name: "belongs_to_collection")
-  dynamic get belongsToCollection;
+  String? get belongsToCollection;
   @override
   int get budget;
   @override
