@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
+import 'package:watchable/src/features/tmdb/presentation/video_player_screen.dart';
 
 import '../../domain/video.dart';
 
@@ -31,7 +33,7 @@ class VideoItem extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       isThreeLine: false,
       minVerticalPadding: 0,
-      onTap: () {},
+      onTap: () => context.pushNamed(VideoPlayerScreen.name, pathParameters: {"id": item.key}),
     );
   }
 }

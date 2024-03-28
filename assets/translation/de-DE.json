@@ -34,7 +34,8 @@
       "zero": "0 Staffeln",
       "one": "1 Staffel",
       "other": "{} Staffeln"
-    }
+    },
+    "loadingVideosFailed": "Fehler beim Laden der Videos."
   },
   "groups": {
     "title": "Gruppen",

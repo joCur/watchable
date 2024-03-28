@@ -34,7 +34,8 @@
       "zero": "0 Seasons",
       "one": "1 Season",
       "other": "{} Seasons"
-    }
+    },
+    "loadingVideosFailed": "Loading videos failed."
   },
   "groups": {
     "title": "Groups",

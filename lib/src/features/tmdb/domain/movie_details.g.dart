@@ -10,8 +10,8 @@ _$MovieDetailsImpl _$$MovieDetailsImplFromJson(Map<String, dynamic> json) =>
     _$MovieDetailsImpl(
       json['id'] as int,
       json['adult'] as bool,
-      json['backdrop_path'],
-      json['belongs_to_collection'],
+      json['backdrop_path'] as String,
+      json['belongs_to_collection'] as String?,
       json['budget'] as int,
       (json['genres'] as List<dynamic>)
           .map((e) => Genre.fromJson(e as Map<String, dynamic>))

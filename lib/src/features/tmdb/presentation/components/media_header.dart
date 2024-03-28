@@ -4,13 +4,34 @@ import 'package:watchable/src/features/tmdb/domain/media_details.dart';
 import 'package:watchable/src/features/tmdb/domain/movie_details.dart';
 import 'package:watchable/src/features/tmdb/domain/tv_details.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/tagline.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../constants/app_sizes.dart';
+import '../../domain/videos.dart';
 
-class MediaHeader extends StatelessWidget {
+class MediaHeader extends StatefulWidget {
   final MediaDetails media;
+  final Videos videos;
 
-  const MediaHeader(this.media, {super.key});
+  const MediaHeader(this.media, {required this.videos, super.key});
+
+  @override
+  State<MediaHeader> createState() => _MediaHeaderState();
+}
+
+class _MediaHeaderState extends State<MediaHeader> {
+  late final YoutubePlayerController _controller;
+
+  bool isMuted = true;
+
+  @override
+  void initState() {
+    _controller = YoutubePlayerController(
+      initialVideoId: widget.videos.results.firstWhere((e) => e.type == "Trailer").key,
+      flags: const YoutubePlayerFlags(autoPlay: true, mute: true, enableCaption: false, forceHD: true),
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +39,39 @@ class MediaHeader extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network("https://image.tmdb.org/t/p/original/${media.backdropPath}"),
+          YoutubePlayer(
+            controller: _controller,
+            showVideoProgressIndicator: true,
+            topActions: [
+              const Spacer(),
+              IconButton(
+                onPressed: () {
+                  isMuted ? _controller.unMute() : _controller.mute();
+                  setState(() => isMuted = !isMuted);
+                },
+                icon: isMuted ? const Icon(Icons.volume_off, color: Colors.white) : const Icon(Icons.volume_up, color: Colors.white),
+              ),
+            ],
+            bottomActions: [
+              ProgressBar(isExpanded: true),
+              RemainingDuration(),
+            ],
+          ),
           gapH8,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
-            child: Text(media.title, style: context.textTheme.titleLarge),
+            child: Text(widget.media.title, style: context.textTheme.titleLarge),
           ),
           gapH8,
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
               child: Tagline(
-                media,
-                runtime: media is MovieDetails ? (media as MovieDetails).runtime : (media as TvDetails).lastEpisodeToAir.runtime,
-                episodeCount: media is TvDetails ? (media as TvDetails).numberOfEpisodes : null,
-                seasonCount: media is TvDetails ? (media as TvDetails).numberOfSeasons : null,
+                widget.media,
+                runtime: widget.media is MovieDetails
+                    ? (widget.media as MovieDetails).runtime
+                    : (widget.media as TvDetails).lastEpisodeToAir.runtime,
+                episodeCount: widget.media is TvDetails ? (widget.media as TvDetails).numberOfEpisodes : null,
+                seasonCount: widget.media is TvDetails ? (widget.media as TvDetails).numberOfSeasons : null,
               )),
         ],
       ),

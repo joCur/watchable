@@ -14,6 +14,7 @@ import 'package:watchable/src/features/tmdb/presentation/tv_detail_screen.dart';
 import '../features/groups/domain/group.dart';
 import '../features/profile/data/profile_repository.dart';
 import '../features/tmdb/presentation/discover_screen.dart';
+import '../features/tmdb/presentation/video_player_screen.dart';
 import 'go_router_refresh_stream.dart';
 import 'navigation/scaffold_with_nested_navigation.dart';
 
@@ -57,6 +58,11 @@ GoRouter router(RouterRef ref) {
             pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const CreateProfileScreen()),
           ),
         ],
+      ),
+      GoRoute(
+        name: VideoPlayerScreen.name,
+        path: VideoPlayerScreen.route,
+        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) => ScaffoldWithNestedNavigation(navigationShell: navigationShell),
