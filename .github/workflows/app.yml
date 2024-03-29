@@ -74,7 +74,6 @@ jobs:
         packageName: dev.curth.watchable
         releaseFiles: ./app-release.aab
         track: internal
-        status: draft # remove as soon as the app is no longer in draft state.
 
        
   production-android:
