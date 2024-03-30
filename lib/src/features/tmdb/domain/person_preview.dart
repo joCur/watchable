@@ -11,10 +11,11 @@ class PersonPreview with _$PersonPreview implements MediaPreview {
   const factory PersonPreview({
     required bool adult,
     required int id,
-    required String overview,
-    @JsonKey(name: "poster_path") required String posterPath,
-    @JsonKey(name: "vote_average") required double voteAverage,
+    @JsonKey(name: "original_name") required String overview,
+    @JsonKey(name: "name") required String title,
+    @JsonKey(name: "profile_path") String? posterPath,
     @JsonKey(name: "backdrop_path") String? backdropPath,
+    @JsonKey(name: "popularity") required double voteAverage,
   }) = _PersonPreview;
 
   factory PersonPreview.fromJson(Map<String, dynamic> json) => _$PersonPreviewFromJson(json);

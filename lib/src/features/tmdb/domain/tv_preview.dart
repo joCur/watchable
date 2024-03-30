@@ -12,7 +12,8 @@ sealed class TvPreview with _$TvPreview implements MediaPreview {
     required bool adult,
     required int id,
     required String overview,
-    @JsonKey(name: "poster_path") required String posterPath,
+    @JsonKey(name: "name") required String title,
+    @JsonKey(name: "poster_path") required String? posterPath,
     @JsonKey(name: "vote_average") required double voteAverage,
     @JsonKey(name: "backdrop_path") String? backdropPath,
   }) = _TvPreview;

@@ -14,7 +14,7 @@ class MediaPreviewItem extends StatelessWidget {
 
   const MediaPreviewItem(this.item, {super.key});
 
-  _onTab(BuildContext context) {
+  _onTap(BuildContext context) {
     if (item is MoviePreview) {
       context.pushNamed(MovieDetailScreen.name, pathParameters: {'id': item.id.toString()});
     } else if (item is TvPreview) {
@@ -45,7 +45,7 @@ class MediaPreviewItem extends StatelessWidget {
             color: Colors.transparent,
             child: InkWell(
               customBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Sizes.p16)),
-              onTap: () => _onTab(context),
+              onTap: () => _onTap(context),
             ),
           ),
         ),

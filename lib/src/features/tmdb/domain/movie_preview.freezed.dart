@@ -23,8 +23,9 @@ mixin _$MoviePreview {
   bool get adult => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   @JsonKey(name: "poster_path")
-  String get posterPath => throw _privateConstructorUsedError;
+  String? get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: "vote_average")
   double get voteAverage => throw _privateConstructorUsedError;
   @JsonKey(name: "backdrop_path")
@@ -46,7 +47,8 @@ abstract class $MoviePreviewCopyWith<$Res> {
       {bool adult,
       int id,
       String overview,
-      @JsonKey(name: "poster_path") String posterPath,
+      String title,
+      @JsonKey(name: "poster_path") String? posterPath,
       @JsonKey(name: "vote_average") double voteAverage,
       @JsonKey(name: "backdrop_path") String? backdropPath});
 }
@@ -67,7 +69,8 @@ class _$MoviePreviewCopyWithImpl<$Res, $Val extends MoviePreview>
     Object? adult = null,
     Object? id = null,
     Object? overview = null,
-    Object? posterPath = null,
+    Object? title = null,
+    Object? posterPath = freezed,
     Object? voteAverage = null,
     Object? backdropPath = freezed,
   }) {
@@ -84,10 +87,14 @@ class _$MoviePreviewCopyWithImpl<$Res, $Val extends MoviePreview>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       voteAverage: null == voteAverage
           ? _value.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
@@ -112,7 +119,8 @@ abstract class _$$MoviePreviewImplCopyWith<$Res>
       {bool adult,
       int id,
       String overview,
-      @JsonKey(name: "poster_path") String posterPath,
+      String title,
+      @JsonKey(name: "poster_path") String? posterPath,
       @JsonKey(name: "vote_average") double voteAverage,
       @JsonKey(name: "backdrop_path") String? backdropPath});
 }
@@ -131,7 +139,8 @@ class __$$MoviePreviewImplCopyWithImpl<$Res>
     Object? adult = null,
     Object? id = null,
     Object? overview = null,
-    Object? posterPath = null,
+    Object? title = null,
+    Object? posterPath = freezed,
     Object? voteAverage = null,
     Object? backdropPath = freezed,
   }) {
@@ -148,10 +157,14 @@ class __$$MoviePreviewImplCopyWithImpl<$Res>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       voteAverage: null == voteAverage
           ? _value.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
@@ -171,6 +184,7 @@ class _$MoviePreviewImpl implements _MoviePreview {
       {required this.adult,
       required this.id,
       required this.overview,
+      required this.title,
       @JsonKey(name: "poster_path") required this.posterPath,
       @JsonKey(name: "vote_average") required this.voteAverage,
       @JsonKey(name: "backdrop_path") this.backdropPath});
@@ -185,8 +199,10 @@ class _$MoviePreviewImpl implements _MoviePreview {
   @override
   final String overview;
   @override
+  final String title;
+  @override
   @JsonKey(name: "poster_path")
-  final String posterPath;
+  final String? posterPath;
   @override
   @JsonKey(name: "vote_average")
   final double voteAverage;
@@ -196,7 +212,7 @@ class _$MoviePreviewImpl implements _MoviePreview {
 
   @override
   String toString() {
-    return 'MoviePreview(adult: $adult, id: $id, overview: $overview, posterPath: $posterPath, voteAverage: $voteAverage, backdropPath: $backdropPath)';
+    return 'MoviePreview(adult: $adult, id: $id, overview: $overview, title: $title, posterPath: $posterPath, voteAverage: $voteAverage, backdropPath: $backdropPath)';
   }
 
   @override
@@ -208,6 +224,7 @@ class _$MoviePreviewImpl implements _MoviePreview {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.posterPath, posterPath) ||
                 other.posterPath == posterPath) &&
             (identical(other.voteAverage, voteAverage) ||
@@ -218,8 +235,8 @@ class _$MoviePreviewImpl implements _MoviePreview {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, adult, id, overview, posterPath, voteAverage, backdropPath);
+  int get hashCode => Object.hash(runtimeType, adult, id, overview, title,
+      posterPath, voteAverage, backdropPath);
 
   @JsonKey(ignore: true)
   @override
@@ -240,7 +257,8 @@ abstract class _MoviePreview implements MoviePreview, MediaPreview {
           {required final bool adult,
           required final int id,
           required final String overview,
-          @JsonKey(name: "poster_path") required final String posterPath,
+          required final String title,
+          @JsonKey(name: "poster_path") required final String? posterPath,
           @JsonKey(name: "vote_average") required final double voteAverage,
           @JsonKey(name: "backdrop_path") final String? backdropPath}) =
       _$MoviePreviewImpl;
@@ -255,8 +273,10 @@ abstract class _MoviePreview implements MoviePreview, MediaPreview {
   @override
   String get overview;
   @override
+  String get title;
+  @override
   @JsonKey(name: "poster_path")
-  String get posterPath;
+  String? get posterPath;
   @override
   @JsonKey(name: "vote_average")
   double get voteAverage;

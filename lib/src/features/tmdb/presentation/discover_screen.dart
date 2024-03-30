@@ -1,14 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:watchable/src/constants/locale_keys.dart';
-import 'package:watchable/src/features/tmdb/presentation/components/tab_chip.dart';
+import 'package:tmdb_api/tmdb_api.dart';
+import 'package:watchable/src/features/tmdb/application/tmdb_search_delegate.dart';
+import 'package:watchable/src/features/tmdb/presentation/components/media_tab_chip.dart';
 import 'package:watchable/src/features/tmdb/presentation/discover_all_tab.dart';
 import 'package:watchable/src/features/tmdb/presentation/discover_movies_tab.dart';
 import 'package:watchable/src/features/tmdb/presentation/discover_tv_tab.dart';
 
 import '../../../constants/app_sizes.dart';
+import '../application/search_controller.dart';
 
 class DiscoverScreen extends HookConsumerWidget {
   static const String route = '/discover';
@@ -18,26 +18,31 @@ class DiscoverScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    const content = [
-      DiscoverAllTab(),
-      DiscoverMoviesTab(),
-      DiscoverTvTab(),
-    ];
-
-    final index = useState(0);
+    final currentMediaType = ref.watch(searchControllerProvider);
+    const searchContent = {
+      MediaType.all: DiscoverAllTab(),
+      MediaType.movie: DiscoverMoviesTab(),
+      MediaType.tv: DiscoverTvTab(),
+    };
 
     return Scaffold(
       appBar: AppBar(
-        title: Wrap(
+        title: const Wrap(
           spacing: Sizes.p8,
           children: [
-            TabChip(index: 0, value: index.value, action: () => index.value = 0, content: LocaleKeys.discover_all.tr()),
-            TabChip(index: 1, value: index.value, action: () => index.value = 1, content: LocaleKeys.discover_movies.tr()),
-            TabChip(index: 2, value: index.value, action: () => index.value = 2, content: LocaleKeys.discover_tv.tr()),
+            MediaTabChip(value: MediaType.all),
+            MediaTabChip(value: MediaType.movie),
+            MediaTabChip(value: MediaType.tv),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () => showSearch(context: context, delegate: TmdbSearchDelegate()),
+          ),
+        ],
       ),
-      body: content[index.value],
+      body: searchContent[currentMediaType],
     );
   }
 }

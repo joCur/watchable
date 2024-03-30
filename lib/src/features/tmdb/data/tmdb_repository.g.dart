@@ -701,5 +701,152 @@ class _GetTvVideosByIdProviderElement
   @override
   int get id => (origin as GetTvVideosByIdProvider).id;
 }
+
+String _$queryMediaHash() => r'62ca0858aa7595311e1ed926176287b90798e7d4';
+
+/// See also [queryMedia].
+@ProviderFor(queryMedia)
+const queryMediaProvider = QueryMediaFamily();
+
+/// See also [queryMedia].
+class QueryMediaFamily extends Family<AsyncValue<Pagination<MediaPreview>>> {
+  /// See also [queryMedia].
+  const QueryMediaFamily();
+
+  /// See also [queryMedia].
+  QueryMediaProvider call(
+    String query,
+    int page,
+  ) {
+    return QueryMediaProvider(
+      query,
+      page,
+    );
+  }
+
+  @override
+  QueryMediaProvider getProviderOverride(
+    covariant QueryMediaProvider provider,
+  ) {
+    return call(
+      provider.query,
+      provider.page,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'queryMediaProvider';
+}
+
+/// See also [queryMedia].
+class QueryMediaProvider
+    extends AutoDisposeFutureProvider<Pagination<MediaPreview>> {
+  /// See also [queryMedia].
+  QueryMediaProvider(
+    String query,
+    int page,
+  ) : this._internal(
+          (ref) => queryMedia(
+            ref as QueryMediaRef,
+            query,
+            page,
+          ),
+          from: queryMediaProvider,
+          name: r'queryMediaProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$queryMediaHash,
+          dependencies: QueryMediaFamily._dependencies,
+          allTransitiveDependencies:
+              QueryMediaFamily._allTransitiveDependencies,
+          query: query,
+          page: page,
+        );
+
+  QueryMediaProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.query,
+    required this.page,
+  }) : super.internal();
+
+  final String query;
+  final int page;
+
+  @override
+  Override overrideWith(
+    FutureOr<Pagination<MediaPreview>> Function(QueryMediaRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: QueryMediaProvider._internal(
+        (ref) => create(ref as QueryMediaRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        query: query,
+        page: page,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Pagination<MediaPreview>> createElement() {
+    return _QueryMediaProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is QueryMediaProvider &&
+        other.query == query &&
+        other.page == page;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, query.hashCode);
+    hash = _SystemHash.combine(hash, page.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin QueryMediaRef on AutoDisposeFutureProviderRef<Pagination<MediaPreview>> {
+  /// The parameter `query` of this provider.
+  String get query;
+
+  /// The parameter `page` of this provider.
+  int get page;
+}
+
+class _QueryMediaProviderElement
+    extends AutoDisposeFutureProviderElement<Pagination<MediaPreview>>
+    with QueryMediaRef {
+  _QueryMediaProviderElement(super.provider);
+
+  @override
+  String get query => (origin as QueryMediaProvider).query;
+  @override
+  int get page => (origin as QueryMediaProvider).page;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

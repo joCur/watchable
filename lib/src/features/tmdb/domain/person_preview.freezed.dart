@@ -22,13 +22,16 @@ PersonPreview _$PersonPreviewFromJson(Map<String, dynamic> json) {
 mixin _$PersonPreview {
   bool get adult => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
+  @JsonKey(name: "original_name")
   String get overview => throw _privateConstructorUsedError;
-  @JsonKey(name: "poster_path")
-  String get posterPath => throw _privateConstructorUsedError;
-  @JsonKey(name: "vote_average")
-  double get voteAverage => throw _privateConstructorUsedError;
+  @JsonKey(name: "name")
+  String get title => throw _privateConstructorUsedError;
+  @JsonKey(name: "profile_path")
+  String? get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: "backdrop_path")
   String? get backdropPath => throw _privateConstructorUsedError;
+  @JsonKey(name: "popularity")
+  double get voteAverage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,10 +48,11 @@ abstract class $PersonPreviewCopyWith<$Res> {
   $Res call(
       {bool adult,
       int id,
-      String overview,
-      @JsonKey(name: "poster_path") String posterPath,
-      @JsonKey(name: "vote_average") double voteAverage,
-      @JsonKey(name: "backdrop_path") String? backdropPath});
+      @JsonKey(name: "original_name") String overview,
+      @JsonKey(name: "name") String title,
+      @JsonKey(name: "profile_path") String? posterPath,
+      @JsonKey(name: "backdrop_path") String? backdropPath,
+      @JsonKey(name: "popularity") double voteAverage});
 }
 
 /// @nodoc
@@ -67,9 +71,10 @@ class _$PersonPreviewCopyWithImpl<$Res, $Val extends PersonPreview>
     Object? adult = null,
     Object? id = null,
     Object? overview = null,
-    Object? posterPath = null,
-    Object? voteAverage = null,
+    Object? title = null,
+    Object? posterPath = freezed,
     Object? backdropPath = freezed,
+    Object? voteAverage = null,
   }) {
     return _then(_value.copyWith(
       adult: null == adult
@@ -84,18 +89,22 @@ class _$PersonPreviewCopyWithImpl<$Res, $Val extends PersonPreview>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      voteAverage: null == voteAverage
-          ? _value.voteAverage
-          : voteAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String?,
       backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
               as String?,
+      voteAverage: null == voteAverage
+          ? _value.voteAverage
+          : voteAverage // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -111,10 +120,11 @@ abstract class _$$PersonPreviewImplCopyWith<$Res>
   $Res call(
       {bool adult,
       int id,
-      String overview,
-      @JsonKey(name: "poster_path") String posterPath,
-      @JsonKey(name: "vote_average") double voteAverage,
-      @JsonKey(name: "backdrop_path") String? backdropPath});
+      @JsonKey(name: "original_name") String overview,
+      @JsonKey(name: "name") String title,
+      @JsonKey(name: "profile_path") String? posterPath,
+      @JsonKey(name: "backdrop_path") String? backdropPath,
+      @JsonKey(name: "popularity") double voteAverage});
 }
 
 /// @nodoc
@@ -131,9 +141,10 @@ class __$$PersonPreviewImplCopyWithImpl<$Res>
     Object? adult = null,
     Object? id = null,
     Object? overview = null,
-    Object? posterPath = null,
-    Object? voteAverage = null,
+    Object? title = null,
+    Object? posterPath = freezed,
     Object? backdropPath = freezed,
+    Object? voteAverage = null,
   }) {
     return _then(_$PersonPreviewImpl(
       adult: null == adult
@@ -148,18 +159,22 @@ class __$$PersonPreviewImplCopyWithImpl<$Res>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
+      title: null == title
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      voteAverage: null == voteAverage
-          ? _value.voteAverage
-          : voteAverage // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String?,
       backdropPath: freezed == backdropPath
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
               as String?,
+      voteAverage: null == voteAverage
+          ? _value.voteAverage
+          : voteAverage // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -170,10 +185,11 @@ class _$PersonPreviewImpl implements _PersonPreview {
   const _$PersonPreviewImpl(
       {required this.adult,
       required this.id,
-      required this.overview,
-      @JsonKey(name: "poster_path") required this.posterPath,
-      @JsonKey(name: "vote_average") required this.voteAverage,
-      @JsonKey(name: "backdrop_path") this.backdropPath});
+      @JsonKey(name: "original_name") required this.overview,
+      @JsonKey(name: "name") required this.title,
+      @JsonKey(name: "profile_path") this.posterPath,
+      @JsonKey(name: "backdrop_path") this.backdropPath,
+      @JsonKey(name: "popularity") required this.voteAverage});
 
   factory _$PersonPreviewImpl.fromJson(Map<String, dynamic> json) =>
       _$$PersonPreviewImplFromJson(json);
@@ -183,20 +199,24 @@ class _$PersonPreviewImpl implements _PersonPreview {
   @override
   final int id;
   @override
+  @JsonKey(name: "original_name")
   final String overview;
   @override
-  @JsonKey(name: "poster_path")
-  final String posterPath;
+  @JsonKey(name: "name")
+  final String title;
   @override
-  @JsonKey(name: "vote_average")
-  final double voteAverage;
+  @JsonKey(name: "profile_path")
+  final String? posterPath;
   @override
   @JsonKey(name: "backdrop_path")
   final String? backdropPath;
+  @override
+  @JsonKey(name: "popularity")
+  final double voteAverage;
 
   @override
   String toString() {
-    return 'PersonPreview(adult: $adult, id: $id, overview: $overview, posterPath: $posterPath, voteAverage: $voteAverage, backdropPath: $backdropPath)';
+    return 'PersonPreview(adult: $adult, id: $id, overview: $overview, title: $title, posterPath: $posterPath, backdropPath: $backdropPath, voteAverage: $voteAverage)';
   }
 
   @override
@@ -208,18 +228,19 @@ class _$PersonPreviewImpl implements _PersonPreview {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.overview, overview) ||
                 other.overview == overview) &&
+            (identical(other.title, title) || other.title == title) &&
             (identical(other.posterPath, posterPath) ||
                 other.posterPath == posterPath) &&
-            (identical(other.voteAverage, voteAverage) ||
-                other.voteAverage == voteAverage) &&
             (identical(other.backdropPath, backdropPath) ||
-                other.backdropPath == backdropPath));
+                other.backdropPath == backdropPath) &&
+            (identical(other.voteAverage, voteAverage) ||
+                other.voteAverage == voteAverage));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, adult, id, overview, posterPath, voteAverage, backdropPath);
+  int get hashCode => Object.hash(runtimeType, adult, id, overview, title,
+      posterPath, backdropPath, voteAverage);
 
   @JsonKey(ignore: true)
   @override
@@ -239,10 +260,11 @@ abstract class _PersonPreview implements PersonPreview, MediaPreview {
   const factory _PersonPreview(
           {required final bool adult,
           required final int id,
-          required final String overview,
-          @JsonKey(name: "poster_path") required final String posterPath,
-          @JsonKey(name: "vote_average") required final double voteAverage,
-          @JsonKey(name: "backdrop_path") final String? backdropPath}) =
+          @JsonKey(name: "original_name") required final String overview,
+          @JsonKey(name: "name") required final String title,
+          @JsonKey(name: "profile_path") final String? posterPath,
+          @JsonKey(name: "backdrop_path") final String? backdropPath,
+          @JsonKey(name: "popularity") required final double voteAverage}) =
       _$PersonPreviewImpl;
 
   factory _PersonPreview.fromJson(Map<String, dynamic> json) =
@@ -253,16 +275,20 @@ abstract class _PersonPreview implements PersonPreview, MediaPreview {
   @override
   int get id;
   @override
+  @JsonKey(name: "original_name")
   String get overview;
   @override
-  @JsonKey(name: "poster_path")
-  String get posterPath;
+  @JsonKey(name: "name")
+  String get title;
   @override
-  @JsonKey(name: "vote_average")
-  double get voteAverage;
+  @JsonKey(name: "profile_path")
+  String? get posterPath;
   @override
   @JsonKey(name: "backdrop_path")
   String? get backdropPath;
+  @override
+  @JsonKey(name: "popularity")
+  double get voteAverage;
   @override
   @JsonKey(ignore: true)
   _$$PersonPreviewImplCopyWith<_$PersonPreviewImpl> get copyWith =>
