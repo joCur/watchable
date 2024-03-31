@@ -74,19 +74,6 @@ class TmdbSearchDelegate extends SearchDelegate {
                 separatorBuilder: (context, index) => divider,
                 itemBuilder: (context, index) => MediaListItem(items[index]),
               );
-
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.search, size: 100),
-                    gapH16,
-                    Text('Search for ${searchType.name}', style: context.textTheme.titleLarge),
-                    gapH4,
-                    Text('Results for $query', style: context.textTheme.bodySmall),
-                  ],
-                ),
-              );
             },
           );
         }

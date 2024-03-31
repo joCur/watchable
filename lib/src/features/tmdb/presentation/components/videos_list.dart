@@ -18,8 +18,8 @@ class VideosList extends StatelessWidget {
     return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: Sizes.p16, vertical: Sizes.p8),
       sliver: videos.when(
-        loading: () => const Center(child: Spinner()),
-        error: (error, stacktrace) => Center(child: Text(LocaleKeys.discover_loadingVideosFailed.tr())),
+        loading: () => const SliverToBoxAdapter(child: Center(child: Spinner())),
+        error: (error, stacktrace) => SliverToBoxAdapter(child: Center(child: Text(LocaleKeys.discover_loadingVideosFailed.tr()))),
         data: (data) => SliverList.builder(
           itemCount: videos.value!.results.length,
           itemBuilder: (context, index) => VideoItem(videos.value!.results[index]),

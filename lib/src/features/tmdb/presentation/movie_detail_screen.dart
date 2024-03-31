@@ -1,16 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/app_sizes.dart';
+import 'package:watchable/src/constants/locale_keys.dart';
+import 'package:watchable/src/features/common/presentation/spinner.dart';
 import 'package:watchable/src/features/tmdb/data/tmdb_repository.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/add_to_watchlist.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/genre_list.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/media_header.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/media_overview.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/videos_list.dart';
-
-import '../../common/presentation/spinner.dart';
 
 class MovieDetailScreen extends HookConsumerWidget {
   static const String route = 'movies/:id';
@@ -29,29 +31,36 @@ class MovieDetailScreen extends HookConsumerWidget {
 
     final scrollController = useScrollController();
 
+    ref.listen(getMovieByIdProvider(id), (_, state) {
+      if (state.hasError) {
+        showToast(LocaleKeys.discover_loadMovieFailed.tr(), context: context);
+      }
+    });
+
+    if (isLoading) {
+      return Scaffold(appBar: AppBar(), body: const Center(child: Spinner()));
+    }
+
     return Scaffold(
-      body: isLoading
-          ? const Center(child: Spinner())
-          : PrimaryScrollController(
-              controller: scrollController,
-              child: CupertinoScrollbar(
-                child: CustomScrollView(
-                  slivers: [
-                    const SliverAppBar(pinned: true),
-                    if (isLoadingVideos)
-                      SliverToBoxAdapter(
-                          child: Image.network("https://image.tmdb.org/t/p/w1280${movie.value!.backdropPath}", fit: BoxFit.cover)),
-                    if (!isLoadingVideos) MediaHeader(movie.value!, videos: videos.value!),
-                    const SliverPadding(padding: EdgeInsets.all(Sizes.p8)),
-                    MediaOverview(movie.value!),
-                    AddToWatchlist(movie.value!, onPressed: null),
-                    const SliverPadding(padding: screenPadding),
-                    GenreList(movie.value!.genres),
-                    VideosList(videos),
-                  ],
-                ),
-              ),
-            ),
+      body: PrimaryScrollController(
+        controller: scrollController,
+        child: CupertinoScrollbar(
+          child: CustomScrollView(
+            slivers: [
+              const SliverAppBar(pinned: true),
+              if (isLoadingVideos)
+                SliverToBoxAdapter(child: Image.network("https://image.tmdb.org/t/p/w1280${movie.value!.backdropPath}", fit: BoxFit.cover)),
+              if (!isLoadingVideos) MediaHeader(movie.value!, videos: videos.value!),
+              const SliverPadding(padding: EdgeInsets.all(Sizes.p8)),
+              MediaOverview(movie.value!),
+              AddToWatchlist(movie.value!, onPressed: null),
+              const SliverPadding(padding: screenPadding),
+              GenreList(movie.value!.genres),
+              VideosList(videos),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

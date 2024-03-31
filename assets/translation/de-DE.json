@@ -35,7 +35,9 @@
       "one": "1 Staffel",
       "other": "{} Staffeln"
     },
-    "loadingVideosFailed": "Fehler beim Laden der Videos."
+    "loadingVideosFailed": "Fehler beim Laden der Videos.",
+    "loadMovieFailed": "Fehler beim Laden der Filmdetails. Bitte versuche es später erneut.",
+    "loadTvFailed": "Fehler beim Laden der Seriendetails. Bitte versuche es später erneut."
   },
   "groups": {
     "title": "Gruppen",

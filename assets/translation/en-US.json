@@ -35,7 +35,9 @@
       "one": "1 Season",
       "other": "{} Seasons"
     },
-    "loadingVideosFailed": "Loading videos failed."
+    "loadingVideosFailed": "Loading videos failed.",
+    "loadMovieFailed": "Fetching movie details failed. Please try again later.",
+    "loadTvFailed": "Fetching tv details failed. Please try again later."
   },
   "groups": {
     "title": "Groups",
