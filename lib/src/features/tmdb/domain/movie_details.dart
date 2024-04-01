@@ -16,7 +16,6 @@ class MovieDetails with _$MovieDetails implements MediaDetails {
     int id,
     bool adult,
     @JsonKey(name: "backdrop_path") String backdropPath,
-    @JsonKey(name: "belongs_to_collection") String? belongsToCollection,
     int budget,
     List<Genre> genres,
     String homepage,

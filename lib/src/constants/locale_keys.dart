@@ -28,6 +28,9 @@ abstract class  LocaleKeys {
   static const discover_loadingVideosFailed = 'discover.loadingVideosFailed';
   static const discover_loadMovieFailed = 'discover.loadMovieFailed';
   static const discover_loadTvFailed = 'discover.loadTvFailed';
+  static const discover_addToGroup = 'discover.addToGroup';
+  static const discover_addMovieToGroupFailed = 'discover.addMovieToGroupFailed';
+  static const discover_addTvToGroupFailed = 'discover.addTvToGroupFailed';
   static const discover = 'discover';
   static const groups_title = 'groups.title';
   static const groups_joinRequests = 'groups.joinRequests';

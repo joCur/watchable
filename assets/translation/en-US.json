@@ -37,7 +37,10 @@
     },
     "loadingVideosFailed": "Loading videos failed.",
     "loadMovieFailed": "Fetching movie details failed. Please try again later.",
-    "loadTvFailed": "Fetching tv details failed. Please try again later."
+    "loadTvFailed": "Fetching tv details failed. Please try again later.",
+    "addToGroup": "Add to Group",
+    "addMovieToGroupFailed": "Adding movie to group failed. Please try again later.",
+    "addTvToGroupFailed": "Adding tv show to group failed. Please try again later."
   },
   "groups": {
     "title": "Groups",
@@ -66,6 +69,6 @@
   },
   "errors": {
     "couldNotCreateGroup": "Could not create group.",
-    "unknown": "An unknown error occurred."
+    "unknown": "An error occurred, please try again later."
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:watchable/src/features/group_media/presentation/group_media_list.dart';
 import 'package:watchable/src/features/groups/data/group_repository.dart';
 import 'package:watchable/src/features/groups/presentation/components/group_details_menu.dart';
 
@@ -26,6 +27,7 @@ class GroupDetailScreen extends ConsumerWidget {
           GroupDetailsMenu(id),
         ],
       ),
+      body: GroupMediaList(id),
     );
   }
 }

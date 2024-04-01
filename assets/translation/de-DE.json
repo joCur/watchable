@@ -37,7 +37,10 @@
     },
     "loadingVideosFailed": "Fehler beim Laden der Videos.",
     "loadMovieFailed": "Fehler beim Laden der Filmdetails. Bitte versuche es später erneut.",
-    "loadTvFailed": "Fehler beim Laden der Seriendetails. Bitte versuche es später erneut."
+    "loadTvFailed": "Fehler beim Laden der Seriendetails. Bitte versuche es später erneut.",
+    "addToGroup": "Zur Gruppe hinzufügen",
+    "addMovieToGroupFailed": "Fehler beim Hinzufügen des Films zur Gruppe. Bitte versuche es später erneut.",
+    "addTvToGroupFailed": "Fehler beim Hinzufügen der Serie zur Gruppe. Bitte versuche es später erneut."
   },
   "groups": {
     "title": "Gruppen",
@@ -66,6 +69,6 @@
   },
   "errors": {
     "couldNotCreateGroup": "Gruppe konnte nicht erstellt werden.",
-    "unknown": "Ein unbekannter Fehler ist aufgetreten."
+    "unknown": "Ein Fehler ist aufgetreten, bitte versuche es später erneut."
   }
 }

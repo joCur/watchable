@@ -24,8 +24,6 @@ mixin _$MovieDetails {
   bool get adult => throw _privateConstructorUsedError;
   @JsonKey(name: "backdrop_path")
   String get backdropPath => throw _privateConstructorUsedError;
-  @JsonKey(name: "belongs_to_collection")
-  String? get belongsToCollection => throw _privateConstructorUsedError;
   int get budget => throw _privateConstructorUsedError;
   List<Genre> get genres => throw _privateConstructorUsedError;
   String get homepage => throw _privateConstructorUsedError;
@@ -76,7 +74,6 @@ abstract class $MovieDetailsCopyWith<$Res> {
       {int id,
       bool adult,
       @JsonKey(name: "backdrop_path") String backdropPath,
-      @JsonKey(name: "belongs_to_collection") String? belongsToCollection,
       int budget,
       List<Genre> genres,
       String homepage,
@@ -118,7 +115,6 @@ class _$MovieDetailsCopyWithImpl<$Res, $Val extends MovieDetails>
     Object? id = null,
     Object? adult = null,
     Object? backdropPath = null,
-    Object? belongsToCollection = freezed,
     Object? budget = null,
     Object? genres = null,
     Object? homepage = null,
@@ -154,10 +150,6 @@ class _$MovieDetailsCopyWithImpl<$Res, $Val extends MovieDetails>
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
               as String,
-      belongsToCollection: freezed == belongsToCollection
-          ? _value.belongsToCollection
-          : belongsToCollection // ignore: cast_nullable_to_non_nullable
-              as String?,
       budget: null == budget
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
@@ -258,7 +250,6 @@ abstract class _$$MovieDetailsImplCopyWith<$Res>
       {int id,
       bool adult,
       @JsonKey(name: "backdrop_path") String backdropPath,
-      @JsonKey(name: "belongs_to_collection") String? belongsToCollection,
       int budget,
       List<Genre> genres,
       String homepage,
@@ -298,7 +289,6 @@ class __$$MovieDetailsImplCopyWithImpl<$Res>
     Object? id = null,
     Object? adult = null,
     Object? backdropPath = null,
-    Object? belongsToCollection = freezed,
     Object? budget = null,
     Object? genres = null,
     Object? homepage = null,
@@ -334,10 +324,6 @@ class __$$MovieDetailsImplCopyWithImpl<$Res>
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
               as String,
-      freezed == belongsToCollection
-          ? _value.belongsToCollection
-          : belongsToCollection // ignore: cast_nullable_to_non_nullable
-              as String?,
       null == budget
           ? _value.budget
           : budget // ignore: cast_nullable_to_non_nullable
@@ -433,7 +419,6 @@ class _$MovieDetailsImpl implements _MovieDetails {
       this.id,
       this.adult,
       @JsonKey(name: "backdrop_path") this.backdropPath,
-      @JsonKey(name: "belongs_to_collection") this.belongsToCollection,
       this.budget,
       final List<Genre> genres,
       this.homepage,
@@ -472,9 +457,6 @@ class _$MovieDetailsImpl implements _MovieDetails {
   @override
   @JsonKey(name: "backdrop_path")
   final String backdropPath;
-  @override
-  @JsonKey(name: "belongs_to_collection")
-  final String? belongsToCollection;
   @override
   final int budget;
   final List<Genre> _genres;
@@ -556,7 +538,7 @@ class _$MovieDetailsImpl implements _MovieDetails {
 
   @override
   String toString() {
-    return 'MovieDetails(id: $id, adult: $adult, backdropPath: $backdropPath, belongsToCollection: $belongsToCollection, budget: $budget, genres: $genres, homepage: $homepage, imdbId: $imdbId, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, posterPath: $posterPath, productionCompanies: $productionCompanies, productionCountries: $productionCountries, releaseDate: $releaseDate, revenue: $revenue, runtime: $runtime, spokenLanguages: $spokenLanguages, status: $status, tagline: $tagline, title: $title, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
+    return 'MovieDetails(id: $id, adult: $adult, backdropPath: $backdropPath, budget: $budget, genres: $genres, homepage: $homepage, imdbId: $imdbId, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, posterPath: $posterPath, productionCompanies: $productionCompanies, productionCountries: $productionCountries, releaseDate: $releaseDate, revenue: $revenue, runtime: $runtime, spokenLanguages: $spokenLanguages, status: $status, tagline: $tagline, title: $title, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
   }
 
   @override
@@ -568,8 +550,6 @@ class _$MovieDetailsImpl implements _MovieDetails {
             (identical(other.adult, adult) || other.adult == adult) &&
             (identical(other.backdropPath, backdropPath) ||
                 other.backdropPath == backdropPath) &&
-            (identical(other.belongsToCollection, belongsToCollection) ||
-                other.belongsToCollection == belongsToCollection) &&
             (identical(other.budget, budget) || other.budget == budget) &&
             const DeepCollectionEquality().equals(other._genres, _genres) &&
             (identical(other.homepage, homepage) ||
@@ -612,7 +592,6 @@ class _$MovieDetailsImpl implements _MovieDetails {
         id,
         adult,
         backdropPath,
-        belongsToCollection,
         budget,
         const DeepCollectionEquality().hash(_genres),
         homepage,
@@ -655,7 +634,6 @@ abstract class _MovieDetails implements MovieDetails, MediaDetails {
       final int id,
       final bool adult,
       @JsonKey(name: "backdrop_path") final String backdropPath,
-      @JsonKey(name: "belongs_to_collection") final String? belongsToCollection,
       final int budget,
       final List<Genre> genres,
       final String homepage,
@@ -690,9 +668,6 @@ abstract class _MovieDetails implements MovieDetails, MediaDetails {
   @override
   @JsonKey(name: "backdrop_path")
   String get backdropPath;
-  @override
-  @JsonKey(name: "belongs_to_collection")
-  String? get belongsToCollection;
   @override
   int get budget;
   @override

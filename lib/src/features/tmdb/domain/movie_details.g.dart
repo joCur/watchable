@@ -11,7 +11,6 @@ _$MovieDetailsImpl _$$MovieDetailsImplFromJson(Map<String, dynamic> json) =>
       json['id'] as int,
       json['adult'] as bool,
       json['backdrop_path'] as String,
-      json['belongs_to_collection'] as String?,
       json['budget'] as int,
       (json['genres'] as List<dynamic>)
           .map((e) => Genre.fromJson(e as Map<String, dynamic>))
@@ -48,7 +47,6 @@ Map<String, dynamic> _$$MovieDetailsImplToJson(_$MovieDetailsImpl instance) =>
       'id': instance.id,
       'adult': instance.adult,
       'backdrop_path': instance.backdropPath,
-      'belongs_to_collection': instance.belongsToCollection,
       'budget': instance.budget,
       'genres': instance.genres,
       'homepage': instance.homepage,

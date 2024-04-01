@@ -1,11 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/app_sizes.dart';
-import 'package:watchable/src/constants/locale_keys.dart';
+import 'package:watchable/src/extensions/async_value_extensions.dart';
 import 'package:watchable/src/features/tmdb/data/tmdb_repository.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/add_to_watchlist.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/genre_list.dart';
@@ -33,9 +31,7 @@ class TvDetailScreen extends HookConsumerWidget {
     final scrollController = useScrollController();
 
     ref.listen(getMovieByIdProvider(id), (_, state) {
-      if (state.hasError) {
-        showToast(LocaleKeys.discover_loadTvFailed.tr(), context: context);
-      }
+      state.showToastOnError(context);
     });
 
     if (isLoading) {
@@ -55,7 +51,7 @@ class TvDetailScreen extends HookConsumerWidget {
               const SliverPadding(padding: EdgeInsets.all(Sizes.p8)),
               MediaOverview(tv.value!),
               const SliverPadding(padding: EdgeInsets.all(Sizes.p16)),
-              AddToWatchlist(tv.value!, onPressed: null),
+              AddToWatchlist(tv.value!),
               GenreList(tv.value!.genres),
               VideosList(videos),
             ],
