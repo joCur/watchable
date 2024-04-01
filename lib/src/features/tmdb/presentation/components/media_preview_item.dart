@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../domain/media_preview.dart';
-import '../../domain/movie_preview.dart';
-import '../../domain/tv_preview.dart';
 import '../movie_detail_screen.dart';
 import '../tv_detail_screen.dart';
 

@@ -24,9 +24,7 @@ class TvDetailScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tv = ref.watch(getTvByIdProvider(id));
-    final videos = ref.watch(getTvVideosByIdProvider(id));
     final isLoading = tv.maybeWhen(data: (_) => false, orElse: () => true);
-    final isLoadingVideos = videos.maybeWhen(data: (_) => false, orElse: () => true);
 
     final scrollController = useScrollController();
 
@@ -45,15 +43,15 @@ class TvDetailScreen extends HookConsumerWidget {
           child: CustomScrollView(
             slivers: [
               const SliverAppBar(pinned: true),
-              if (isLoadingVideos)
+              if (isLoading)
                 SliverToBoxAdapter(child: Image.network("https://image.tmdb.org/t/p/w1280${tv.value!.backdropPath}", fit: BoxFit.cover)),
-              if (!isLoadingVideos) MediaHeader(tv.value!, videos: videos.value!),
+              if (!isLoading) MediaHeader(tv.value!, videos: tv.value!.videos),
               const SliverPadding(padding: EdgeInsets.all(Sizes.p8)),
               MediaOverview(tv.value!),
               const SliverPadding(padding: EdgeInsets.all(Sizes.p16)),
               AddToWatchlist(tv.value!),
               GenreList(tv.value!.genres),
-              VideosList(videos),
+              VideosList(tv.value!.videos),
             ],
           ),
         ),

@@ -1,24 +1,25 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:watchable/src/features/groups/extensions/media_details_extensions.dart';
 import 'package:wolt_modal_sheet/wolt_modal_sheet.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../constants/locale_keys.dart';
 import '../../../../extensions/build_context_extensions.dart';
 import '../../../group_media/presentation/modals/select_user_group_page.dart';
-import '../../domain/media_details.dart';
+import '../../../groups/extensions/media_details_extensions.dart';
+import '../../domain/media.dart';
 
 class AddToWatchlist extends ConsumerWidget {
-  final MediaDetails media;
+  final Media media;
 
   const AddToWatchlist(this.media, {super.key});
 
   _showModal(BuildContext context) {
     WoltModalSheet.show(
       context: context,
-      showDragHandle: false,
+      enableDrag: true,
+      useSafeArea: true,
       pageListBuilder: (ctx) => [
         SelectUserGroupPageBuilder.build(ctx, media.id, media.getMediaType()),
       ],

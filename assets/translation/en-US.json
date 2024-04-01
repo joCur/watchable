@@ -67,6 +67,11 @@
       "button": "Join Group"
     }
   },
+  "groupMedia": {
+    "addedSuccessfully": "Added successfully.",
+    "modalTitle": "Add to Group",
+    "modalDescription": "Press and hold to select multiple."
+  },
   "errors": {
     "couldNotCreateGroup": "Could not create group.",
     "unknown": "An error occurred, please try again later."

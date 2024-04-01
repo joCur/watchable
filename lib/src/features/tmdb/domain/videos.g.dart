@@ -16,5 +16,5 @@ _$VideosImpl _$$VideosImplFromJson(Map<String, dynamic> json) => _$VideosImpl(
 Map<String, dynamic> _$$VideosImplToJson(_$VideosImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'results': instance.results,
+      'results': instance.results.map((e) => e.toJson()).toList(),
     };

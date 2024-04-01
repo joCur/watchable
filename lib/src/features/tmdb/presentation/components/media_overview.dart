@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:watchable/src/features/tmdb/domain/media_details.dart';
 
 import '../../../../constants/app_sizes.dart';
+import '../../domain/media.dart';
 
 class MediaOverview extends StatelessWidget {
-  final MediaDetails media;
+  final Media media;
 
   const MediaOverview(this.media, {super.key});
 

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:watchable/src/constants/app_sizes.dart';
 import 'package:watchable/src/constants/locale_keys.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
-import 'package:watchable/src/features/tmdb/domain/media_details.dart';
+
+import '../../domain/media.dart';
 
 class Tagline extends StatelessWidget {
-  final MediaDetails item;
+  final Media item;
   final int runtime;
   final int? episodeCount;
   final int? seasonCount;

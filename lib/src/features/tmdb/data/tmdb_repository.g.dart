@@ -188,14 +188,14 @@ class _GetTrendingProviderElement
   int get page => (origin as GetTrendingProvider).page;
 }
 
-String _$getMovieByIdHash() => r'd3ee23bbdf1779bded2943645771e936aad1ac3f';
+String _$getMovieByIdHash() => r'2f6f90e0615dc163abd7d31e85f638ed6e7b5d72';
 
 /// See also [getMovieById].
 @ProviderFor(getMovieById)
 const getMovieByIdProvider = GetMovieByIdFamily();
 
 /// See also [getMovieById].
-class GetMovieByIdFamily extends Family<AsyncValue<MovieDetails>> {
+class GetMovieByIdFamily extends Family<AsyncValue<Media>> {
   /// See also [getMovieById].
   const GetMovieByIdFamily();
 
@@ -233,7 +233,7 @@ class GetMovieByIdFamily extends Family<AsyncValue<MovieDetails>> {
 }
 
 /// See also [getMovieById].
-class GetMovieByIdProvider extends AutoDisposeFutureProvider<MovieDetails> {
+class GetMovieByIdProvider extends AutoDisposeFutureProvider<Media> {
   /// See also [getMovieById].
   GetMovieByIdProvider(
     int id,
@@ -268,7 +268,7 @@ class GetMovieByIdProvider extends AutoDisposeFutureProvider<MovieDetails> {
 
   @override
   Override overrideWith(
-    FutureOr<MovieDetails> Function(GetMovieByIdRef provider) create,
+    FutureOr<Media> Function(GetMovieByIdRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -285,7 +285,7 @@ class GetMovieByIdProvider extends AutoDisposeFutureProvider<MovieDetails> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<MovieDetails> createElement() {
+  AutoDisposeFutureProviderElement<Media> createElement() {
     return _GetMovieByIdProviderElement(this);
   }
 
@@ -303,28 +303,27 @@ class GetMovieByIdProvider extends AutoDisposeFutureProvider<MovieDetails> {
   }
 }
 
-mixin GetMovieByIdRef on AutoDisposeFutureProviderRef<MovieDetails> {
+mixin GetMovieByIdRef on AutoDisposeFutureProviderRef<Media> {
   /// The parameter `id` of this provider.
   int get id;
 }
 
 class _GetMovieByIdProviderElement
-    extends AutoDisposeFutureProviderElement<MovieDetails>
-    with GetMovieByIdRef {
+    extends AutoDisposeFutureProviderElement<Media> with GetMovieByIdRef {
   _GetMovieByIdProviderElement(super.provider);
 
   @override
   int get id => (origin as GetMovieByIdProvider).id;
 }
 
-String _$getTvByIdHash() => r'45d4ddd1e38f63465ca23637fcc5234dc216ce5c';
+String _$getTvByIdHash() => r'ac4eccecdbae5f187ae5d3ff5df7ea0bdc1adb08';
 
 /// See also [getTvById].
 @ProviderFor(getTvById)
 const getTvByIdProvider = GetTvByIdFamily();
 
 /// See also [getTvById].
-class GetTvByIdFamily extends Family<AsyncValue<TvDetails>> {
+class GetTvByIdFamily extends Family<AsyncValue<Media>> {
   /// See also [getTvById].
   const GetTvByIdFamily();
 
@@ -362,7 +361,7 @@ class GetTvByIdFamily extends Family<AsyncValue<TvDetails>> {
 }
 
 /// See also [getTvById].
-class GetTvByIdProvider extends AutoDisposeFutureProvider<TvDetails> {
+class GetTvByIdProvider extends AutoDisposeFutureProvider<Media> {
   /// See also [getTvById].
   GetTvByIdProvider(
     int id,
@@ -396,7 +395,7 @@ class GetTvByIdProvider extends AutoDisposeFutureProvider<TvDetails> {
 
   @override
   Override overrideWith(
-    FutureOr<TvDetails> Function(GetTvByIdRef provider) create,
+    FutureOr<Media> Function(GetTvByIdRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
@@ -413,7 +412,7 @@ class GetTvByIdProvider extends AutoDisposeFutureProvider<TvDetails> {
   }
 
   @override
-  AutoDisposeFutureProviderElement<TvDetails> createElement() {
+  AutoDisposeFutureProviderElement<Media> createElement() {
     return _GetTvByIdProviderElement(this);
   }
 
@@ -431,278 +430,20 @@ class GetTvByIdProvider extends AutoDisposeFutureProvider<TvDetails> {
   }
 }
 
-mixin GetTvByIdRef on AutoDisposeFutureProviderRef<TvDetails> {
+mixin GetTvByIdRef on AutoDisposeFutureProviderRef<Media> {
   /// The parameter `id` of this provider.
   int get id;
 }
 
-class _GetTvByIdProviderElement
-    extends AutoDisposeFutureProviderElement<TvDetails> with GetTvByIdRef {
+class _GetTvByIdProviderElement extends AutoDisposeFutureProviderElement<Media>
+    with GetTvByIdRef {
   _GetTvByIdProviderElement(super.provider);
 
   @override
   int get id => (origin as GetTvByIdProvider).id;
 }
 
-String _$getMovieVideosByIdHash() =>
-    r'8fd2f15618c13cdb801a4e65214c57399f2ad435';
-
-/// See also [getMovieVideosById].
-@ProviderFor(getMovieVideosById)
-const getMovieVideosByIdProvider = GetMovieVideosByIdFamily();
-
-/// See also [getMovieVideosById].
-class GetMovieVideosByIdFamily extends Family<AsyncValue<Videos>> {
-  /// See also [getMovieVideosById].
-  const GetMovieVideosByIdFamily();
-
-  /// See also [getMovieVideosById].
-  GetMovieVideosByIdProvider call(
-    int id,
-  ) {
-    return GetMovieVideosByIdProvider(
-      id,
-    );
-  }
-
-  @override
-  GetMovieVideosByIdProvider getProviderOverride(
-    covariant GetMovieVideosByIdProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getMovieVideosByIdProvider';
-}
-
-/// See also [getMovieVideosById].
-class GetMovieVideosByIdProvider extends AutoDisposeFutureProvider<Videos> {
-  /// See also [getMovieVideosById].
-  GetMovieVideosByIdProvider(
-    int id,
-  ) : this._internal(
-          (ref) => getMovieVideosById(
-            ref as GetMovieVideosByIdRef,
-            id,
-          ),
-          from: getMovieVideosByIdProvider,
-          name: r'getMovieVideosByIdProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getMovieVideosByIdHash,
-          dependencies: GetMovieVideosByIdFamily._dependencies,
-          allTransitiveDependencies:
-              GetMovieVideosByIdFamily._allTransitiveDependencies,
-          id: id,
-        );
-
-  GetMovieVideosByIdProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final int id;
-
-  @override
-  Override overrideWith(
-    FutureOr<Videos> Function(GetMovieVideosByIdRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetMovieVideosByIdProvider._internal(
-        (ref) => create(ref as GetMovieVideosByIdRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<Videos> createElement() {
-    return _GetMovieVideosByIdProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is GetMovieVideosByIdProvider && other.id == id;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin GetMovieVideosByIdRef on AutoDisposeFutureProviderRef<Videos> {
-  /// The parameter `id` of this provider.
-  int get id;
-}
-
-class _GetMovieVideosByIdProviderElement
-    extends AutoDisposeFutureProviderElement<Videos>
-    with GetMovieVideosByIdRef {
-  _GetMovieVideosByIdProviderElement(super.provider);
-
-  @override
-  int get id => (origin as GetMovieVideosByIdProvider).id;
-}
-
-String _$getTvVideosByIdHash() => r'8b0d225d57c6c91b580be73f35de50ec75e360bc';
-
-/// See also [getTvVideosById].
-@ProviderFor(getTvVideosById)
-const getTvVideosByIdProvider = GetTvVideosByIdFamily();
-
-/// See also [getTvVideosById].
-class GetTvVideosByIdFamily extends Family<AsyncValue<Videos>> {
-  /// See also [getTvVideosById].
-  const GetTvVideosByIdFamily();
-
-  /// See also [getTvVideosById].
-  GetTvVideosByIdProvider call(
-    int id,
-  ) {
-    return GetTvVideosByIdProvider(
-      id,
-    );
-  }
-
-  @override
-  GetTvVideosByIdProvider getProviderOverride(
-    covariant GetTvVideosByIdProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getTvVideosByIdProvider';
-}
-
-/// See also [getTvVideosById].
-class GetTvVideosByIdProvider extends AutoDisposeFutureProvider<Videos> {
-  /// See also [getTvVideosById].
-  GetTvVideosByIdProvider(
-    int id,
-  ) : this._internal(
-          (ref) => getTvVideosById(
-            ref as GetTvVideosByIdRef,
-            id,
-          ),
-          from: getTvVideosByIdProvider,
-          name: r'getTvVideosByIdProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getTvVideosByIdHash,
-          dependencies: GetTvVideosByIdFamily._dependencies,
-          allTransitiveDependencies:
-              GetTvVideosByIdFamily._allTransitiveDependencies,
-          id: id,
-        );
-
-  GetTvVideosByIdProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final int id;
-
-  @override
-  Override overrideWith(
-    FutureOr<Videos> Function(GetTvVideosByIdRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetTvVideosByIdProvider._internal(
-        (ref) => create(ref as GetTvVideosByIdRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<Videos> createElement() {
-    return _GetTvVideosByIdProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is GetTvVideosByIdProvider && other.id == id;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin GetTvVideosByIdRef on AutoDisposeFutureProviderRef<Videos> {
-  /// The parameter `id` of this provider.
-  int get id;
-}
-
-class _GetTvVideosByIdProviderElement
-    extends AutoDisposeFutureProviderElement<Videos> with GetTvVideosByIdRef {
-  _GetTvVideosByIdProviderElement(super.provider);
-
-  @override
-  int get id => (origin as GetTvVideosByIdProvider).id;
-}
-
-String _$queryMediaHash() => r'62ca0858aa7595311e1ed926176287b90798e7d4';
+String _$queryMediaHash() => r'245214943ea042856779bc965d282eacf3d5c715';
 
 /// See also [queryMedia].
 @ProviderFor(queryMedia)

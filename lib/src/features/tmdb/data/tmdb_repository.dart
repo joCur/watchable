@@ -3,14 +3,9 @@ import 'package:tmdb_api/tmdb_api.dart';
 
 import '../../common/application/application_language.dart';
 import '../application/search_controller.dart';
+import '../domain/media.dart';
 import '../domain/media_preview.dart';
-import '../domain/movie_details.dart';
-import '../domain/movie_preview.dart';
 import '../domain/pagination.dart';
-import '../domain/person_preview.dart';
-import '../domain/tv_details.dart';
-import '../domain/tv_preview.dart';
-import '../domain/videos.dart';
 import '../extensions/map_extensions.dart';
 
 part 'tmdb_repository.g.dart';
@@ -47,35 +42,25 @@ Future<Pagination<MediaPreview>> getTrending(GetTrendingRef ref, TimeWindow time
 }
 
 @riverpod
-Future<MovieDetails> getMovieById(GetMovieByIdRef ref, int id) async {
+Future<Media> getMovieById(GetMovieByIdRef ref, int id) async {
   final tmdb = ref.watch(tmdbProvider);
   final response = await tmdb.v3.movies.getDetails(id);
+  final videos = await tmdb.v3.movies.getVideos(id);
+  response['media_type'] = 'movie'; // HACK: to make it work with Media.fromJson()
+  response['videos'] = videos.toJsonMap();
 
-  return MovieDetails.fromJson(response.toJsonMap());
+  return Media.fromJson(response.toJsonMap());
 }
 
 @riverpod
-Future<TvDetails> getTvById(GetTvByIdRef ref, int id) async {
+Future<Media> getTvById(GetTvByIdRef ref, int id) async {
   final tmdb = ref.watch(tmdbProvider);
   final response = await tmdb.v3.tv.getDetails(id);
+  final videos = await tmdb.v3.movies.getVideos(id);
+  response['media_type'] = 'tv'; // HACK: to make it work with Media.fromJson()
+  response['videos'] = videos.toJsonMap();
 
-  return TvDetails.fromJson(response.toJsonMap());
-}
-
-@riverpod
-Future<Videos> getMovieVideosById(GetMovieVideosByIdRef ref, int id) async {
-  final tmdb = ref.watch(tmdbProvider);
-  final response = await tmdb.v3.movies.getVideos(id);
-
-  return Videos.fromJson(response.toJsonMap());
-}
-
-@riverpod
-Future<Videos> getTvVideosById(GetTvVideosByIdRef ref, int id) async {
-  final tmdb = ref.watch(tmdbProvider);
-  final response = await tmdb.v3.tv.getVideos(id.toString());
-
-  return Videos.fromJson(response.toJsonMap());
+  return Media.fromJson(response.toJsonMap());
 }
 
 @riverpod
@@ -86,18 +71,7 @@ Future<Pagination<MediaPreview>> queryMedia(QueryMediaRef ref, String query, int
   switch (mediaType) {
     case MediaType.all:
       final response = await tmdb.v3.search.queryMulti(query, page: page);
-      return Pagination<MediaPreview>.fromJson(response.toJsonMap(), (json) {
-        final map = json as Map<String, dynamic>;
-        switch (map['media_type']) {
-          case 'tv':
-            return TvPreview.fromJson(map);
-          case 'person':
-            return PersonPreview.fromJson(map);
-          case 'movie':
-          default:
-            return MoviePreview.fromJson(map);
-        }
-      });
+      return Pagination<MediaPreview>.fromJson(response.toJsonMap(), (json) => MediaPreview.fromJson(json as Map<String, dynamic>));
     case MediaType.movie:
       final response = await tmdb.v3.search.queryMovies(query, page: page);
       return Pagination<MediaPreview>.fromJson(response.toJsonMap(), (json) => MoviePreview.fromJson(json as Map<String, dynamic>));

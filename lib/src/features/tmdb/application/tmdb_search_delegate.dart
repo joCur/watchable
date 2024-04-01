@@ -7,7 +7,7 @@ import '../../../constants/app_sizes.dart';
 import '../../../extensions/build_context_extensions.dart';
 import '../../common/presentation/spinner.dart';
 import '../data/tmdb_repository.dart';
-import '../domain/person_preview.dart';
+import '../domain/media_preview.dart';
 import '../presentation/components/media_list_item.dart';
 import 'search_controller.dart';
 

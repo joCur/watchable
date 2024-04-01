@@ -67,6 +67,11 @@
       "button": "Gruppe beitreten"
     }
   },
+  "groupMedia": {
+    "addedSuccessfully": "Erfolgreich hinzugefügt.",
+    "modalTitle": "Zu Gruppe hinzufügen",
+    "modalDescription": "Gedrückt halten, um hinzuzufügen!"
+  },
   "errors": {
     "couldNotCreateGroup": "Gruppe konnte nicht erstellt werden.",
     "unknown": "Ein Fehler ist aufgetreten, bitte versuche es später erneut."

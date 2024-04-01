@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
-import 'package:watchable/src/features/tmdb/domain/media_details.dart';
-import 'package:watchable/src/features/tmdb/domain/movie_details.dart';
-import 'package:watchable/src/features/tmdb/domain/tv_details.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/tagline.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../../../constants/app_sizes.dart';
+import '../../domain/media.dart';
 import '../../domain/videos.dart';
 
 class MediaHeader extends StatefulWidget {
-  final MediaDetails media;
+  final Media media;
   final Videos videos;
 
   const MediaHeader(this.media, {required this.videos, super.key});
@@ -67,11 +65,9 @@ class _MediaHeaderState extends State<MediaHeader> {
               padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
               child: Tagline(
                 widget.media,
-                runtime: widget.media is MovieDetails
-                    ? (widget.media as MovieDetails).runtime
-                    : (widget.media as TvDetails).lastEpisodeToAir.runtime,
-                episodeCount: widget.media is TvDetails ? (widget.media as TvDetails).numberOfEpisodes : null,
-                seasonCount: widget.media is TvDetails ? (widget.media as TvDetails).numberOfSeasons : null,
+                runtime: widget.media is Movie ? (widget.media as Movie).runtime : (widget.media as Tv).lastEpisodeToAir.runtime,
+                episodeCount: widget.media is Tv ? (widget.media as Tv).numberOfEpisodes : null,
+                seasonCount: widget.media is Tv ? (widget.media as Tv).numberOfSeasons : null,
               )),
         ],
       ),

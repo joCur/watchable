@@ -52,6 +52,10 @@ abstract class  LocaleKeys {
   static const groups_join_button = 'groups.join.button';
   static const groups_join = 'groups.join';
   static const groups = 'groups';
+  static const groupMedia_addedSuccessfully = 'groupMedia.addedSuccessfully';
+  static const groupMedia_modalTitle = 'groupMedia.modalTitle';
+  static const groupMedia_modalDescription = 'groupMedia.modalDescription';
+  static const groupMedia = 'groupMedia';
   static const errors_couldNotCreateGroup = 'errors.couldNotCreateGroup';
   static const errors_unknown = 'errors.unknown';
   static const errors = 'errors';

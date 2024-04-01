@@ -8,12 +8,13 @@ part of 'group_media.dart';
 
 _$GroupMediaImpl _$$GroupMediaImplFromJson(Map<String, dynamic> json) =>
     _$GroupMediaImpl(
-      id: json['id'] as String,
-      groupId: json['group_id'] as String,
-      tmdbId: json['tmdb_id'] as int,
-      mediaType: $enumDecode(_$GroupMediaTypeEnumMap, json['media_type']),
-      createdAt: DateTime.parse(json['created_at'] as String),
-      addedBy: json['added_by'] as String,
+      json['id'] as String,
+      json['group_id'] as String,
+      json['tmdb_id'] as int,
+      $enumDecode(_$GroupMediaTypeEnumMap, json['media_type']),
+      DateTime.parse(json['created_at'] as String),
+      json['added_by'] as String,
+      Media.fromJson(json['media'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GroupMediaImplToJson(_$GroupMediaImpl instance) =>
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$GroupMediaImplToJson(_$GroupMediaImpl instance) =>
       'media_type': _$GroupMediaTypeEnumMap[instance.mediaType]!,
       'created_at': instance.createdAt.toIso8601String(),
       'added_by': instance.addedBy,
+      'media': instance.media.toJson(),
     };
 
 const _$GroupMediaTypeEnumMap = {

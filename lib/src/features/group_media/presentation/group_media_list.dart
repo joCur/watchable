@@ -4,6 +4,7 @@ import 'package:watchable/src/extensions/async_value_extensions.dart';
 
 import '../../common/presentation/spinner.dart';
 import '../data/group_media_repository.dart';
+import 'components/group_media_item.dart';
 
 class GroupMediaList extends ConsumerWidget {
   final String groupId;
@@ -25,19 +26,6 @@ class GroupMediaList extends ConsumerWidget {
       return const Center(child: Spinner());
     }
 
-    return ListView.builder(
-      itemCount: media.value!.length,
-      itemBuilder: (context, index) {
-        final data = media.value![index];
-        return ListTile(
-          title: Text(data.tmdbId.toString()),
-          subtitle: Text(data.mediaType.toString()),
-          trailing: IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () => ref.read(groupMediaRepositoryProvider).deleteAsync(data.id),
-          ),
-        );
-      },
-    );
+    return ListView.builder(itemCount: media.value!.length, itemBuilder: (context, index) => GroupMediaItem(media.value![index]));
   }
 }

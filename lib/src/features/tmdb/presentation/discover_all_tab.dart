@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:tmdb_api/tmdb_api.dart';
-import 'package:watchable/src/constants/app_sizes.dart';
-import 'package:watchable/src/features/tmdb/data/tmdb_repository.dart';
-import 'package:watchable/src/features/tmdb/presentation/components/media_preview_item.dart';
 
+import '../../../constants/app_sizes.dart';
+import '../data/tmdb_repository.dart';
 import '../domain/media_preview.dart';
-import '../domain/person_preview.dart';
+import 'components/media_preview_item.dart';
 
 class DiscoverAllTab extends ConsumerStatefulWidget {
   const DiscoverAllTab({super.key});

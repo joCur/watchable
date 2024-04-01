@@ -39,6 +39,7 @@ dependencies:
   loading_icon_button: ^0.0.6
   toastification: ^1.2.1
   wolt_modal_sheet: ^0.5.0
+  tuple: ^2.0.2
 
 dev_dependencies:
   flutter_test:
