@@ -68,6 +68,7 @@
     }
   },
   "groupMedia": {
+    "addedBy": "Hinzugefügt von {}",
     "addedSuccessfully": "Erfolgreich hinzugefügt.",
     "modalTitle": "Zu Gruppe hinzufügen",
     "modalDescription": "Gedrückt halten, um hinzuzufügen!"

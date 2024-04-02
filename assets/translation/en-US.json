@@ -68,6 +68,7 @@
     }
   },
   "groupMedia": {
+    "addedBy": "Added by {}",
     "addedSuccessfully": "Added successfully.",
     "modalTitle": "Add to Group",
     "modalDescription": "Press and hold to select multiple."

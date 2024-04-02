@@ -3,6 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tuple/tuple.dart';
 import 'package:watchable/src/features/group_media/domain/create_group_media.dart';
+import 'package:watchable/src/features/profile/data/profile_repository.dart';
 import 'package:watchable/src/features/tmdb/data/tmdb_repository.dart';
 
 import '../../groups/data/group_repository.dart';
@@ -63,6 +64,11 @@ class GroupMediaRepository {
     return response.toJson();
   }
 
+  Future<Map<String, dynamic>> _getProfile(String userId) async {
+    final user = await ref.read(getProfileByIdProvider(userId).future);
+    return user.toJson();
+  }
+
   Stream<List<GroupMedia>> watchByGroupId(String groupId) {
     return supabase
         .from(table)
@@ -71,8 +77,10 @@ class GroupMediaRepository {
         .order('created_at', ascending: false)
         .asyncMap((event) async {
           for (final e in event) {
+            e['profile'] = await _getProfile(e['added_by']);
             e['media'] = await _getMedia(e['tmdb_id'], e['media_type']);
           }
+
           return event.map((e) => GroupMedia.fromJson(e)).toList();
         });
   }
@@ -81,12 +89,14 @@ class GroupMediaRepository {
     final response = await supabase.from(table).select().eq('group_id', groupId).eq('tmdb_id', tmdbId).maybeSingle();
 
     if (response == null) return null;
+    response['profile'] = (await ref.read(getProfileByIdProvider(response['user_id']).future)).toJson();
     response['media'] = await _getMedia(response['tmdb_id'], response['media_type']);
     return GroupMedia.fromJson(response);
   }
 
   Future<GroupMedia> createAsync(CreateGroupMedia media) async {
     final response = await supabase.from(table).insert(media.toJson()).select().single();
+    response['profile'] = (await ref.read(getProfileByIdProvider(response['user_id']).future)).toJson();
     response['media'] = await _getMedia(response['tmdb_id'], response['media_type']);
 
     return GroupMedia.fromJson(response);

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:watchable/src/features/profile/domain/profile.dart';
 
 import '../../tmdb/domain/media.dart';
 import 'group_media_type.dart';
@@ -16,6 +17,7 @@ class GroupMedia with _$GroupMedia {
     @JsonKey(name: "created_at") DateTime createdAt,
     @JsonKey(name: "added_by") String addedBy,
     Media media,
+    Profile profile,
   ) = _GroupMedia;
 
   factory GroupMedia.fromJson(Map<String, dynamic> json) => _$GroupMediaFromJson(json);
