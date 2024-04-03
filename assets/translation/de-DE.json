@@ -48,6 +48,7 @@
     "members": "Mitglieder",
     "memberSince": "Mitglied seit {}",
     "noGroupsFound": "Keine Gruppen gefunden.",
+    "edit": "Bearbeiten",
     "fields": {
       "name": "Name",
       "description": "Beschreibung",

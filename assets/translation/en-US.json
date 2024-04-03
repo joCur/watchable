@@ -48,6 +48,7 @@
     "members": "Members",
     "memberSince": "Member since {}",
     "noGroupsFound": "No groups found.",
+    "edit": "Edit",
     "fields": {
       "name": "Name",
       "description": "Description",

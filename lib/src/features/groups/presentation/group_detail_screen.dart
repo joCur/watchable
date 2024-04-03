@@ -24,7 +24,7 @@ class GroupDetailScreen extends ConsumerWidget {
         title: Text(state.maybeWhen(data: (data) => data.name, orElse: () => group?.name ?? "")),
         actions: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-          GroupDetailsMenu(id),
+          if (state.hasValue) GroupDetailsMenu(state.value!),
         ],
       ),
       body: GroupMediaList(id),

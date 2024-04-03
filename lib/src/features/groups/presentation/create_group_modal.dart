@@ -37,7 +37,7 @@ class _CreateGroupScreenState extends ConsumerState<CreateGroupModal> {
   @override
   Widget build(BuildContext context) {
     ref.listen(createGroupControllerProvider, (_, state) {
-      if (state.hasValue && state.value != null) {
+      if (state.hasValue && state.value!) {
         context.pop();
       }
     });

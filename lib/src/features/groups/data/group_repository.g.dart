@@ -54,12 +54,12 @@ final listOtherGroupsForCurrentUserProvider =
 typedef ListOtherGroupsForCurrentUserRef
     = AutoDisposeFutureProviderRef<List<Group>>;
 String _$listCurrentUserGroupsHash() =>
-    r'ab48ffc3529de368e334b5e756c6c058e43a6211';
+    r'a541af71759e8d693fb52103645953317d03c930';
 
 /// See also [listCurrentUserGroups].
 @ProviderFor(listCurrentUserGroups)
 final listCurrentUserGroupsProvider =
-    AutoDisposeFutureProvider<List<Group>>.internal(
+    AutoDisposeStreamProvider<List<Group>>.internal(
   listCurrentUserGroups,
   name: r'listCurrentUserGroupsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -69,7 +69,7 @@ final listCurrentUserGroupsProvider =
   allTransitiveDependencies: null,
 );
 
-typedef ListCurrentUserGroupsRef = AutoDisposeFutureProviderRef<List<Group>>;
+typedef ListCurrentUserGroupsRef = AutoDisposeStreamProviderRef<List<Group>>;
 String _$getGroupByIdHash() => r'37858905b0e4a13b06a5cfb86256d672a13575ac';
 
 /// Copied from Dart SDK

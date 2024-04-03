@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:watchable/src/extensions/async_value_extensions.dart';
 import 'package:watchable/src/features/common/presentation/spinner.dart';
 import 'package:watchable/src/features/groups/domain/join_request.dart';
 import 'package:watchable/src/features/profile/data/profile_repository.dart';
@@ -18,6 +19,7 @@ class UserJoinRequestWidget extends ConsumerWidget {
     final state = ref.watch(joinRequestControllerProvider(item));
 
     bool isActionLoading = state.maybeWhen(data: (_) => false, orElse: () => true);
+    ref.listen(joinRequestControllerProvider(item), (_, next) => next.showToastOnError(context));
 
     return ListTile(
       leading: ProfileAvatar(profile.maybeWhen(data: (data) => data.avatarUrl, orElse: () => null)),
