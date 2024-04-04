@@ -16,7 +16,6 @@ class CreateGroupController extends _$CreateGroupController {
 
     state = await AsyncValue.guard(() async {
       await groups.createAsync(name, description, anyoneCanJoin);
-      ref.invalidate(listCurrentUserGroupsProvider);
       return true;
     });
   }

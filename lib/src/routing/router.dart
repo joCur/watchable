@@ -11,7 +11,6 @@ import 'package:watchable/src/features/profile/presentation/create_profile_scree
 import 'package:watchable/src/features/tmdb/presentation/movie_detail_screen.dart';
 import 'package:watchable/src/features/tmdb/presentation/tv_detail_screen.dart';
 
-import '../features/groups/domain/group.dart';
 import '../features/groups/presentation/group_edit_screen.dart';
 import '../features/profile/data/profile_repository.dart';
 import '../features/tmdb/presentation/discover_screen.dart';
@@ -63,8 +62,7 @@ GoRouter router(RouterRef ref) {
       GoRoute(
         name: VideoPlayerScreen.name,
         path: VideoPlayerScreen.route,
-        pageBuilder: (context, state) =>
-            NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
+        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) => ScaffoldWithNestedNavigation(navigationShell: navigationShell),
@@ -128,7 +126,7 @@ GoRouter router(RouterRef ref) {
                         path: GroupEditScreen.route,
                         pageBuilder: (context, state) => NoTransitionPage(
                           key: state.pageKey,
-                          child: GroupEditScreen(state.pathParameters['id']!, group: state.extra as Group?),
+                          child: GroupEditScreen(state.pathParameters['id']!),
                         ),
                       ),
                     ],
