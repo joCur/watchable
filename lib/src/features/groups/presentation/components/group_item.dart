@@ -12,7 +12,7 @@ class GroupItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: () => context.pushNamed(GroupDetailScreen.name, pathParameters: {'id': item.id}, extra: item),
+      onTap: () => context.pushNamed(GroupDetailScreen.name, pathParameters: {'id': item.id}),
       title: Text(item.name),
       subtitle: item.description != null ? Text(item.description!) : null,
     );

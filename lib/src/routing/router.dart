@@ -63,7 +63,8 @@ GoRouter router(RouterRef ref) {
       GoRoute(
         name: VideoPlayerScreen.name,
         path: VideoPlayerScreen.route,
-        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
+        pageBuilder: (context, state) =>
+            NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) => ScaffoldWithNestedNavigation(navigationShell: navigationShell),
@@ -119,7 +120,7 @@ GoRouter router(RouterRef ref) {
                     path: GroupDetailScreen.route,
                     pageBuilder: (context, state) => NoTransitionPage(
                       key: state.pageKey,
-                      child: GroupDetailScreen(state.pathParameters['id']!, group: state.extra as Group?),
+                      child: GroupDetailScreen(state.pathParameters['id']!),
                     ),
                     routes: [
                       GoRoute(
