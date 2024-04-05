@@ -89,14 +89,14 @@ class GroupMediaRepository {
     final response = await supabase.from(table).select().eq('group_id', groupId).eq('tmdb_id', tmdbId).maybeSingle();
 
     if (response == null) return null;
-    response['profile'] = (await ref.read(getProfileByIdProvider(response['user_id']).future)).toJson();
+    response['profile'] = (await ref.read(getProfileByIdProvider(response['added_by']).future)).toJson();
     response['media'] = await _getMedia(response['tmdb_id'], response['media_type']);
     return GroupMedia.fromJson(response);
   }
 
   Future<GroupMedia> createAsync(CreateGroupMedia media) async {
     final response = await supabase.from(table).insert(media.toJson()).select().single();
-    response['profile'] = (await ref.read(getProfileByIdProvider(response['user_id']).future)).toJson();
+    response['profile'] = (await ref.read(getProfileByIdProvider(response['added_by']).future)).toJson();
     response['media'] = await _getMedia(response['tmdb_id'], response['media_type']);
 
     return GroupMedia.fromJson(response);

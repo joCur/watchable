@@ -22,4 +22,9 @@ class GroupMemberRepository {
     final response = await supabase.from(table).select("*").eq('group_id', groupId);
     return response.map((e) => GroupMember.fromJson(e)).toList();
   }
+
+  Future<List<GroupMember>> listByUserIdAsync(String userId) async {
+    final response = await supabase.from(table).select("*").eq('user_id', userId);
+    return response.map((e) => GroupMember.fromJson(e)).toList();
+  }
 }
