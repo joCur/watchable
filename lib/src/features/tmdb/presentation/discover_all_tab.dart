@@ -72,6 +72,7 @@ class _DiscoverAllTabState extends ConsumerState<DiscoverAllTab> {
                 builderDelegate: PagedChildBuilderDelegate<MediaPreview>(
                   itemBuilder: (context, item, index) => MediaPreviewItem(item),
                 ),
+                showNewPageProgressIndicatorAsGridChild: false,
               ),
               const SliverPadding(padding: screenPadding)
             ],

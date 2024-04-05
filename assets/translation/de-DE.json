@@ -23,7 +23,7 @@
     "description": "Finde neue Filme zum Anschauen und füge sie deiner Watchlist hinzu.",
     "all": "Alle",
     "movies": "Filme",
-    "tv": "Fernsehshows",
+    "tv": "Serien",
     "runtime": "{} Min",
     "episodes": {
       "zero": "0 Folgen",

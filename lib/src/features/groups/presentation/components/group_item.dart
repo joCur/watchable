@@ -15,6 +15,7 @@ class GroupItem extends StatelessWidget {
       onTap: () => context.pushNamed(GroupDetailScreen.name, pathParameters: {'id': item.id}),
       title: Text(item.name),
       subtitle: item.description != null ? Text(item.description!) : null,
+      trailing: item.anyoneCanJoin ? const Icon(Icons.lock_open) : const Icon(Icons.lock),
     );
   }
 }

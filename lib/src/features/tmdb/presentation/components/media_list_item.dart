@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
@@ -27,8 +27,9 @@ class MediaListItem extends StatelessWidget {
         constraints: const BoxConstraints.tightFor(width: 120),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
-          child:
-              item.backdropPath == null ? Container() : CachedNetworkImage(imageUrl: "https://image.tmdb.org/t/p/w92${item.backdropPath}"),
+          child: item.backdropPath == null
+              ? Container()
+              : FancyShimmerImage(imageUrl: "https://image.tmdb.org/t/p/w92${item.backdropPath}"),
         ),
       ),
       title: Text(item.title),

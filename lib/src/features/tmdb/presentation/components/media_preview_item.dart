@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,16 +26,11 @@ class MediaPreviewItem extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(Sizes.p16),
-          child: CachedNetworkImage(
+          child: FancyShimmerImage(
             imageUrl: "https://image.tmdb.org/t/p/original/${item.posterPath}",
-            progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
-              width: double.infinity,
-              child: AspectRatio(
-                aspectRatio: 2 / 3,
-                child: Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
-              ),
-            ),
-            fit: BoxFit.fitWidth,
+            width: double.infinity,
+            height: double.infinity,
+            boxFit: BoxFit.fitWidth,
           ),
         ),
         Positioned.fill(

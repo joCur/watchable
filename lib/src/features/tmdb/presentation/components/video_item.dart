@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
@@ -16,9 +16,11 @@ class VideoItem extends StatelessWidget {
     return ListTile(
       leading: ConstrainedBox(
         constraints: const BoxConstraints.tightFor(width: 100),
-        child: CachedNetworkImage(
+        child: FancyShimmerImage(
           imageUrl: "https://i.ytimg.com/vi/${item.key}/hqdefault.jpg",
-          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+          boxFit: BoxFit.cover,
         ),
       ),
       title: Text(item.type),

@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:watchable/src/constants/app_sizes.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
+import 'package:watchable/src/features/tmdb/extensions/media_type_extensions.dart';
 
 import '../../application/search_controller.dart';
 
@@ -32,7 +33,7 @@ class MediaTabChip extends ConsumerWidget {
           onTap: isSelected ? null : () => ref.read(searchControllerProvider.notifier).setValue(value),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: Sizes.p12, vertical: Sizes.p4),
-            child: Text(value.name, style: TextStyle(color: isSelected ? onSelectedBackground : onBackground)),
+            child: Text(value.translation, style: TextStyle(color: isSelected ? onSelectedBackground : onBackground)),
           ),
         ),
       ),
