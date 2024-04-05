@@ -28,9 +28,10 @@ class LoginScreen extends StatelessWidget {
               onSignUpComplete: (response) => context.goNamed(CreateProfileScreen.name),
             ),
             SupaSocialsAuth(
-              colored: true,
+              colored: false,
               socialProviders: const [OAuthProvider.google],
               redirectUrl: redirectUrl,
+              showSuccessSnackBar: false,
               onSuccess: (response) => context.goNamed(CreateProfileScreen.name),
             ),
           ],
