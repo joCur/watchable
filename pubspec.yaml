@@ -13,6 +13,7 @@ dependencies:
 
   supabase_flutter: ^2.4.0
   supabase_auth_ui: ^0.4.3
+  google_sign_in: ^6.2.1
 
   tmdb_api:
   youtube_player_flutter: ^9.0.0

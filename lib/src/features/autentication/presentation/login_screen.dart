@@ -14,6 +14,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const redirectUrl = kIsWeb ? null : "dev.curth.watchable://login-callback";
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -22,9 +23,15 @@ class LoginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SupaEmailAuth(
-              redirectTo: kIsWeb ? null : "dev.curth.watchable://login-callback",
+              redirectTo: redirectUrl,
               onSignInComplete: (response) => context.goNamed(CreateProfileScreen.name),
               onSignUpComplete: (response) => context.goNamed(CreateProfileScreen.name),
+            ),
+            SupaSocialsAuth(
+              colored: true,
+              socialProviders: const [OAuthProvider.google],
+              redirectUrl: redirectUrl,
+              onSuccess: (response) => context.goNamed(CreateProfileScreen.name),
             ),
           ],
         ),

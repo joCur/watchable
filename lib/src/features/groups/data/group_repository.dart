@@ -31,7 +31,6 @@ Future<List<Group>> listCurrentUserGroups(ListCurrentUserGroupsRef ref) async {
   final supabase = ref.watch(supabaseProvider);
   final groups = await ref.watch(watchGroupsProvider.future);
   final memberships = await ref.watch(listGroupMembersByUserIdProvider(supabase.auth.currentUser!.id).future);
-
   return groups.where((element) => memberships.any((membership) => membership.groupId == element.id)).toList();
 }
 
