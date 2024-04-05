@@ -3,12 +3,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:watchable/src/features/groups/data/group_member_repository.dart';
 import 'package:watchable/src/features/groups/data/join_request_repository.dart';
+import 'package:watchable/src/features/groups/extensions/role_extensions.dart';
 import 'package:watchable/src/features/groups/presentation/group_edit_screen.dart';
 
 import '../../../../constants/locale_keys.dart';
 import '../../../../extensions/build_context_extensions.dart';
 import '../../domain/group.dart';
+import '../../domain/role.dart';
 import '../group_members_screen.dart';
 
 class GroupDetailsMenu extends ConsumerWidget {
@@ -18,6 +21,7 @@ class GroupDetailsMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final role = ref.watch(getGroupMemberRoleProvider(group.id));
     final joinRequests = ref.watch(listJoinRequestsByGroupIdProvider(group.id));
     final int pendingRequests = joinRequests.maybeWhen(data: (data) => data.length, orElse: () => 0);
 
@@ -25,13 +29,14 @@ class GroupDetailsMenu extends ConsumerWidget {
       onSelected: (action) => action(),
       position: PopupMenuPosition.under,
       itemBuilder: (context) => [
-        PopupMenuItem(
-          value: () => context.pushNamed(GroupEditScreen.name, pathParameters: {'id': group.id}, extra: group),
-          child: ListTile(
-            title: Text(LocaleKeys.groups_edit.tr(), style: context.textTheme.bodyLarge),
-            leading: const Icon(Icons.edit),
+        if (role.hasAnyRole([Role.owner]))
+          PopupMenuItem(
+            value: () => context.pushNamed(GroupEditScreen.name, pathParameters: {'id': group.id}, extra: group),
+            child: ListTile(
+              title: Text(LocaleKeys.groups_edit.tr(), style: context.textTheme.bodyLarge),
+              leading: const Icon(Icons.edit),
+            ),
           ),
-        ),
         PopupMenuItem(
           value: () => context.pushNamed(GroupMembersScreen.name, pathParameters: {'id': group.id}),
           child: ListTile(

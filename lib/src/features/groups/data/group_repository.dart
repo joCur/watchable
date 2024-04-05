@@ -1,7 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:watchable/src/features/groups/data/group_member_repository.dart';
-import 'package:watchable/src/features/groups/data/join_request_repository.dart';
 
 import '../../startup/application/startup_providers.dart';
 import '../domain/group.dart';
@@ -14,23 +13,26 @@ GroupRepository groupRepository(GroupRepositoryRef ref) {
 }
 
 @riverpod
-Future<List<Group>> listGroups(ListGroupsRef ref) async {
-  return ref.watch(groupRepositoryProvider).listAsync();
+Stream<List<Group>> watchGroups(WatchGroupsRef ref) {
+  return ref.watch(groupRepositoryProvider).watch();
 }
 
 @riverpod
 Future<List<Group>> listOtherGroupsForCurrentUser(ListOtherGroupsForCurrentUserRef ref) async {
-  final ownGroups = await ref.watch(listCurrentUserGroupsProvider.future);
-  final allGroups = await ref.watch(listGroupsProvider.future);
-  final joinRequests = await ref.watch(listCurrentUserJoinRequestsProvider.future);
+  final supabase = ref.watch(supabaseProvider);
+  final groups = await ref.watch(watchGroupsProvider.future);
+  final memberships = await ref.watch(listGroupMembersByUserIdProvider(supabase.auth.currentUser!.id).future);
 
-  return allGroups.where((group) => !ownGroups.contains(group) && !joinRequests.any((request) => request.groupId == group.id)).toList();
+  return groups.where((element) => !memberships.any((membership) => membership.groupId == element.id)).toList();
 }
 
 @riverpod
-Stream<List<Group>> listCurrentUserGroups(ListCurrentUserGroupsRef ref) {
+Future<List<Group>> listCurrentUserGroups(ListCurrentUserGroupsRef ref) async {
   final supabase = ref.watch(supabaseProvider);
-  return ref.watch(groupRepositoryProvider).watchByUserId(supabase.auth.currentUser!.id);
+  final groups = await ref.watch(watchGroupsProvider.future);
+  final memberships = await ref.watch(listGroupMembersByUserIdProvider(supabase.auth.currentUser!.id).future);
+
+  return groups.where((element) => memberships.any((membership) => membership.groupId == element.id)).toList();
 }
 
 @riverpod
@@ -57,30 +59,17 @@ class GroupRepository {
   }
 
   Future<List<Group>> listByUserIdAsync(String userId) async {
-    final response = await supabase.from(table).select("*, group_users!inner(user_id,group_id)").eq('group_users.user_id', userId);
+    final response =
+        await supabase.from(table).select("*, group_users!inner(user_id,group_id)").eq('group_users.user_id', userId);
     return response.map((e) => Group.fromJson(e)).toList();
   }
 
-  Stream<List<Group>> watchByUserId(String userId) {
-    return supabase.from(table).stream(primaryKey: ["id"]).order("name", ascending: true).asyncMap((event) async {
-          final allGroups = event.map((e) => Group.fromJson(e)).toList();
-          final memberships = await groupMemberRepository.listByUserIdAsync(userId);
-          return allGroups.where((group) => memberships.any((membership) => membership.groupId == group.id)).toList();
-
-          // final response = supabase.from(table).select("*").inFilter('id', event.map((e) => e["group_id"]).toList()).order('name', ascending: true);
-          // return response.map((e) => Group.fromJson(e)).toList();
-        });
-
-    return supabase.from("group_users").stream(primaryKey: ["group_id", "user_id"]).eq('user_id', userId).asyncMap(
-          (event) async {
-            final response = await supabase
-                .from(table)
-                .select("*")
-                .inFilter('id', event.map((e) => e["group_id"]).toList())
-                .order('name', ascending: true);
-            return response.map((e) => Group.fromJson(e)).toList();
-          },
-        );
+  Stream<List<Group>> watch() {
+    return supabase
+        .from(table)
+        .stream(primaryKey: ["id"])
+        .order("name", ascending: true)
+        .map((event) => event.map((e) => Group.fromJson(e)).toList());
   }
 
   Future<Group> getByIdAsync(String id) async {
@@ -89,7 +78,8 @@ class GroupRepository {
   }
 
   Future<void> createAsync(String name, String? description, bool anyoneCanJoin) async {
-    await supabase.rpc("create_group2", params: {"name": name, "description": description, "anyone_can_join": anyoneCanJoin});
+    await supabase
+        .rpc("create_group2", params: {"name": name, "description": description, "anyone_can_join": anyoneCanJoin});
   }
 
   Future<Group> updateAsync(Group group) async {

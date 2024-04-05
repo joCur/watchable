@@ -25,7 +25,7 @@ final groupMemberRepositoryProvider =
 typedef GroupMemberRepositoryRef
     = AutoDisposeProviderRef<GroupMemberRepository>;
 String _$listGroupMembersByGroupIdHash() =>
-    r'8eacfaa5e501fd2dcc6293517c17ab3031744ada';
+    r'ba6a876899e4df1f429a7ef505b999e91c079d74';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -93,7 +93,7 @@ class ListGroupMembersByGroupIdFamily
 
 /// See also [listGroupMembersByGroupId].
 class ListGroupMembersByGroupIdProvider
-    extends AutoDisposeFutureProvider<List<GroupMember>> {
+    extends AutoDisposeStreamProvider<List<GroupMember>> {
   /// See also [listGroupMembersByGroupId].
   ListGroupMembersByGroupIdProvider(
     String groupId,
@@ -128,7 +128,7 @@ class ListGroupMembersByGroupIdProvider
 
   @override
   Override overrideWith(
-    FutureOr<List<GroupMember>> Function(ListGroupMembersByGroupIdRef provider)
+    Stream<List<GroupMember>> Function(ListGroupMembersByGroupIdRef provider)
         create,
   ) {
     return ProviderOverride(
@@ -146,7 +146,7 @@ class ListGroupMembersByGroupIdProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<List<GroupMember>> createElement() {
+  AutoDisposeStreamProviderElement<List<GroupMember>> createElement() {
     return _ListGroupMembersByGroupIdProviderElement(this);
   }
 
@@ -166,18 +166,281 @@ class ListGroupMembersByGroupIdProvider
 }
 
 mixin ListGroupMembersByGroupIdRef
-    on AutoDisposeFutureProviderRef<List<GroupMember>> {
+    on AutoDisposeStreamProviderRef<List<GroupMember>> {
   /// The parameter `groupId` of this provider.
   String get groupId;
 }
 
 class _ListGroupMembersByGroupIdProviderElement
-    extends AutoDisposeFutureProviderElement<List<GroupMember>>
+    extends AutoDisposeStreamProviderElement<List<GroupMember>>
     with ListGroupMembersByGroupIdRef {
   _ListGroupMembersByGroupIdProviderElement(super.provider);
 
   @override
   String get groupId => (origin as ListGroupMembersByGroupIdProvider).groupId;
+}
+
+String _$listGroupMembersByUserIdHash() =>
+    r'cf746f759516a5320c73fde2def07e0666dac310';
+
+/// See also [listGroupMembersByUserId].
+@ProviderFor(listGroupMembersByUserId)
+const listGroupMembersByUserIdProvider = ListGroupMembersByUserIdFamily();
+
+/// See also [listGroupMembersByUserId].
+class ListGroupMembersByUserIdFamily
+    extends Family<AsyncValue<List<GroupMember>>> {
+  /// See also [listGroupMembersByUserId].
+  const ListGroupMembersByUserIdFamily();
+
+  /// See also [listGroupMembersByUserId].
+  ListGroupMembersByUserIdProvider call(
+    String userId,
+  ) {
+    return ListGroupMembersByUserIdProvider(
+      userId,
+    );
+  }
+
+  @override
+  ListGroupMembersByUserIdProvider getProviderOverride(
+    covariant ListGroupMembersByUserIdProvider provider,
+  ) {
+    return call(
+      provider.userId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'listGroupMembersByUserIdProvider';
+}
+
+/// See also [listGroupMembersByUserId].
+class ListGroupMembersByUserIdProvider
+    extends AutoDisposeStreamProvider<List<GroupMember>> {
+  /// See also [listGroupMembersByUserId].
+  ListGroupMembersByUserIdProvider(
+    String userId,
+  ) : this._internal(
+          (ref) => listGroupMembersByUserId(
+            ref as ListGroupMembersByUserIdRef,
+            userId,
+          ),
+          from: listGroupMembersByUserIdProvider,
+          name: r'listGroupMembersByUserIdProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$listGroupMembersByUserIdHash,
+          dependencies: ListGroupMembersByUserIdFamily._dependencies,
+          allTransitiveDependencies:
+              ListGroupMembersByUserIdFamily._allTransitiveDependencies,
+          userId: userId,
+        );
+
+  ListGroupMembersByUserIdProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.userId,
+  }) : super.internal();
+
+  final String userId;
+
+  @override
+  Override overrideWith(
+    Stream<List<GroupMember>> Function(ListGroupMembersByUserIdRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ListGroupMembersByUserIdProvider._internal(
+        (ref) => create(ref as ListGroupMembersByUserIdRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        userId: userId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<List<GroupMember>> createElement() {
+    return _ListGroupMembersByUserIdProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ListGroupMembersByUserIdProvider && other.userId == userId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, userId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin ListGroupMembersByUserIdRef
+    on AutoDisposeStreamProviderRef<List<GroupMember>> {
+  /// The parameter `userId` of this provider.
+  String get userId;
+}
+
+class _ListGroupMembersByUserIdProviderElement
+    extends AutoDisposeStreamProviderElement<List<GroupMember>>
+    with ListGroupMembersByUserIdRef {
+  _ListGroupMembersByUserIdProviderElement(super.provider);
+
+  @override
+  String get userId => (origin as ListGroupMembersByUserIdProvider).userId;
+}
+
+String _$getGroupMemberRoleHash() =>
+    r'b26b41311f8d8d8dc2f564757cbeeea2296014ed';
+
+/// See also [getGroupMemberRole].
+@ProviderFor(getGroupMemberRole)
+const getGroupMemberRoleProvider = GetGroupMemberRoleFamily();
+
+/// See also [getGroupMemberRole].
+class GetGroupMemberRoleFamily extends Family<AsyncValue<Role>> {
+  /// See also [getGroupMemberRole].
+  const GetGroupMemberRoleFamily();
+
+  /// See also [getGroupMemberRole].
+  GetGroupMemberRoleProvider call(
+    String groupId,
+  ) {
+    return GetGroupMemberRoleProvider(
+      groupId,
+    );
+  }
+
+  @override
+  GetGroupMemberRoleProvider getProviderOverride(
+    covariant GetGroupMemberRoleProvider provider,
+  ) {
+    return call(
+      provider.groupId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getGroupMemberRoleProvider';
+}
+
+/// See also [getGroupMemberRole].
+class GetGroupMemberRoleProvider extends AutoDisposeFutureProvider<Role> {
+  /// See also [getGroupMemberRole].
+  GetGroupMemberRoleProvider(
+    String groupId,
+  ) : this._internal(
+          (ref) => getGroupMemberRole(
+            ref as GetGroupMemberRoleRef,
+            groupId,
+          ),
+          from: getGroupMemberRoleProvider,
+          name: r'getGroupMemberRoleProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getGroupMemberRoleHash,
+          dependencies: GetGroupMemberRoleFamily._dependencies,
+          allTransitiveDependencies:
+              GetGroupMemberRoleFamily._allTransitiveDependencies,
+          groupId: groupId,
+        );
+
+  GetGroupMemberRoleProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.groupId,
+  }) : super.internal();
+
+  final String groupId;
+
+  @override
+  Override overrideWith(
+    FutureOr<Role> Function(GetGroupMemberRoleRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GetGroupMemberRoleProvider._internal(
+        (ref) => create(ref as GetGroupMemberRoleRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        groupId: groupId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Role> createElement() {
+    return _GetGroupMemberRoleProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetGroupMemberRoleProvider && other.groupId == groupId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, groupId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GetGroupMemberRoleRef on AutoDisposeFutureProviderRef<Role> {
+  /// The parameter `groupId` of this provider.
+  String get groupId;
+}
+
+class _GetGroupMemberRoleProviderElement
+    extends AutoDisposeFutureProviderElement<Role> with GetGroupMemberRoleRef {
+  _GetGroupMemberRoleProviderElement(super.provider);
+
+  @override
+  String get groupId => (origin as GetGroupMemberRoleProvider).groupId;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
