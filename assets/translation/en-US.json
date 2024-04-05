@@ -30,6 +30,10 @@
       "one": "1 Episode",
       "other": "{} Episodes"
     },
+    "search": {
+      "title": "Find what to watch next",
+      "subtitle": "Search for '{0}' and add them to your group"
+    },
     "seasonCount": {
       "zero": "0 Seasons",
       "one": "1 Season",
@@ -57,6 +61,11 @@
     "notInAGroup": {
       "title": "You don't have a group yet",
       "description": "Create your own group or join an existing one to share movie recommendations with your friends and plan your next watch party together."
+    },
+    "dialog": {
+      "createOrJoinTitle": "Create or Join a Group",
+      "createTitle": "Create a Group",
+      "joinTitle": "Join a Group"
     },
     "create": {
       "title": "Create a Group",

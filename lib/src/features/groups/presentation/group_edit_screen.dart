@@ -17,7 +17,6 @@ class GroupEditScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final group = ref.watch(getCurrentUserGroupByIdProvider(id));
 
-    ref.listen(getGroupByIdProvider(id), (_, item) => item.showToastOnError(context));
     ref.listen(updateGroupControllerProvider, (_, item) => item.showToastOnError(context));
 
     return Scaffold(

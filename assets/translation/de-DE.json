@@ -21,7 +21,7 @@
     "title": "Entdecken",
     "headline": "Filme entdecken",
     "description": "Finde neue Filme zum Anschauen und füge sie deiner Watchlist hinzu.",
-    "all": "Alle",
+    "all": "Alles",
     "movies": "Filme",
     "tv": "Serien",
     "runtime": "{} Min",
@@ -29,6 +29,10 @@
       "zero": "0 Folgen",
       "one": "1 Folge",
       "other": "{} Folgen"
+    },
+    "search": {
+      "title": "Was möchtest du als nächstes sehen?",
+      "subtitle": "Suche nach '{}' und füge sie deiner Gruppe hinzu"
     },
     "seasonCount": {
       "zero": "0 Staffeln",
@@ -57,6 +61,11 @@
     "notInAGroup": {
       "title": "Du bist noch in keiner Gruppe",
       "description": "Erstelle deine eigene Gruppe oder trete einer bestehenden bei, um Filmtipps mit deinen Freunden zu teilen und gemeinsam die nächste Filmnacht zu planen."
+    },
+    "dialog": {
+      "createOrJoinTitle": "Eigene Gruppe erstellen oder einer bestehenden Beitreten",
+      "createTitle": "Gruppe erstellen",
+      "joinTitle": "Gruppe beitreten"
     },
     "create": {
       "title": "Eine Gruppe erstellen",

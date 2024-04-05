@@ -24,6 +24,9 @@ abstract class  LocaleKeys {
   static const discover_tv = 'discover.tv';
   static const discover_runtime = 'discover.runtime';
   static const discover_episodes = 'discover.episodes';
+  static const discover_search_title = 'discover.search.title';
+  static const discover_search_subtitle = 'discover.search.subtitle';
+  static const discover_search = 'discover.search';
   static const discover_seasonCount = 'discover.seasonCount';
   static const discover_loadingVideosFailed = 'discover.loadingVideosFailed';
   static const discover_loadMovieFailed = 'discover.loadMovieFailed';
@@ -45,6 +48,10 @@ abstract class  LocaleKeys {
   static const groups_notInAGroup_title = 'groups.notInAGroup.title';
   static const groups_notInAGroup_description = 'groups.notInAGroup.description';
   static const groups_notInAGroup = 'groups.notInAGroup';
+  static const groups_dialog_createOrJoinTitle = 'groups.dialog.createOrJoinTitle';
+  static const groups_dialog_createTitle = 'groups.dialog.createTitle';
+  static const groups_dialog_joinTitle = 'groups.dialog.joinTitle';
+  static const groups_dialog = 'groups.dialog';
   static const groups_create_title = 'groups.create.title';
   static const groups_create_button = 'groups.create.button';
   static const groups_create_save = 'groups.create.save';

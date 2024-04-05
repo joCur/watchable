@@ -70,7 +70,8 @@ final listCurrentUserGroupsProvider =
 );
 
 typedef ListCurrentUserGroupsRef = AutoDisposeFutureProviderRef<List<Group>>;
-String _$getGroupByIdHash() => r'37858905b0e4a13b06a5cfb86256d672a13575ac';
+String _$getCurrentUserGroupByIdHash() =>
+    r'9372926018f5a94848f6e13bb5840709fd373e3e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -92,135 +93,6 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
-
-/// See also [getGroupById].
-@ProviderFor(getGroupById)
-const getGroupByIdProvider = GetGroupByIdFamily();
-
-/// See also [getGroupById].
-class GetGroupByIdFamily extends Family<AsyncValue<Group>> {
-  /// See also [getGroupById].
-  const GetGroupByIdFamily();
-
-  /// See also [getGroupById].
-  GetGroupByIdProvider call(
-    String id,
-  ) {
-    return GetGroupByIdProvider(
-      id,
-    );
-  }
-
-  @override
-  GetGroupByIdProvider getProviderOverride(
-    covariant GetGroupByIdProvider provider,
-  ) {
-    return call(
-      provider.id,
-    );
-  }
-
-  static const Iterable<ProviderOrFamily>? _dependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
-
-  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
-
-  @override
-  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
-      _allTransitiveDependencies;
-
-  @override
-  String? get name => r'getGroupByIdProvider';
-}
-
-/// See also [getGroupById].
-class GetGroupByIdProvider extends AutoDisposeFutureProvider<Group> {
-  /// See also [getGroupById].
-  GetGroupByIdProvider(
-    String id,
-  ) : this._internal(
-          (ref) => getGroupById(
-            ref as GetGroupByIdRef,
-            id,
-          ),
-          from: getGroupByIdProvider,
-          name: r'getGroupByIdProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$getGroupByIdHash,
-          dependencies: GetGroupByIdFamily._dependencies,
-          allTransitiveDependencies:
-              GetGroupByIdFamily._allTransitiveDependencies,
-          id: id,
-        );
-
-  GetGroupByIdProvider._internal(
-    super._createNotifier, {
-    required super.name,
-    required super.dependencies,
-    required super.allTransitiveDependencies,
-    required super.debugGetCreateSourceHash,
-    required super.from,
-    required this.id,
-  }) : super.internal();
-
-  final String id;
-
-  @override
-  Override overrideWith(
-    FutureOr<Group> Function(GetGroupByIdRef provider) create,
-  ) {
-    return ProviderOverride(
-      origin: this,
-      override: GetGroupByIdProvider._internal(
-        (ref) => create(ref as GetGroupByIdRef),
-        from: from,
-        name: null,
-        dependencies: null,
-        allTransitiveDependencies: null,
-        debugGetCreateSourceHash: null,
-        id: id,
-      ),
-    );
-  }
-
-  @override
-  AutoDisposeFutureProviderElement<Group> createElement() {
-    return _GetGroupByIdProviderElement(this);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return other is GetGroupByIdProvider && other.id == id;
-  }
-
-  @override
-  int get hashCode {
-    var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, id.hashCode);
-
-    return _SystemHash.finish(hash);
-  }
-}
-
-mixin GetGroupByIdRef on AutoDisposeFutureProviderRef<Group> {
-  /// The parameter `id` of this provider.
-  String get id;
-}
-
-class _GetGroupByIdProviderElement
-    extends AutoDisposeFutureProviderElement<Group> with GetGroupByIdRef {
-  _GetGroupByIdProviderElement(super.provider);
-
-  @override
-  String get id => (origin as GetGroupByIdProvider).id;
-}
-
-String _$getCurrentUserGroupByIdHash() =>
-    r'9372926018f5a94848f6e13bb5840709fd373e3e';
 
 /// See also [getCurrentUserGroupById].
 @ProviderFor(getCurrentUserGroupById)

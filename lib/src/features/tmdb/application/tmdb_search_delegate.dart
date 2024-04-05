@@ -1,7 +1,10 @@
 import 'dart:core';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:watchable/src/constants/locale_keys.dart';
+import 'package:watchable/src/features/tmdb/extensions/media_type_extensions.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../extensions/build_context_extensions.dart';
@@ -14,26 +17,13 @@ import 'search_controller.dart';
 class TmdbSearchDelegate extends SearchDelegate {
   @override
   List<Widget> buildActions(BuildContext context) {
-    return [
-      // IconButton(icon: const Icon(Icons.clear), onPressed: () => query = ''),
-    ];
+    return [];
   }
 
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => close(context, null));
   }
-
-  // @override
-  // PreferredSizeWidget buildBottom(BuildContext context) {
-  //   return PreferredSize(
-  //     preferredSize: const Size.fromHeight(40),
-  //     child: Padding(
-  //       padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
-  //       child: Row(children: [Text("Search", style: context.textTheme.titleLarge)]),
-  //     ),
-  //   );
-  // }
 
   @override
   Widget buildResults(BuildContext context) {
@@ -52,9 +42,9 @@ class TmdbSearchDelegate extends SearchDelegate {
               children: [
                 const Icon(Icons.search, size: 100),
                 gapH16,
-                Text('Find what to watch next', style: context.textTheme.titleLarge),
+                Text(LocaleKeys.discover_search_title.tr(), style: context.textTheme.titleLarge),
                 gapH4,
-                Text('Search for ${searchType.name} and add it to your group!', style: context.textTheme.bodySmall),
+                Text(LocaleKeys.discover_search_subtitle.tr(args: [searchType.translation]), style: context.textTheme.bodySmall),
               ],
             ),
           );

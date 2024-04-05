@@ -33,7 +33,7 @@ class JoinGroupModal extends ConsumerWidget {
                 snap: true,
                 backgroundColor: Colors.transparent,
                 automaticallyImplyLeading: false,
-                actions: [
+                actions: const [
                   // IconButton(icon: const Icon(Icons.search), onPressed: () {}),
                 ],
               ),

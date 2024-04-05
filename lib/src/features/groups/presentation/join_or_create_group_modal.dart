@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:watchable/src/constants/locale_keys.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
 import 'package:watchable/src/features/groups/presentation/create_group_modal.dart';
 import 'package:watchable/src/features/groups/presentation/join_group_modal.dart';
@@ -35,11 +37,11 @@ class JoinOrCreateGroupModal extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Create or join a group", style: context.textTheme.titleLarge),
+              Text(LocaleKeys.groups_dialog_createOrJoinTitle.tr(), style: context.textTheme.titleLarge),
               gapH16,
-              ElevatedButton(onPressed: () => _createGroup(context), child: const Text("Create a group")),
+              ElevatedButton(onPressed: () => _createGroup(context), child: Text(LocaleKeys.groups_dialog_createTitle.tr())),
               gapH12,
-              ElevatedButton(onPressed: () => _joinGroup(context), child: const Text("Join a group")),
+              ElevatedButton(onPressed: () => _joinGroup(context), child: Text(LocaleKeys.groups_dialog_joinTitle.tr())),
             ],
           ),
         ),
