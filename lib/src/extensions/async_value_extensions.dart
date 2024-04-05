@@ -9,7 +9,7 @@ import '../constants/locale_keys.dart';
 extension AsyncValueExtensions on AsyncValue {
   void showToastOnError(BuildContext context, {bool shouldPop = false}) {
     if (!isRefreshing && hasError) {
-      context.pop();
+      if (shouldPop) context.pop();
       toastification.show(
         context: context,
         type: ToastificationType.error,
@@ -22,7 +22,7 @@ extension AsyncValueExtensions on AsyncValue {
 
   void showToastOnSuccess(BuildContext context, {required String message, bool shouldPop = false}) {
     if (!isRefreshing && valueOrNull != null) {
-      context.pop();
+      if (shouldPop) context.pop();
       toastification.show(
         context: context,
         type: ToastificationType.success,
