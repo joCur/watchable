@@ -76,17 +76,17 @@ jobs:
         track: internal
 
        
-  production-android:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }}
-    needs: [release-android]
-    environment:
-        name: Production
-    steps:
-    - name: Promote release to open testing
-      uses: kevin-david/promote-play-release@v1.0.0
-      with:
-        service-account-json-raw: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
-        package-name: dev.curth.watchable
-        from-track: internal
-        to-track: beta
+#  production-android:
+#    runs-on: ubuntu-latest
+#    if: ${{ github.event_name != 'pull_request' }}
+#    needs: [release-android]
+#    environment:
+#        name: Production
+#    steps:
+#    - name: Promote release to open testing
+#      uses: kevin-david/promote-play-release@v1.0.0
+#      with:
+#        service-account-json-raw: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
+#        package-name: dev.curth.watchable
+#        from-track: internal
+#        to-track: beta
