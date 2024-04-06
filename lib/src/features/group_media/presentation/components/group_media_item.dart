@@ -51,6 +51,7 @@ class GroupMediaItem extends ConsumerWidget {
                     ),
                     const Spacer(),
                     ElTooltip(
+                      color: context.theme.dialogBackgroundColor,
                       content: Text(LocaleKeys.groupMedia_addedBy.tr(args: [item.profile.username])),
                       child: ProfileAvatar(AsyncData(item.profile), size: 12),
                     ),
