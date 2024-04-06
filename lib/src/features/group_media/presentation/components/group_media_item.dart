@@ -44,7 +44,7 @@ class GroupMediaItem extends ConsumerWidget {
                     gapH12,
                     Text(
                       item.media.overview,
-                      maxLines: 2,
+                      maxLines: 3,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
                       style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
