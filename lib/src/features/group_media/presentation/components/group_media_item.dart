@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:el_tooltip/el_tooltip.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/locale_keys.dart';
-import 'package:watchable/src/extensions/build_context_extensions.dart';
-import 'package:watchable/src/features/group_media/domain/group_media.dart';
 
 import '../../../../constants/app_sizes.dart';
+import '../../../../extensions/build_context_extensions.dart';
+import '../../../profile/presentation/components/profile_avatar.dart';
+import '../../domain/group_media.dart';
 
 class GroupMediaItem extends ConsumerWidget {
   final GroupMedia item;
@@ -29,8 +31,7 @@ class GroupMediaItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(Sizes.p8),
                 child: item.media.backdropPath == null
                     ? null
-                    : FancyShimmerImage(
-                        imageUrl: "https://image.tmdb.org/t/p/w92${item.media.posterPath}", height: 150, width: 100),
+                    : FancyShimmerImage(imageUrl: "https://image.tmdb.org/t/p/w92${item.media.posterPath}", height: 150, width: 100),
               ),
               gapW8,
               Expanded(
@@ -39,8 +40,7 @@ class GroupMediaItem extends ConsumerWidget {
                   children: [
                     Text(item.media.title, overflow: TextOverflow.ellipsis),
                     gapH4,
-                    Text(item.media.releaseDate.year.toString(),
-                        style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
+                    Text(item.media.releaseDate.year.toString(), style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
                     gapH12,
                     Text(
                       item.media.overview,
@@ -50,11 +50,11 @@ class GroupMediaItem extends ConsumerWidget {
                       style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
                     ),
                     const Spacer(),
-                    Text(
-                      LocaleKeys.groupMedia_addedBy.tr(args: [item.profile.username]),
-                      style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
+                    ElTooltip(
+                      content: Text(LocaleKeys.groupMedia_addedBy.tr(args: [item.profile.username])),
+                      child: ProfileAvatar(AsyncData(item.profile), size: 12),
                     ),
-                    gapH12,
+                    gapH4,
                   ],
                 ),
               ),

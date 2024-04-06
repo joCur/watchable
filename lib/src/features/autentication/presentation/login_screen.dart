@@ -1,8 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
-import 'package:watchable/src/features/profile/presentation/create_profile_screen.dart';
 
 import '../../../constants/app_sizes.dart';
 
@@ -24,15 +22,15 @@ class LoginScreen extends StatelessWidget {
           children: [
             SupaEmailAuth(
               redirectTo: redirectUrl,
-              onSignInComplete: (response) => context.goNamed(CreateProfileScreen.name),
-              onSignUpComplete: (response) => context.goNamed(CreateProfileScreen.name),
+              onSignInComplete: (_) {},
+              onSignUpComplete: (_) {},
             ),
             SupaSocialsAuth(
               colored: false,
               socialProviders: const [OAuthProvider.google],
               redirectUrl: redirectUrl,
               showSuccessSnackBar: false,
-              onSuccess: (response) => context.goNamed(CreateProfileScreen.name),
+              onSuccess: (_) {},
             ),
           ],
         ),

@@ -33,11 +33,14 @@ GoRouter router(RouterRef ref) {
     initialLocation: LoginScreen.route,
     navigatorKey: _rootNavigatorKey,
     refreshListenable: GoRouterRefreshStream(supabase.auth.onAuthStateChange),
-    redirect: (context, state) {
+    redirect: (context, state) async {
       final isLoggedIn = supabase.auth.currentUser != null;
       final onLoginPage = state.matchedLocation == LoginScreen.route;
 
       if (!isLoggedIn && !onLoginPage) return LoginScreen.route;
+
+      final profile = await ref.read(findCurrentUserProfileProvider.future);
+      if (profile == null) return CreateProfileScreen.route;
       if (isLoggedIn && onLoginPage) return HomeScreen.route;
       return null;
     },
@@ -46,18 +49,11 @@ GoRouter router(RouterRef ref) {
         name: LoginScreen.name,
         path: LoginScreen.route,
         pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const LoginScreen()),
-        routes: [
-          GoRoute(
-            name: CreateProfileScreen.name,
-            path: CreateProfileScreen.route,
-            redirect: (context, state) async {
-              final profile = await ref.read(findCurrentUserProfileProvider.future);
-              if (profile != null) return HomeScreen.route;
-              return null;
-            },
-            pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const CreateProfileScreen()),
-          ),
-        ],
+      ),
+      GoRoute(
+        name: CreateProfileScreen.name,
+        path: CreateProfileScreen.route,
+        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: const CreateProfileScreen()),
       ),
       GoRoute(
         name: VideoPlayerScreen.name,

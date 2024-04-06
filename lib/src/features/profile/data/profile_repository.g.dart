@@ -22,6 +22,23 @@ final profileRepositoryProvider =
 );
 
 typedef ProfileRepositoryRef = AutoDisposeProviderRef<ProfileRepository>;
+String _$getCurrentUserProfileHash() =>
+    r'0c7edc0a780ebb089e8e38ed3e8eb97ad687c3cb';
+
+/// See also [getCurrentUserProfile].
+@ProviderFor(getCurrentUserProfile)
+final getCurrentUserProfileProvider =
+    AutoDisposeFutureProvider<Profile>.internal(
+  getCurrentUserProfile,
+  name: r'getCurrentUserProfileProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getCurrentUserProfileHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetCurrentUserProfileRef = AutoDisposeFutureProviderRef<Profile>;
 String _$findCurrentUserProfileHash() =>
     r'e312d4bbff3cdbfb6ba831d9cf1ad37b0654ae11';
 

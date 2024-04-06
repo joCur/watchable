@@ -22,7 +22,7 @@ class UserJoinRequestWidget extends ConsumerWidget {
     ref.listen(joinRequestControllerProvider(item), (_, next) => next.showToastOnError(context));
 
     return ListTile(
-      leading: ProfileAvatar(profile.maybeWhen(data: (data) => data.avatarUrl, orElse: () => null)),
+      leading: ProfileAvatar(profile),
       title: Text(profile.maybeWhen(data: (data) => data.username, orElse: () => '')),
       subtitle: Text(item.createdAt.toString()),
       trailing: Row(

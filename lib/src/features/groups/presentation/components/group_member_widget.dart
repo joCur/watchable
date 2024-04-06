@@ -18,7 +18,7 @@ class GroupMemberWidget extends ConsumerWidget {
     final memberSince = DateFormat.yMMMd().format(item.createdAt);
 
     return ListTile(
-      leading: ProfileAvatar(profile.maybeWhen(data: (data) => data.avatarUrl, orElse: () => null)),
+      leading: ProfileAvatar(profile),
       title: profile.maybeWhen(data: (data) => Text(data.username), orElse: () => const Text('')),
       subtitle: Text(LocaleKeys.groups_memberSince.tr(args: [memberSince])),
     );
