@@ -24,7 +24,7 @@ mixin _$Season {
   @JsonKey(name: "season_number")
   int get seasonNumber => throw _privateConstructorUsedError;
   @JsonKey(name: "air_date")
-  DateTime get airDate => throw _privateConstructorUsedError;
+  DateTime? get airDate => throw _privateConstructorUsedError;
   @JsonKey(name: "episode_count")
   int get episodeCount => throw _privateConstructorUsedError;
   @JsonKey(name: "name")
@@ -32,7 +32,7 @@ mixin _$Season {
   @JsonKey(name: "overview")
   String get overview => throw _privateConstructorUsedError;
   @JsonKey(name: "poster_path")
-  String get posterPath => throw _privateConstructorUsedError;
+  String? get posterPath => throw _privateConstructorUsedError;
   @JsonKey(name: "vote_average")
   double get voteAverage => throw _privateConstructorUsedError;
 
@@ -49,11 +49,11 @@ abstract class $SeasonCopyWith<$Res> {
   $Res call(
       {int id,
       @JsonKey(name: "season_number") int seasonNumber,
-      @JsonKey(name: "air_date") DateTime airDate,
+      @JsonKey(name: "air_date") DateTime? airDate,
       @JsonKey(name: "episode_count") int episodeCount,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "overview") String overview,
-      @JsonKey(name: "poster_path") String posterPath,
+      @JsonKey(name: "poster_path") String? posterPath,
       @JsonKey(name: "vote_average") double voteAverage});
 }
 
@@ -72,11 +72,11 @@ class _$SeasonCopyWithImpl<$Res, $Val extends Season>
   $Res call({
     Object? id = null,
     Object? seasonNumber = null,
-    Object? airDate = null,
+    Object? airDate = freezed,
     Object? episodeCount = null,
     Object? name = null,
     Object? overview = null,
-    Object? posterPath = null,
+    Object? posterPath = freezed,
     Object? voteAverage = null,
   }) {
     return _then(_value.copyWith(
@@ -88,10 +88,10 @@ class _$SeasonCopyWithImpl<$Res, $Val extends Season>
           ? _value.seasonNumber
           : seasonNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      airDate: null == airDate
+      airDate: freezed == airDate
           ? _value.airDate
           : airDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       episodeCount: null == episodeCount
           ? _value.episodeCount
           : episodeCount // ignore: cast_nullable_to_non_nullable
@@ -104,10 +104,10 @@ class _$SeasonCopyWithImpl<$Res, $Val extends Season>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
-      posterPath: null == posterPath
+      posterPath: freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       voteAverage: null == voteAverage
           ? _value.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
@@ -126,11 +126,11 @@ abstract class _$$SeasonImplCopyWith<$Res> implements $SeasonCopyWith<$Res> {
   $Res call(
       {int id,
       @JsonKey(name: "season_number") int seasonNumber,
-      @JsonKey(name: "air_date") DateTime airDate,
+      @JsonKey(name: "air_date") DateTime? airDate,
       @JsonKey(name: "episode_count") int episodeCount,
       @JsonKey(name: "name") String name,
       @JsonKey(name: "overview") String overview,
-      @JsonKey(name: "poster_path") String posterPath,
+      @JsonKey(name: "poster_path") String? posterPath,
       @JsonKey(name: "vote_average") double voteAverage});
 }
 
@@ -147,11 +147,11 @@ class __$$SeasonImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? seasonNumber = null,
-    Object? airDate = null,
+    Object? airDate = freezed,
     Object? episodeCount = null,
     Object? name = null,
     Object? overview = null,
-    Object? posterPath = null,
+    Object? posterPath = freezed,
     Object? voteAverage = null,
   }) {
     return _then(_$SeasonImpl(
@@ -163,10 +163,10 @@ class __$$SeasonImplCopyWithImpl<$Res>
           ? _value.seasonNumber
           : seasonNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      null == airDate
+      freezed == airDate
           ? _value.airDate
           : airDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       null == episodeCount
           ? _value.episodeCount
           : episodeCount // ignore: cast_nullable_to_non_nullable
@@ -179,10 +179,10 @@ class __$$SeasonImplCopyWithImpl<$Res>
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
               as String,
-      null == posterPath
+      freezed == posterPath
           ? _value.posterPath
           : posterPath // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       null == voteAverage
           ? _value.voteAverage
           : voteAverage // ignore: cast_nullable_to_non_nullable
@@ -214,7 +214,7 @@ class _$SeasonImpl implements _Season {
   final int seasonNumber;
   @override
   @JsonKey(name: "air_date")
-  final DateTime airDate;
+  final DateTime? airDate;
   @override
   @JsonKey(name: "episode_count")
   final int episodeCount;
@@ -226,7 +226,7 @@ class _$SeasonImpl implements _Season {
   final String overview;
   @override
   @JsonKey(name: "poster_path")
-  final String posterPath;
+  final String? posterPath;
   @override
   @JsonKey(name: "vote_average")
   final double voteAverage;
@@ -279,11 +279,11 @@ abstract class _Season implements Season {
   const factory _Season(
       final int id,
       @JsonKey(name: "season_number") final int seasonNumber,
-      @JsonKey(name: "air_date") final DateTime airDate,
+      @JsonKey(name: "air_date") final DateTime? airDate,
       @JsonKey(name: "episode_count") final int episodeCount,
       @JsonKey(name: "name") final String name,
       @JsonKey(name: "overview") final String overview,
-      @JsonKey(name: "poster_path") final String posterPath,
+      @JsonKey(name: "poster_path") final String? posterPath,
       @JsonKey(name: "vote_average") final double voteAverage) = _$SeasonImpl;
 
   factory _Season.fromJson(Map<String, dynamic> json) = _$SeasonImpl.fromJson;
@@ -295,7 +295,7 @@ abstract class _Season implements Season {
   int get seasonNumber;
   @override
   @JsonKey(name: "air_date")
-  DateTime get airDate;
+  DateTime? get airDate;
   @override
   @JsonKey(name: "episode_count")
   int get episodeCount;
@@ -307,7 +307,7 @@ abstract class _Season implements Season {
   String get overview;
   @override
   @JsonKey(name: "poster_path")
-  String get posterPath;
+  String? get posterPath;
   @override
   @JsonKey(name: "vote_average")
   double get voteAverage;

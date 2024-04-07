@@ -316,7 +316,7 @@ class _GetMovieByIdProviderElement
   int get id => (origin as GetMovieByIdProvider).id;
 }
 
-String _$getTvByIdHash() => r'ac4eccecdbae5f187ae5d3ff5df7ea0bdc1adb08';
+String _$getTvByIdHash() => r'12e9bded43d3ae2b9a7c85cc5f11ce6d5a162c34';
 
 /// See also [getTvById].
 @ProviderFor(getTvById)
