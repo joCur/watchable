@@ -56,7 +56,7 @@ Future<Media> getMovieById(GetMovieByIdRef ref, int id) async {
 Future<Media> getTvById(GetTvByIdRef ref, int id) async {
   final tmdb = ref.watch(tmdbProvider);
   final response = await tmdb.v3.tv.getDetails(id);
-  final videos = await tmdb.v3.movies.getVideos(id);
+  final videos = await tmdb.v3.tv.getVideos(id.toString());
   response['media_type'] = 'tv'; // HACK: to make it work with Media.fromJson()
   response['videos'] = videos.toJsonMap();
 

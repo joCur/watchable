@@ -18,7 +18,7 @@ class TvDetailScreen extends HookConsumerWidget {
     final tv = ref.watch(getTvByIdProvider(id));
     final isLoading = tv.maybeWhen(data: (_) => false, orElse: () => true);
 
-    ref.listen(getMovieByIdProvider(id), (_, state) {
+    ref.listen(getTvByIdProvider(id), (_, state) {
       state.showToastOnError(context);
     });
 
