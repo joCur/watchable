@@ -8,6 +8,8 @@ import 'package:watchable/src/features/groups/presentation/components/group_item
 import 'package:watchable/src/features/groups/presentation/join_or_create_group_modal.dart';
 
 import '../../../constants/app_sizes.dart';
+import '../../profile/data/profile_repository.dart';
+import '../../profile/presentation/components/profile_avatar.dart';
 
 class GroupListScreen extends ConsumerWidget {
   static const route = "/groups";
@@ -17,10 +19,12 @@ class GroupListScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final profile = ref.watch(getCurrentUserProfileProvider);
     final state = ref.watch(listCurrentUserGroupsProvider);
 
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(padding: const EdgeInsets.all(Sizes.p8), child: ProfileAvatar(profile)),
         title: Text(LocaleKeys.groups_title.tr()),
         actions: [
           // IconButton(onPressed: () {}, icon: const Icon(Icons.search)),

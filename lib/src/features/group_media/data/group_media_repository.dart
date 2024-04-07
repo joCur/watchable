@@ -19,6 +19,11 @@ GroupMediaRepository groupMediaRepository(GroupMediaRepositoryRef ref) {
 }
 
 @riverpod
+Stream<List<GroupMedia>> watchGroupMedia(WatchGroupMediaRef ref) {
+  return ref.watch(groupMediaRepositoryProvider).watch();
+}
+
+@riverpod
 Stream<List<GroupMedia>> watchGroupMediaByGroupId(WatchGroupMediaByGroupIdRef ref, String groupId) {
   return ref.watch(groupMediaRepositoryProvider).watchByGroupId(groupId);
 }
@@ -69,20 +74,21 @@ class GroupMediaRepository {
     return user.toJson();
   }
 
-  Stream<List<GroupMedia>> watchByGroupId(String groupId) {
-    return supabase
-        .from(table)
-        .stream(primaryKey: ['id'])
-        .eq('group_id', groupId)
-        .order('created_at', ascending: false)
-        .asyncMap((event) async {
-          for (final e in event) {
-            e['profile'] = await _getProfile(e['added_by']);
-            e['media'] = await _getMedia(e['tmdb_id'], e['media_type']);
-          }
+  Future<List<GroupMedia>> _toGroup(List<Map<String, dynamic>> data) async {
+    for (final e in data) {
+      e['profile'] = await _getProfile(e['added_by']);
+      e['media'] = await _getMedia(e['tmdb_id'], e['media_type']);
+    }
 
-          return event.map((e) => GroupMedia.fromJson(e)).toList();
-        });
+    return data.map((e) => GroupMedia.fromJson(e)).toList();
+  }
+
+  Stream<List<GroupMedia>> watch() {
+    return supabase.from(table).stream(primaryKey: ['id']).order('created_at', ascending: false).asyncMap(_toGroup);
+  }
+
+  Stream<List<GroupMedia>> watchByGroupId(String groupId) {
+    return supabase.from(table).stream(primaryKey: ['id']).eq('group_id', groupId).order('created_at', ascending: false).asyncMap(_toGroup);
   }
 
   Future<GroupMedia?> findAsync(String groupId, int tmdbId) async {

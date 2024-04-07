@@ -23,6 +23,22 @@ final groupMediaRepositoryProvider =
 );
 
 typedef GroupMediaRepositoryRef = AutoDisposeProviderRef<GroupMediaRepository>;
+String _$watchGroupMediaHash() => r'e887b60bc85db736b617084fdc13456ca9f41871';
+
+/// See also [watchGroupMedia].
+@ProviderFor(watchGroupMedia)
+final watchGroupMediaProvider =
+    AutoDisposeStreamProvider<List<GroupMedia>>.internal(
+  watchGroupMedia,
+  name: r'watchGroupMediaProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$watchGroupMediaHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef WatchGroupMediaRef = AutoDisposeStreamProviderRef<List<GroupMedia>>;
 String _$watchGroupMediaByGroupIdHash() =>
     r'300d96467af6385b03c7cf35bae8b8ec8f11a2ed';
 

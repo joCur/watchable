@@ -8,6 +8,8 @@ import 'package:watchable/src/features/tmdb/presentation/discover_movies_tab.dar
 import 'package:watchable/src/features/tmdb/presentation/discover_tv_tab.dart';
 
 import '../../../constants/app_sizes.dart';
+import '../../profile/data/profile_repository.dart';
+import '../../profile/presentation/components/profile_avatar.dart';
 import '../application/search_controller.dart';
 
 class DiscoverScreen extends HookConsumerWidget {
@@ -18,6 +20,7 @@ class DiscoverScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final profile = ref.watch(getCurrentUserProfileProvider);
     final currentMediaType = ref.watch(searchControllerProvider);
     const searchContent = {
       MediaType.all: DiscoverAllTab(),
@@ -27,8 +30,11 @@ class DiscoverScreen extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(padding: const EdgeInsets.all(Sizes.p8), child: ProfileAvatar(profile)),
+        titleSpacing: 0.0,
         title: const Wrap(
           spacing: Sizes.p8,
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             MediaTabChip(value: MediaType.all),
             MediaTabChip(value: MediaType.movie),

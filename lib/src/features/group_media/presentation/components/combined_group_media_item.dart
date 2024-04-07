@@ -4,16 +4,17 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/locale_keys.dart';
+import 'package:watchable/src/features/groups/data/group_repository.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../extensions/build_context_extensions.dart';
 import '../../../profile/presentation/components/profile_avatar.dart';
 import '../../domain/group_media.dart';
 
-class GroupMediaItem extends ConsumerWidget {
+class CombinedGroupMediaItem extends ConsumerWidget {
   final GroupMedia item;
 
-  const GroupMediaItem(this.item, {super.key});
+  const CombinedGroupMediaItem(this.item, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -60,6 +61,8 @@ class GroupMediaItem extends ConsumerWidget {
                       overflow: TextOverflow.ellipsis,
                       style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
                     ),
+                    const Spacer(),
+                    Text(ref.watch(getCurrentUserGroupByIdProvider(item.groupId)).name, style: context.textTheme.bodySmall),
                   ],
                 ),
               ),
