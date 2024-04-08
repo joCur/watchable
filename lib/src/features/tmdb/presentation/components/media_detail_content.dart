@@ -25,6 +25,7 @@ class MediaDetailContent extends StatelessWidget {
 
     return Scaffold(
       body: CustomScrollView(
+        cacheExtent: 300,
         slivers: [
           const SliverAppBar(pinned: true),
           if (!hasVideos)

@@ -29,6 +29,7 @@ class CombinedGroupMediaList extends ConsumerWidget {
       groupBy: (element) => DateUtils.dateOnly(element.createdAt),
       groupHeaderBuilder: (element) => Center(
         child: Chip(
+          padding: EdgeInsets.zero,
           label: Text(
             DateFormat(DateFormat.YEAR_MONTH_DAY, EasyLocalization.of(context)!.currentLocale!.languageCode)
                 .format(element.createdAt),

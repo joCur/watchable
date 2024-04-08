@@ -2,9 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:el_tooltip/el_tooltip.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/locale_keys.dart';
 import 'package:watchable/src/features/groups/data/group_repository.dart';
+import 'package:watchable/src/features/groups/presentation/group_detail_screen.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../extensions/build_context_extensions.dart';
@@ -32,7 +34,8 @@ class CombinedGroupMediaItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(Sizes.p8),
                 child: item.media.backdropPath == null
                     ? null
-                    : FancyShimmerImage(imageUrl: "https://image.tmdb.org/t/p/w92${item.media.posterPath}", height: 150, width: 100),
+                    : FancyShimmerImage(
+                        imageUrl: "https://image.tmdb.org/t/p/w92${item.media.posterPath}", height: 150, width: 100),
               ),
               gapW8,
               Expanded(
@@ -52,7 +55,8 @@ class CombinedGroupMediaItem extends ConsumerWidget {
                     ),
                     // Text(item.media.title, overflow: TextOverflow.ellipsis),
                     gapH4,
-                    Text(item.media.releaseDate.year.toString(), style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
+                    Text(item.media.releaseDate.year.toString(),
+                        style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
                     gapH12,
                     Text(
                       item.media.overview,
@@ -62,7 +66,15 @@ class CombinedGroupMediaItem extends ConsumerWidget {
                       style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
                     ),
                     const Spacer(),
-                    Text(ref.watch(getCurrentUserGroupByIdProvider(item.groupId)).name, style: context.textTheme.bodySmall),
+                    ActionChip(
+                      padding: EdgeInsets.zero,
+                      side: BorderSide.none,
+                      visualDensity: VisualDensity.compact,
+                      onPressed: () {
+                        context.pushNamed(GroupDetailScreen.name, pathParameters: {'id': item.groupId.toString()});
+                      },
+                      label: Text(ref.watch(getCurrentUserGroupByIdProvider(item.groupId)).name),
+                    ),
                   ],
                 ),
               ),
