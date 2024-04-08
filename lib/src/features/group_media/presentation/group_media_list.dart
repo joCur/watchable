@@ -23,7 +23,7 @@ class GroupMediaList extends ConsumerWidget {
       }
     });
 
-    if (isLoading) const SliverFillRemaining(child: ShimmerList(item: LoadingMediaItem()));
+    if (isLoading) return const SliverFillRemaining(child: ShimmerList(item: LoadingMediaItem()));
 
     return ListView.builder(
         itemCount: media.value!.length, itemBuilder: (context, index) => GroupMediaItem(media.value![index]));

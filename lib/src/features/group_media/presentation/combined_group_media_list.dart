@@ -21,7 +21,7 @@ class CombinedGroupMediaList extends ConsumerWidget {
       state.showToastOnError(context);
     });
 
-    if (isLoading) const SliverFillRemaining(child: ShimmerList(item: LoadingMediaItem()));
+    if (isLoading) return const SliverFillRemaining(child: ShimmerList(item: LoadingMediaItem()));
 
     return SliverGroupedListView(
       elements: media.value!,
