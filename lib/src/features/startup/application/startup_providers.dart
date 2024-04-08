@@ -1,3 +1,4 @@
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -10,6 +11,10 @@ SupabaseClient supabase(SupabaseRef ref) {
 
 @Riverpod(keepAlive: true)
 Future<void> appStartup(AppStartupRef ref) async {
+  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  OneSignal.initialize('31e94308-9c04-41b3-ab0e-c294782b763a');
+  OneSignal.Notifications.requestPermission(true);
+
   await Supabase.initialize(
     url: 'https://pbeufwibncnxlkgoxcjv.supabase.co',
     anonKey:

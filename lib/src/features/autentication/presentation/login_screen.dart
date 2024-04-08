@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 
 import '../../../constants/app_sizes.dart';
@@ -9,6 +10,11 @@ class LoginScreen extends StatelessWidget {
   static const name = "Login";
 
   const LoginScreen({super.key});
+
+  _authenticateSignalOne(AuthResponse response) {
+    final userId = response.session!.user.id;
+    OneSignal.login(userId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +28,8 @@ class LoginScreen extends StatelessWidget {
           children: [
             SupaEmailAuth(
               redirectTo: redirectUrl,
-              onSignInComplete: (_) {},
-              onSignUpComplete: (_) {},
+              onSignInComplete: _authenticateSignalOne,
+              onSignUpComplete: _authenticateSignalOne,
             ),
             SupaSocialsAuth(
               colored: false,
