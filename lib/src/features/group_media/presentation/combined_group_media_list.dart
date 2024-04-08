@@ -30,12 +30,14 @@ class CombinedGroupMediaList extends ConsumerWidget {
       groupHeaderBuilder: (element) => Center(
         child: Chip(
           label: Text(
-            DateFormat(DateFormat.YEAR_MONTH_DAY, EasyLocalization.of(context)!.currentLocale!.languageCode).format(element.createdAt),
+            DateFormat(DateFormat.YEAR_MONTH_DAY, EasyLocalization.of(context)!.currentLocale!.languageCode)
+                .format(element.createdAt),
           ),
         ),
       ),
       order: GroupedListOrder.DESC,
       sort: true,
+      itemComparator: (a, b) => a.createdAt.compareTo(b.createdAt),
       itemBuilder: (context, element) => CombinedGroupMediaItem(element),
     );
   }
