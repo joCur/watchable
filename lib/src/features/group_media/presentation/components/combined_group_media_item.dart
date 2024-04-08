@@ -57,9 +57,10 @@ class CombinedGroupMediaItem extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text(media.value!.title, overflow: TextOverflow.ellipsis),
-                        const Spacer(),
+                        Expanded(child: Text(media.value!.title, maxLines: 1, overflow: TextOverflow.ellipsis)),
+                        gapW4,
                         ElTooltip(
                           color: context.theme.dialogBackgroundColor,
                           content: Text(LocaleKeys.groupMedia_addedBy.tr(args: [profile.value!.username])),

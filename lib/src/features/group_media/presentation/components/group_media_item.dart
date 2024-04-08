@@ -26,7 +26,7 @@ class GroupMediaItem extends ConsumerWidget {
         ? ref.watch(getMovieByIdProvider(item.tmdbId))
         : ref.watch(getTvByIdProvider(item.tmdbId));
 
-    final isLoading = media.maybeWhen(data: (_) => false, orElse: () => true) &&
+    final isLoading = media.maybeWhen(data: (_) => false, orElse: () => true) ||
         profile.maybeWhen(data: (_) => false, orElse: () => true);
 
     if (isLoading) return const LoadingMediaItem();
@@ -55,8 +55,8 @@ class GroupMediaItem extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        Text(media.value!.title, overflow: TextOverflow.ellipsis),
-                        const Spacer(),
+                        Expanded(child: Text(media.value!.title, overflow: TextOverflow.ellipsis)),
+                        gapW4,
                         ElTooltip(
                           color: context.theme.dialogBackgroundColor,
                           content: Text(LocaleKeys.groupMedia_addedBy.tr(args: [profile.value!.username])),
