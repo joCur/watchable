@@ -39,8 +39,12 @@ GoRouter router(RouterRef ref) {
 
       if (!isLoggedIn && !onLoginPage) return LoginScreen.route;
 
-      final profile = await ref.read(findCurrentUserProfileProvider.future);
-      if (profile == null) return CreateProfileScreen.route;
+      // Check if user has a profile and redirect to create profile screen if not
+      if (supabase.auth.currentUser != null) {
+        final profile = await ref.read(findCurrentUserProfileProvider.future);
+        if (profile == null) return CreateProfileScreen.route;
+      }
+
       if (isLoggedIn && onLoginPage) return HomeScreen.route;
       return null;
     },
@@ -58,7 +62,8 @@ GoRouter router(RouterRef ref) {
       GoRoute(
         name: VideoPlayerScreen.name,
         path: VideoPlayerScreen.route,
-        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
+        pageBuilder: (context, state) =>
+            NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) => ScaffoldWithNestedNavigation(navigationShell: navigationShell),
