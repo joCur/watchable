@@ -1,21 +1,17 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tuple/tuple.dart';
 import 'package:watchable/src/features/group_media/domain/create_group_media.dart';
-import 'package:watchable/src/features/profile/data/profile_repository.dart';
-import 'package:watchable/src/features/tmdb/data/tmdb_repository.dart';
 
 import '../../groups/data/group_repository.dart';
 import '../../groups/domain/group.dart';
-import '../../tmdb/domain/media.dart';
 import '../domain/group_media.dart';
 
 part 'group_media_repository.g.dart';
 
 @riverpod
 GroupMediaRepository groupMediaRepository(GroupMediaRepositoryRef ref) {
-  return GroupMediaRepository(ref);
+  return GroupMediaRepository();
 }
 
 @riverpod
@@ -50,61 +46,63 @@ class GroupMediaRepository {
   final supabase = Supabase.instance.client;
   final table = "group_media";
 
-  final Ref ref;
+  GroupMediaRepository();
 
-  GroupMediaRepository(this.ref);
-
-  Future<Map<String, dynamic>> _getMedia(int tmdbId, String mediaType) async {
-    final Media response;
-    switch (mediaType) {
-      case 'movie':
-        response = await ref.read(getMovieByIdProvider(tmdbId).future);
-        break;
-      case 'tv':
-        response = await ref.read(getTvByIdProvider(tmdbId).future);
-        break;
-      default:
-        throw Exception('Unknown media type');
-    }
-    return response.toJson();
-  }
-
-  Future<Map<String, dynamic>> _getProfile(String userId) async {
-    final user = await ref.read(getProfileByIdProvider(userId).future);
-    return user.toJson();
-  }
-
-  Future<List<GroupMedia>> _toGroup(List<Map<String, dynamic>> data) async {
-    for (final e in data) {
-      e['profile'] = await _getProfile(e['added_by']);
-      e['media'] = await _getMedia(e['tmdb_id'], e['media_type']);
-    }
-
-    return data.map((e) => GroupMedia.fromJson(e)).toList();
-  }
+  // Future<Map<String, dynamic>> _getMedia(int tmdbId, String mediaType) async {
+  //   final Media response;
+  //   switch (mediaType) {
+  //     case 'movie':
+  //       response = await ref.read(getMovieByIdProvider(tmdbId).future);
+  //       break;
+  //     case 'tv':
+  //       response = await ref.read(getTvByIdProvider(tmdbId).future);
+  //       break;
+  //     default:
+  //       throw Exception('Unknown media type');
+  //   }
+  //   return response.toJson();
+  // }
+  //
+  // Future<Map<String, dynamic>> _getProfile(String userId) async {
+  //   final user = await ref.read(getProfileByIdProvider(userId).future);
+  //   return user.toJson();
+  // }
+  //
+  // Future<List<GroupMedia>> _toGroup(List<Map<String, dynamic>> data) async {
+  //   for (final e in data) {
+  //     e['profile'] = await _getProfile(e['added_by']);
+  //     e['media'] = await _getMedia(e['tmdb_id'], e['media_type']);
+  //   }
+  //
+  //   return data.map((e) => GroupMedia.fromJson(e)).toList();
+  // }
 
   Stream<List<GroupMedia>> watch() {
-    return supabase.from(table).stream(primaryKey: ['id']).order('created_at', ascending: false).asyncMap(_toGroup);
+    return supabase
+        .from(table)
+        .stream(primaryKey: ['id'])
+        .order('created_at', ascending: false)
+        .map((event) => event.map((e) => GroupMedia.fromJson(e)).toList());
   }
 
   Stream<List<GroupMedia>> watchByGroupId(String groupId) {
-    return supabase.from(table).stream(primaryKey: ['id']).eq('group_id', groupId).order('created_at', ascending: false).asyncMap(_toGroup);
+    return supabase
+        .from(table)
+        .stream(primaryKey: ['id'])
+        .eq('group_id', groupId)
+        .order('created_at', ascending: false)
+        .map((event) => event.map((e) => GroupMedia.fromJson(e)).toList());
   }
 
   Future<GroupMedia?> findAsync(String groupId, int tmdbId) async {
     final response = await supabase.from(table).select().eq('group_id', groupId).eq('tmdb_id', tmdbId).maybeSingle();
 
     if (response == null) return null;
-    response['profile'] = (await ref.read(getProfileByIdProvider(response['added_by']).future)).toJson();
-    response['media'] = await _getMedia(response['tmdb_id'], response['media_type']);
     return GroupMedia.fromJson(response);
   }
 
   Future<GroupMedia> createAsync(CreateGroupMedia media) async {
     final response = await supabase.from(table).insert(media.toJson()).select().single();
-    response['profile'] = (await ref.read(getProfileByIdProvider(response['added_by']).future)).toJson();
-    response['media'] = await _getMedia(response['tmdb_id'], response['media_type']);
-
     return GroupMedia.fromJson(response);
   }
 

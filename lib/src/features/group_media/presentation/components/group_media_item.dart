@@ -7,8 +7,12 @@ import 'package:watchable/src/constants/locale_keys.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../extensions/build_context_extensions.dart';
+import '../../../profile/data/profile_repository.dart';
 import '../../../profile/presentation/components/profile_avatar.dart';
+import '../../../tmdb/data/tmdb_repository.dart';
 import '../../domain/group_media.dart';
+import '../../domain/group_media_type.dart';
+import 'loading_group_media_item.dart';
 
 class GroupMediaItem extends ConsumerWidget {
   final GroupMedia item;
@@ -17,6 +21,16 @@ class GroupMediaItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final profile = ref.watch(getProfileByIdProvider(item.addedBy));
+    final media = item.mediaType == GroupMediaType.movie
+        ? ref.watch(getMovieByIdProvider(item.tmdbId))
+        : ref.watch(getTvByIdProvider(item.tmdbId));
+
+    final isLoading = media.maybeWhen(data: (_) => false, orElse: () => true) &&
+        profile.maybeWhen(data: (_) => false, orElse: () => true);
+
+    if (isLoading) return const LoadingMediaItem();
+
     return InkWell(
       // onTap: onTap,
       // onLongPress: onLongPress,
@@ -29,9 +43,10 @@ class GroupMediaItem extends ConsumerWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(Sizes.p8),
-                child: item.media.backdropPath == null
+                child: media.value!.backdropPath == null
                     ? null
-                    : FancyShimmerImage(imageUrl: "https://image.tmdb.org/t/p/w92${item.media.posterPath}", height: 150, width: 100),
+                    : FancyShimmerImage(
+                        imageUrl: "https://image.tmdb.org/t/p/w92${media.value!.posterPath}", height: 150, width: 100),
               ),
               gapW8,
               Expanded(
@@ -40,21 +55,22 @@ class GroupMediaItem extends ConsumerWidget {
                   children: [
                     Row(
                       children: [
-                        Text(item.media.title, overflow: TextOverflow.ellipsis),
+                        Text(media.value!.title, overflow: TextOverflow.ellipsis),
                         const Spacer(),
                         ElTooltip(
                           color: context.theme.dialogBackgroundColor,
-                          content: Text(LocaleKeys.groupMedia_addedBy.tr(args: [item.profile.username])),
-                          child: ProfileAvatar(AsyncData(item.profile), size: 12),
+                          content: Text(LocaleKeys.groupMedia_addedBy.tr(args: [profile.value!.username])),
+                          child: ProfileAvatar(AsyncData(profile.value!), size: 12),
                         ),
                       ],
                     ),
                     // Text(item.media.title, overflow: TextOverflow.ellipsis),
                     gapH4,
-                    Text(item.media.releaseDate.year.toString(), style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
+                    Text(media.value!.releaseDate.year.toString(),
+                        style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
                     gapH12,
                     Text(
-                      item.media.overview,
+                      media.value!.overview,
                       maxLines: 3,
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,

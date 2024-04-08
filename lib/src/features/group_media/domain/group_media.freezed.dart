@@ -31,8 +31,6 @@ mixin _$GroupMedia {
   DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: "added_by")
   String get addedBy => throw _privateConstructorUsedError;
-  Media get media => throw _privateConstructorUsedError;
-  Profile get profile => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,12 +50,7 @@ abstract class $GroupMediaCopyWith<$Res> {
       @JsonKey(name: "tmdb_id") int tmdbId,
       @JsonKey(name: "media_type") GroupMediaType mediaType,
       @JsonKey(name: "created_at") DateTime createdAt,
-      @JsonKey(name: "added_by") String addedBy,
-      Media media,
-      Profile profile});
-
-  $MediaCopyWith<$Res> get media;
-  $ProfileCopyWith<$Res> get profile;
+      @JsonKey(name: "added_by") String addedBy});
 }
 
 /// @nodoc
@@ -79,8 +72,6 @@ class _$GroupMediaCopyWithImpl<$Res, $Val extends GroupMedia>
     Object? mediaType = null,
     Object? createdAt = null,
     Object? addedBy = null,
-    Object? media = null,
-    Object? profile = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,31 +98,7 @@ class _$GroupMediaCopyWithImpl<$Res, $Val extends GroupMedia>
           ? _value.addedBy
           : addedBy // ignore: cast_nullable_to_non_nullable
               as String,
-      media: null == media
-          ? _value.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as Media,
-      profile: null == profile
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as Profile,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MediaCopyWith<$Res> get media {
-    return $MediaCopyWith<$Res>(_value.media, (value) {
-      return _then(_value.copyWith(media: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProfileCopyWith<$Res> get profile {
-    return $ProfileCopyWith<$Res>(_value.profile, (value) {
-      return _then(_value.copyWith(profile: value) as $Val);
-    });
   }
 }
 
@@ -149,14 +116,7 @@ abstract class _$$GroupMediaImplCopyWith<$Res>
       @JsonKey(name: "tmdb_id") int tmdbId,
       @JsonKey(name: "media_type") GroupMediaType mediaType,
       @JsonKey(name: "created_at") DateTime createdAt,
-      @JsonKey(name: "added_by") String addedBy,
-      Media media,
-      Profile profile});
-
-  @override
-  $MediaCopyWith<$Res> get media;
-  @override
-  $ProfileCopyWith<$Res> get profile;
+      @JsonKey(name: "added_by") String addedBy});
 }
 
 /// @nodoc
@@ -176,8 +136,6 @@ class __$$GroupMediaImplCopyWithImpl<$Res>
     Object? mediaType = null,
     Object? createdAt = null,
     Object? addedBy = null,
-    Object? media = null,
-    Object? profile = null,
   }) {
     return _then(_$GroupMediaImpl(
       null == id
@@ -204,14 +162,6 @@ class __$$GroupMediaImplCopyWithImpl<$Res>
           ? _value.addedBy
           : addedBy // ignore: cast_nullable_to_non_nullable
               as String,
-      null == media
-          ? _value.media
-          : media // ignore: cast_nullable_to_non_nullable
-              as Media,
-      null == profile
-          ? _value.profile
-          : profile // ignore: cast_nullable_to_non_nullable
-              as Profile,
     ));
   }
 }
@@ -225,9 +175,7 @@ class _$GroupMediaImpl implements _GroupMedia {
       @JsonKey(name: "tmdb_id") this.tmdbId,
       @JsonKey(name: "media_type") this.mediaType,
       @JsonKey(name: "created_at") this.createdAt,
-      @JsonKey(name: "added_by") this.addedBy,
-      this.media,
-      this.profile);
+      @JsonKey(name: "added_by") this.addedBy);
 
   factory _$GroupMediaImpl.fromJson(Map<String, dynamic> json) =>
       _$$GroupMediaImplFromJson(json);
@@ -249,14 +197,10 @@ class _$GroupMediaImpl implements _GroupMedia {
   @override
   @JsonKey(name: "added_by")
   final String addedBy;
-  @override
-  final Media media;
-  @override
-  final Profile profile;
 
   @override
   String toString() {
-    return 'GroupMedia(id: $id, groupId: $groupId, tmdbId: $tmdbId, mediaType: $mediaType, createdAt: $createdAt, addedBy: $addedBy, media: $media, profile: $profile)';
+    return 'GroupMedia(id: $id, groupId: $groupId, tmdbId: $tmdbId, mediaType: $mediaType, createdAt: $createdAt, addedBy: $addedBy)';
   }
 
   @override
@@ -271,15 +215,13 @@ class _$GroupMediaImpl implements _GroupMedia {
                 other.mediaType == mediaType) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
-            (identical(other.addedBy, addedBy) || other.addedBy == addedBy) &&
-            (identical(other.media, media) || other.media == media) &&
-            (identical(other.profile, profile) || other.profile == profile));
+            (identical(other.addedBy, addedBy) || other.addedBy == addedBy));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, groupId, tmdbId, mediaType,
-      createdAt, addedBy, media, profile);
+  int get hashCode => Object.hash(
+      runtimeType, id, groupId, tmdbId, mediaType, createdAt, addedBy);
 
   @JsonKey(ignore: true)
   @override
@@ -302,9 +244,7 @@ abstract class _GroupMedia implements GroupMedia {
       @JsonKey(name: "tmdb_id") final int tmdbId,
       @JsonKey(name: "media_type") final GroupMediaType mediaType,
       @JsonKey(name: "created_at") final DateTime createdAt,
-      @JsonKey(name: "added_by") final String addedBy,
-      final Media media,
-      final Profile profile) = _$GroupMediaImpl;
+      @JsonKey(name: "added_by") final String addedBy) = _$GroupMediaImpl;
 
   factory _GroupMedia.fromJson(Map<String, dynamic> json) =
       _$GroupMediaImpl.fromJson;
@@ -326,10 +266,6 @@ abstract class _GroupMedia implements GroupMedia {
   @override
   @JsonKey(name: "added_by")
   String get addedBy;
-  @override
-  Media get media;
-  @override
-  Profile get profile;
   @override
   @JsonKey(ignore: true)
   _$$GroupMediaImplCopyWith<_$GroupMediaImpl> get copyWith =>

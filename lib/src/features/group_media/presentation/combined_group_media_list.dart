@@ -4,8 +4,9 @@ import 'package:grouped_list/sliver_grouped_list.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/extensions/async_value_extensions.dart';
 import 'package:watchable/src/features/group_media/data/group_media_repository.dart';
+import 'package:watchable/src/features/group_media/presentation/components/loading_group_media_item.dart';
 
-import '../../common/presentation/spinner.dart';
+import '../../common/presentation/shimmer/shimmer_list.dart';
 import 'components/combined_group_media_item.dart';
 
 class CombinedGroupMediaList extends ConsumerWidget {
@@ -20,9 +21,7 @@ class CombinedGroupMediaList extends ConsumerWidget {
       state.showToastOnError(context);
     });
 
-    if (isLoading) {
-      return const SliverFillRemaining(child: Center(child: Spinner()));
-    }
+    if (isLoading) const SliverFillRemaining(child: ShimmerList(item: LoadingMediaItem()));
 
     return SliverGroupedListView(
       elements: media.value!,

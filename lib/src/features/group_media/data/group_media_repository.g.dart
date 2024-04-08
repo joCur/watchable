@@ -7,7 +7,7 @@ part of 'group_media_repository.dart';
 // **************************************************************************
 
 String _$groupMediaRepositoryHash() =>
-    r'0e1b08fa5826f9bcc39b4e9998e55c57394edbc6';
+    r'4ec6da751baf6931289ea9c5ef24b867fecb06cc';
 
 /// See also [groupMediaRepository].
 @ProviderFor(groupMediaRepository)

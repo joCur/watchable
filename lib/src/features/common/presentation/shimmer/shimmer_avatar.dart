@@ -13,12 +13,13 @@ class ShimmerAvatar extends StatelessWidget {
     return CircleAvatar(
       radius: size,
       backgroundImage: backgroundImage,
+      backgroundColor: Colors.transparent,
       child: backgroundImage != null
           ? null
           : Shimmer.fromColors(
               baseColor: ShimmerColors.defaultShimmerBaseColor,
               highlightColor: ShimmerColors.defaultShimmerHighlightColor,
-              child: Container(color: ShimmerColors.defaultShimmerBackColor),
+              child: const CircleAvatar(backgroundColor: ShimmerColors.defaultShimmerBackColor),
             ),
     );
   }

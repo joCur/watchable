@@ -14,8 +14,6 @@ _$GroupMediaImpl _$$GroupMediaImplFromJson(Map<String, dynamic> json) =>
       $enumDecode(_$GroupMediaTypeEnumMap, json['media_type']),
       DateTime.parse(json['created_at'] as String),
       json['added_by'] as String,
-      Media.fromJson(json['media'] as Map<String, dynamic>),
-      Profile.fromJson(json['profile'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GroupMediaImplToJson(_$GroupMediaImpl instance) =>
@@ -26,8 +24,6 @@ Map<String, dynamic> _$$GroupMediaImplToJson(_$GroupMediaImpl instance) =>
       'media_type': _$GroupMediaTypeEnumMap[instance.mediaType]!,
       'created_at': instance.createdAt.toIso8601String(),
       'added_by': instance.addedBy,
-      'media': instance.media.toJson(),
-      'profile': instance.profile.toJson(),
     };
 
 const _$GroupMediaTypeEnumMap = {

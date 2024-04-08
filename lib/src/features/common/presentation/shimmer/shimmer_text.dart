@@ -13,7 +13,7 @@ class ShimmerText extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ?? 200,
-      height: height ?? context.textTheme.bodyMedium!.height,
+      height: height ?? context.textTheme.bodyMedium!.fontSize,
       child: Shimmer.fromColors(
         baseColor: ShimmerColors.defaultShimmerBaseColor,
         highlightColor: ShimmerColors.defaultShimmerHighlightColor,
