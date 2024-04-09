@@ -52,7 +52,8 @@ serve(async (req: Request) => {
       .in("id", userIds);
     console.log("profiles", profiles);
 
-    const creator = profiles?.find((e) => e.id === record.added_by);
+    const {data: creator } = await supabaseClient.from("profiles").select("*")
+      .eq("id", record.added_by).single()
     console.log("creator", creator);
 
     let mediaTitle: string | undefined;

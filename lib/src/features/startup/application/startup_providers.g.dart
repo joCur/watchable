@@ -20,7 +20,7 @@ final supabaseProvider = Provider<SupabaseClient>.internal(
 );
 
 typedef SupabaseRef = ProviderRef<SupabaseClient>;
-String _$appStartupHash() => r'a36c06420e4fb411cf53b354244920843aee95cc';
+String _$appStartupHash() => r'faa1937cfbd812a598a9cfb8be74c5492061fda1';
 
 /// See also [appStartup].
 @ProviderFor(appStartup)

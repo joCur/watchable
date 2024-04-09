@@ -34,7 +34,18 @@ class HomeScreen extends ConsumerWidget {
       body: CustomScrollView(
         cacheExtent: 300,
         slivers: [
-          if (!hasGroup) const SliverFillRemaining(child: SliverToBoxAdapter(child: UserHasNoGroupWidget())),
+          if (!hasGroup)
+            const SliverFillRemaining(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: Sizes.p32),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    UserHasNoGroupWidget(),
+                  ],
+                ),
+              ),
+            ),
           if (hasGroup) const CombinedGroupMediaList(),
         ],
       ),
