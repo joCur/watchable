@@ -48,7 +48,7 @@ serve(async (req: Request) => {
     console.log("userIds", userIds);
 
     const { data: profiles } = await supabaseClient.from("profiles").select("*")
-      .neq("id", record.added_by)
+//       .neq("id", record.added_by)
       .in("id", userIds);
     console.log("profiles", profiles);
 
@@ -95,6 +95,12 @@ serve(async (req: Request) => {
     notification.app_id = _OnesignalAppId_;
     notification.include_external_user_ids = profiles?.map((e) => e.id) ?? [];
     notification.template_id = "45a96c56-db6b-484d-8131-dd6fc299d6e0";
+    notification.data = {
+      type: "NEW_GROUP_MEDIA",
+      group_media_id: record.id,
+      group_id: record.group_id,
+      tmdb_id: record.tmdb_id,
+    }
     notification.custom_data = {
       user: creator?.username,
       media: mediaTitle,
