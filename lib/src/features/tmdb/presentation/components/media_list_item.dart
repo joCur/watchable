@@ -1,11 +1,13 @@
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:watchable/src/extensions/build_context_extensions.dart';
 import 'package:watchable/src/features/tmdb/domain/media_preview.dart';
 
+import '../../../../constants/app_sizes.dart';
+import '../../../common/presentation/image_list_tile.dart';
 import '../movie_detail_screen.dart';
 import '../tv_detail_screen.dart';
+import 'poster_image.dart';
 
 class MediaListItem extends StatelessWidget {
   final MediaPreview item;
@@ -22,24 +24,26 @@ class MediaListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: ConstrainedBox(
-        constraints: const BoxConstraints.tightFor(width: 120),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: item.backdropPath == null
-              ? Container()
-              : FancyShimmerImage(imageUrl: "https://image.tmdb.org/t/p/w92${item.backdropPath}"),
+    return ImageListTile(
+      onTap: () => _onTap(context),
+      leading: PosterImage(item.posterPath),
+      title: Text(item.title, overflow: TextOverflow.ellipsis),
+      titleContentSpacing: Sizes.p4,
+      content: Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              item.overview,
+              maxLines: 3,
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
+              style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
+            ),
+            const Spacer(),
+          ],
         ),
       ),
-      title: Text(item.title),
-      subtitle: Text(
-        item.overview,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
-      ),
-      onTap: () => _onTap(context),
     );
   }
 }

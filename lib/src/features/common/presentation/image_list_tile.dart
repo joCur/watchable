@@ -30,12 +30,13 @@ class ImageListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      onLongPress: onLongPress,
-      child: Container(
-        padding: padding,
-        height: height,
+    return Container(
+      padding: padding,
+      height: height,
+      child: InkWell(
+        onTap: onTap,
+        onLongPress: onLongPress,
+        borderRadius: BorderRadius.circular(Sizes.p8),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

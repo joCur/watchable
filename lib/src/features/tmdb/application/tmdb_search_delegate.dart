@@ -59,9 +59,8 @@ class TmdbSearchDelegate extends SearchDelegate {
               if (snapshot.hasError) return const Center(child: Text('Error'));
 
               final items = snapshot.data!.results.where((element) => element is! PersonPreview).toList();
-              return ListView.separated(
+              return ListView.builder(
                 itemCount: items.length,
-                separatorBuilder: (context, index) => divider,
                 itemBuilder: (context, index) => MediaListItem(items[index]),
               );
             },

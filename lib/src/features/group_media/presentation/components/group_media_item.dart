@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/features/common/presentation/image_list_tile.dart';
-import 'package:watchable/src/features/group_media/presentation/components/poster_image.dart';
 import 'package:watchable/src/features/group_media/presentation/components/title_with_creator.dart';
+import 'package:watchable/src/features/tmdb/presentation/components/poster_image.dart';
 
 import '../../../../constants/app_sizes.dart';
 import '../../../../extensions/build_context_extensions.dart';
