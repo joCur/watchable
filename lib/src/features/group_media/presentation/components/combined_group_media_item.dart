@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/locale_keys.dart';
 import 'package:watchable/src/features/group_media/domain/group_media_type.dart';
 import 'package:watchable/src/features/group_media/presentation/components/loading_group_media_item.dart';
+import 'package:watchable/src/features/group_media/presentation/components/media_voting_widget.dart';
 import 'package:watchable/src/features/groups/data/group_repository.dart';
 import 'package:watchable/src/features/groups/presentation/group_detail_screen.dart';
 import 'package:watchable/src/features/profile/data/profile_repository.dart';
@@ -69,10 +70,9 @@ class CombinedGroupMediaItem extends ConsumerWidget {
                       ],
                     ),
                     // Text(item.media.title, overflow: TextOverflow.ellipsis),
-                    gapH4,
                     Text(media.value!.releaseDate.year.toString(),
                         style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
-                    gapH12,
+                    gapH8,
                     Text(
                       media.value!.overview,
                       maxLines: 3,
@@ -81,14 +81,21 @@ class CombinedGroupMediaItem extends ConsumerWidget {
                       style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
                     ),
                     const Spacer(),
-                    ActionChip(
-                      padding: EdgeInsets.zero,
-                      side: BorderSide.none,
-                      visualDensity: VisualDensity.compact,
-                      onPressed: () {
-                        context.pushNamed(GroupDetailScreen.name, pathParameters: {'id': item.groupId.toString()});
-                      },
-                      label: Text(ref.watch(getCurrentUserGroupByIdProvider(item.groupId)).name),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        ActionChip(
+                          padding: EdgeInsets.zero,
+                          side: BorderSide.none,
+                          visualDensity: VisualDensity.compact,
+                          onPressed: () {
+                            context.pushNamed(GroupDetailScreen.name, pathParameters: {'id': item.groupId.toString()});
+                          },
+                          label: Text(ref.watch(getCurrentUserGroupByIdProvider(item.groupId)).name),
+                        ),
+                        const Spacer(),
+                        MediaVotingWidget(onVote: (_) {}),
+                      ],
                     ),
                   ],
                 ),

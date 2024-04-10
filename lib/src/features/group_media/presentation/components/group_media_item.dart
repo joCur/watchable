@@ -13,6 +13,7 @@ import '../../../tmdb/data/tmdb_repository.dart';
 import '../../domain/group_media.dart';
 import '../../domain/group_media_type.dart';
 import 'loading_group_media_item.dart';
+import 'media_voting_widget.dart';
 
 class GroupMediaItem extends ConsumerWidget {
   final GroupMedia item;
@@ -75,6 +76,13 @@ class GroupMediaItem extends ConsumerWidget {
                       softWrap: true,
                       overflow: TextOverflow.ellipsis,
                       style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Spacer(),
+                        MediaVotingWidget(onVote: (_) {}),
+                      ],
                     ),
                   ],
                 ),
