@@ -12,6 +12,7 @@ import '../../../../constants/locale_keys.dart';
 import '../../../../extensions/build_context_extensions.dart';
 import '../../domain/group.dart';
 import '../../domain/role.dart';
+import '../group_join_requests_screen.dart';
 import '../group_members_screen.dart';
 
 class GroupDetailsMenu extends ConsumerWidget {
@@ -37,20 +38,38 @@ class GroupDetailsMenu extends ConsumerWidget {
               leading: const Icon(Icons.edit),
             ),
           ),
+        if (role.hasAnyRole([Role.owner]))
+          PopupMenuItem(
+            value: () => context.pushNamed(GroupJoinRequestsScreen.name, pathParameters: {'id': group.id}),
+            child: ListTile(
+              title: Text(LocaleKeys.groups_joinRequests.tr(), style: context.textTheme.bodyLarge),
+              leading: badges.Badge(
+                position: badges.BadgePosition.topEnd(top: -14, end: -12),
+                // showBadge: pendingRequests > 0,
+                badgeStyle: badges.BadgeStyle(badgeColor: context.colorScheme.primary),
+                badgeContent: Text(
+                  "$pendingRequests",
+                  style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.onPrimary),
+                ),
+                child: const Icon(Icons.mail),
+              ),
+            ),
+          ),
         PopupMenuItem(
           value: () => context.pushNamed(GroupMembersScreen.name, pathParameters: {'id': group.id}),
           child: ListTile(
             title: Text(LocaleKeys.groups_members.tr(), style: context.textTheme.bodyLarge),
-            leading: badges.Badge(
-              position: badges.BadgePosition.topEnd(top: -14, end: -12),
-              // showBadge: pendingRequests > 0,
-              badgeStyle: badges.BadgeStyle(badgeColor: context.colorScheme.primary),
-              badgeContent: Text(
-                "$pendingRequests",
-                style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.onPrimary),
-              ),
-              child: const Icon(Icons.people),
-            ),
+            leading: const Icon(Icons.people),
+            // leading: badges.Badge(
+            //   position: badges.BadgePosition.topEnd(top: -14, end: -12),
+            //   // showBadge: pendingRequests > 0,
+            //   badgeStyle: badges.BadgeStyle(badgeColor: context.colorScheme.primary),
+            //   badgeContent: Text(
+            //     "$pendingRequests",
+            //     style: context.textTheme.bodySmall!.copyWith(color: context.colorScheme.onPrimary),
+            //   ),
+            //   child: const Icon(Icons.people),
+            // ),
           ),
         ),
       ],

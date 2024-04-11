@@ -12,6 +12,7 @@ import 'package:watchable/src/features/tmdb/presentation/movie_detail_screen.dar
 import 'package:watchable/src/features/tmdb/presentation/tv_detail_screen.dart';
 
 import '../features/groups/presentation/group_edit_screen.dart';
+import '../features/groups/presentation/group_join_requests_screen.dart';
 import '../features/profile/data/profile_repository.dart';
 import '../features/tmdb/presentation/discover_screen.dart';
 import '../features/tmdb/presentation/video_player_screen.dart';
@@ -62,8 +63,7 @@ GoRouter router(RouterRef ref) {
       GoRoute(
         name: VideoPlayerScreen.name,
         path: VideoPlayerScreen.route,
-        pageBuilder: (context, state) =>
-            NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
+        pageBuilder: (context, state) => NoTransitionPage(key: state.pageKey, child: VideoPlayerScreen(state.pathParameters['id']!)),
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) => ScaffoldWithNestedNavigation(navigationShell: navigationShell),
@@ -130,15 +130,23 @@ GoRouter router(RouterRef ref) {
                           child: GroupEditScreen(state.pathParameters['id']!),
                         ),
                       ),
+                      GoRoute(
+                        name: GroupMembersScreen.name,
+                        path: GroupMembersScreen.route,
+                        pageBuilder: (context, state) => NoTransitionPage(
+                          key: state.pageKey,
+                          child: GroupMembersScreen(state.pathParameters['id']!),
+                        ),
+                      ),
+                      GoRoute(
+                        name: GroupJoinRequestsScreen.name,
+                        path: GroupJoinRequestsScreen.route,
+                        pageBuilder: (context, state) => NoTransitionPage(
+                          key: state.pageKey,
+                          child: GroupJoinRequestsScreen(state.pathParameters['id']!),
+                        ),
+                      ),
                     ],
-                  ),
-                  GoRoute(
-                    name: GroupMembersScreen.name,
-                    path: GroupMembersScreen.route,
-                    pageBuilder: (context, state) => NoTransitionPage(
-                      key: state.pageKey,
-                      child: GroupMembersScreen(state.pathParameters['id']!),
-                    ),
                   ),
                 ],
               )

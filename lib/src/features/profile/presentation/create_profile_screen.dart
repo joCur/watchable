@@ -2,8 +2,9 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_gravatar/flutter_gravatar.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker_widget/image_picker_widget.dart';
@@ -14,19 +15,30 @@ import 'package:watchable/src/features/startup/application/startup_providers.dar
 
 import '../../../constants/locale_keys.dart';
 
-class CreateProfileScreen extends HookConsumerWidget {
+class CreateProfileScreen extends ConsumerStatefulWidget {
   static const route = "/create-profile";
   static const name = "CreateProfile";
 
   const CreateProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final usernameController = useTextEditingController(text: "");
+  ConsumerState createState() => _CreateProfileScreenState();
+}
 
-    final selectedImage = useState<File?>(null);
+class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
+  final _formKey = GlobalKey<FormBuilderState>();
 
-    onSubmit() => ref.read(updateProfileControllerProvider.notifier).updateProfile(usernameController.text, selectedImage.value);
+  _onSubmit() {
+    if (_formKey.currentState?.saveAndValidate() == true) {
+      final name = _formKey.currentState?.fields["username"]?.value as String;
+      final avatar = _formKey.currentState?.fields["image"]?.value as File?;
+
+      ref.read(updateProfileControllerProvider.notifier).updateProfile(name, avatar);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     ref.listen(updateProfileControllerProvider, (_, next) {
       if (next.hasError) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(next.error.toString())));
@@ -41,26 +53,35 @@ class CreateProfileScreen extends HookConsumerWidget {
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(Sizes.p24),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(LocaleKeys.profile_completionHeadline.tr(), style: Theme.of(context).textTheme.headlineMedium),
-              gapH12,
-              ImagePickerWidget(
-                diameter: 180,
-                initialImage: gravatar.imageUrl(),
-                isEditable: true,
-                shouldCrop: true,
-                onChange: (image) => selectedImage.value = image,
-              ),
-              TextField(
-                controller: usernameController,
-                decoration: InputDecoration(labelText: LocaleKeys.profile_name.tr()),
-              ),
-              gapH12,
-              TextButton(onPressed: onSubmit, child: const Text("Save")),
-            ],
+        child: FormBuilder(
+          key: _formKey,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(LocaleKeys.profile_completionHeadline.tr(), style: Theme.of(context).textTheme.headlineMedium),
+                gapH12,
+                FormBuilderField<File>(
+                  name: "image",
+                  builder: (field) {
+                    return ImagePickerWidget(
+                      diameter: 180,
+                      initialImage: gravatar.imageUrl(),
+                      isEditable: true,
+                      shouldCrop: true,
+                      onChange: (image) => field.didChange(image),
+                    );
+                  },
+                ),
+                FormBuilderTextField(
+                  name: "username",
+                  validator: FormBuilderValidators.required(),
+                  decoration: InputDecoration(labelText: LocaleKeys.profile_name.tr()),
+                ),
+                gapH12,
+                TextButton(onPressed: _onSubmit, child: const Text("Save")),
+              ],
+            ),
           ),
         ),
       ),

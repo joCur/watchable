@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:in_app_update/in_app_update.dart';
 import 'package:store_checker/store_checker.dart';
@@ -48,7 +49,11 @@ class _AppState extends ConsumerState<App> {
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: context.localizationDelegates,
+      localizationsDelegates: [
+        ...context.localizationDelegates,
+        const FormBuilderLocalizationsDelegate(),
+        FormBuilderLocalizations.delegate,
+      ],
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       onGenerateTitle: (_) => LocaleKeys.app_title.tr(),
