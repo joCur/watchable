@@ -48,7 +48,7 @@ serve(async (req: Request) => {
     console.log("userIds", userIds);
 
     const { data: profiles } = await supabaseClient.from("profiles").select("*")
-//       .neq("id", record.added_by)
+      .neq("id", record.added_by)
       .in("id", userIds);
     console.log("profiles", profiles);
 
