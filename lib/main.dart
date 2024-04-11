@@ -1,48 +1,35 @@
-import 'dart:ui';
+import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:watchable/src/constants/locale_keys.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'src/app.dart';
 import 'src/features/startup/presentation/app_startup_widget.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
+  await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await EasyLocalization.ensureInitialized();
 
-  registerErrorHandlers();
-
-  runApp(
-    EasyLocalization(
-      supportedLocales: const [Locale("en", "US"), Locale("de", "DE")],
-      fallbackLocale: const Locale("en", "US"),
-      path: "assets/translation",
-      useOnlyLangCode: false,
-      child: ProviderScope(child: AppStartupWidget(onLoaded: (_) => const App())),
-    ),
-  );
-}
-
-void registerErrorHandlers() {
-  // * Show some error UI if any uncaught exception happens
-  FlutterError.onError = (FlutterErrorDetails details) {
-    FlutterError.presentError(details);
-    debugPrint(details.toString());
-  };
-  // * Handle errors from the underlying platform/OS
-  PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
-    debugPrint(error.toString());
-    return true;
-  };
-  // * Show some error UI when any widget in the app fails to build
-  ErrorWidget.builder = (FlutterErrorDetails details) {
-    return Material(
-      child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.red, title: Text(LocaleKeys.errors_unknown.tr())),
-        body: Center(child: Text(details.toString())),
+    await SentryFlutter.init(
+      (options) {
+        options.dsn = "https://e6d3bd17fdf52cb2c9bf42b78ca64cce@o1394801.ingest.us.sentry.io/4507067862614016";
+        options.environment = kDebugMode ? "Debug" : "production";
+      },
+      appRunner: () => runApp(
+        EasyLocalization(
+          supportedLocales: const [Locale("en", "US"), Locale("de", "DE")],
+          fallbackLocale: const Locale("en", "US"),
+          path: "assets/translation",
+          useOnlyLangCode: false,
+          child: ProviderScope(child: AppStartupWidget(onLoaded: (_) => const App())),
+        ),
       ),
     );
-  };
+  }, (error, stack) async {
+    await Sentry.captureException(error, stackTrace: stack);
+  });
 }
