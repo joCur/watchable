@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:watchable/src/features/group_media/presentation/combined_group_media_list.dart';
 import 'package:watchable/src/features/profile/data/profile_repository.dart';
@@ -15,6 +16,11 @@ class HomeScreen extends ConsumerWidget {
 
   const HomeScreen({super.key});
 
+  _logout() {
+    OneSignal.logout();
+    Supabase.instance.client.auth.signOut();
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final profile = ref.watch(getCurrentUserProfileProvider);
@@ -25,10 +31,7 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         leading: Padding(padding: const EdgeInsets.all(Sizes.p8), child: ProfileAvatar(profile)),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: Supabase.instance.client.auth.signOut,
-          ),
+          IconButton(icon: const Icon(Icons.logout), onPressed: _logout),
         ],
       ),
       body: CustomScrollView(
