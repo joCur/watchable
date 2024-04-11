@@ -4,14 +4,17 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/constants/locale_keys.dart';
+import 'package:watchable/src/features/common/presentation/shimmer/shimmer_list.dart';
 import 'package:watchable/src/features/tmdb/extensions/media_type_extensions.dart';
 
 import '../../../constants/app_sizes.dart';
 import '../../../extensions/build_context_extensions.dart';
-import '../../common/presentation/spinner.dart';
+import '../../common/presentation/image_list_tile.dart';
+import '../../common/presentation/shimmer/shimmer_text.dart';
 import '../data/tmdb_repository.dart';
 import '../domain/media_preview.dart';
 import '../presentation/components/media_list_item.dart';
+import '../presentation/components/shimmer_poster_image.dart';
 import 'search_controller.dart';
 
 class TmdbSearchDelegate extends SearchDelegate {
@@ -44,7 +47,8 @@ class TmdbSearchDelegate extends SearchDelegate {
                 gapH16,
                 Text(LocaleKeys.discover_search_title.tr(), style: context.textTheme.titleLarge),
                 gapH4,
-                Text(LocaleKeys.discover_search_subtitle.tr(args: [searchType.translation]), style: context.textTheme.bodySmall),
+                Text(LocaleKeys.discover_search_subtitle.tr(args: [searchType.translation]),
+                    style: context.textTheme.bodySmall),
               ],
             ),
           );
@@ -53,7 +57,27 @@ class TmdbSearchDelegate extends SearchDelegate {
             future: ref.watch(queryMediaProvider(query, 1).future),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: Spinner());
+                return ShimmerList(
+                  item: ImageListTile(
+                    titleContentSpacing: Sizes.p4,
+                    leading: const ShimmerPosterImage(),
+                    title: ShimmerText(width: context.mediaQuery.size.width * .5),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ShimmerText(width: 50, height: context.textTheme.bodySmall!.fontSize),
+                        gapH12,
+                        ShimmerText(width: double.infinity, height: context.textTheme.bodySmall!.fontSize),
+                        gapH4,
+                        ShimmerText(width: double.infinity, height: context.textTheme.bodySmall!.fontSize),
+                        gapH4,
+                        ShimmerText(
+                            width: context.mediaQuery.size.width * .7, height: context.textTheme.bodySmall!.fontSize),
+                      ],
+                    ),
+                  ),
+                );
               }
 
               if (snapshot.hasError) return const Center(child: Text('Error'));
