@@ -1,9 +1,9 @@
 ---
 name: Funktion vorschlagen
 about: Schlage hier deine Idee für Watchable vor!
-title: ''
-labels: ''
-assignees: ''
+title: "[FEATURE] Hier Vorschlagtitel angeben"
+labels: enhancement
+assignees: joCur
 
 ---
 

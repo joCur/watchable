@@ -1,7 +1,7 @@
 ---
 name: Fehler melden
 about: Erstelle einen Fehlerreport um uns dabei zu unterstützen, Watchable zu verbessern.
-title: ''
+title: "[BUG] Hier Fehlertitel angeben"
 labels: bug
 assignees: joCur
 
