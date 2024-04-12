@@ -22,17 +22,18 @@ class CombinedGroupMediaItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profile = ref.watch(getProfileByIdProvider(item.addedBy));
+    final profile = item.addedBy == null ? null : ref.watch(getProfileByIdProvider(item.addedBy!));
     final media =
         item.mediaType == GroupMediaType.movie ? ref.watch(getMovieByIdProvider(item.tmdbId)) : ref.watch(getTvByIdProvider(item.tmdbId));
 
-    final isLoading = media.maybeWhen(data: (_) => false, orElse: () => true) || profile.maybeWhen(data: (_) => false, orElse: () => true);
+    final isLoading =
+        media.maybeWhen(data: (_) => false, orElse: () => true) || (profile?.maybeWhen(data: (_) => false, orElse: () => true) ?? false);
 
     if (isLoading) return const LoadingMediaItem();
 
     return ImageListTile(
       leading: PosterImage(media.value!.posterPath),
-      title: TitleWithCreator(title: media.value!.title, creator: profile.value!),
+      title: TitleWithCreator(title: media.value!.title, creator: profile?.value!),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,

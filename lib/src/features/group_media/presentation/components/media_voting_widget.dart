@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:watchable/src/features/group_media/domain/vote_type.dart';
+import 'package:watchable/src/features/group_media/domain/media_reaction.dart';
 
 class MediaVotingWidget extends StatelessWidget {
-  final Function(VoteType type) onVote;
+  final Function(MediaReaction type) onVote;
 
   const MediaVotingWidget({required this.onVote, super.key});
 
@@ -13,19 +13,19 @@ class MediaVotingWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         IconButton(
-          onPressed: () => onVote(VoteType.up),
+          onPressed: () => onVote(MediaReaction.watch),
           iconSize: 18,
           visualDensity: VisualDensity.compact,
           icon: const Icon(Icons.thumb_up_sharp),
         ),
         IconButton(
-          onPressed: () => onVote(VoteType.neutral),
+          onPressed: () => onVote(MediaReaction.maybe),
           iconSize: 18,
           visualDensity: VisualDensity.compact,
           icon: const Icon(Icons.remove_circle_outline),
         ),
         IconButton(
-          onPressed: () => onVote(VoteType.down),
+          onPressed: () => onVote(MediaReaction.pass),
           iconSize: 18,
           visualDensity: VisualDensity.compact,
           icon: const Icon(Icons.thumb_down_sharp),

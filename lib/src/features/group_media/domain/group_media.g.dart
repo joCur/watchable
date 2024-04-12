@@ -13,7 +13,7 @@ _$GroupMediaImpl _$$GroupMediaImplFromJson(Map<String, dynamic> json) =>
       json['tmdb_id'] as int,
       $enumDecode(_$GroupMediaTypeEnumMap, json['media_type']),
       DateTime.parse(json['created_at'] as String),
-      json['added_by'] as String,
+      json['added_by'] as String?,
     );
 
 Map<String, dynamic> _$$GroupMediaImplToJson(_$GroupMediaImpl instance) =>

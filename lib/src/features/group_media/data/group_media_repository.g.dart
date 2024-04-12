@@ -477,5 +477,140 @@ class _ListGroupsWithMediaStateProviderElement
   @override
   int get tmdbId => (origin as ListGroupsWithMediaStateProvider).tmdbId;
 }
+
+String _$watchReactionsByMediaIdHash() =>
+    r'68443d0bf486cec444e64b760dd2e276c2550095';
+
+/// See also [watchReactionsByMediaId].
+@ProviderFor(watchReactionsByMediaId)
+const watchReactionsByMediaIdProvider = WatchReactionsByMediaIdFamily();
+
+/// See also [watchReactionsByMediaId].
+class WatchReactionsByMediaIdFamily
+    extends Family<AsyncValue<List<GroupMediaReaction>>> {
+  /// See also [watchReactionsByMediaId].
+  const WatchReactionsByMediaIdFamily();
+
+  /// See also [watchReactionsByMediaId].
+  WatchReactionsByMediaIdProvider call(
+    String mediaId,
+  ) {
+    return WatchReactionsByMediaIdProvider(
+      mediaId,
+    );
+  }
+
+  @override
+  WatchReactionsByMediaIdProvider getProviderOverride(
+    covariant WatchReactionsByMediaIdProvider provider,
+  ) {
+    return call(
+      provider.mediaId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'watchReactionsByMediaIdProvider';
+}
+
+/// See also [watchReactionsByMediaId].
+class WatchReactionsByMediaIdProvider
+    extends AutoDisposeStreamProvider<List<GroupMediaReaction>> {
+  /// See also [watchReactionsByMediaId].
+  WatchReactionsByMediaIdProvider(
+    String mediaId,
+  ) : this._internal(
+          (ref) => watchReactionsByMediaId(
+            ref as WatchReactionsByMediaIdRef,
+            mediaId,
+          ),
+          from: watchReactionsByMediaIdProvider,
+          name: r'watchReactionsByMediaIdProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$watchReactionsByMediaIdHash,
+          dependencies: WatchReactionsByMediaIdFamily._dependencies,
+          allTransitiveDependencies:
+              WatchReactionsByMediaIdFamily._allTransitiveDependencies,
+          mediaId: mediaId,
+        );
+
+  WatchReactionsByMediaIdProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.mediaId,
+  }) : super.internal();
+
+  final String mediaId;
+
+  @override
+  Override overrideWith(
+    Stream<List<GroupMediaReaction>> Function(
+            WatchReactionsByMediaIdRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: WatchReactionsByMediaIdProvider._internal(
+        (ref) => create(ref as WatchReactionsByMediaIdRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        mediaId: mediaId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<List<GroupMediaReaction>> createElement() {
+    return _WatchReactionsByMediaIdProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is WatchReactionsByMediaIdProvider && other.mediaId == mediaId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, mediaId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin WatchReactionsByMediaIdRef
+    on AutoDisposeStreamProviderRef<List<GroupMediaReaction>> {
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+}
+
+class _WatchReactionsByMediaIdProviderElement
+    extends AutoDisposeStreamProviderElement<List<GroupMediaReaction>>
+    with WatchReactionsByMediaIdRef {
+  _WatchReactionsByMediaIdProviderElement(super.provider);
+
+  @override
+  String get mediaId => (origin as WatchReactionsByMediaIdProvider).mediaId;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

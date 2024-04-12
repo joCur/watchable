@@ -2,10 +2,12 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tuple/tuple.dart';
 import 'package:watchable/src/features/group_media/domain/create_group_media.dart';
+import 'package:watchable/src/features/group_media/domain/group_media_reaction.dart';
 
 import '../../groups/data/group_repository.dart';
 import '../../groups/domain/group.dart';
 import '../domain/group_media.dart';
+import '../domain/media_reaction.dart';
 
 part 'group_media_repository.g.dart';
 
@@ -42,40 +44,16 @@ Future<List<Tuple2<Group, bool>>> listGroupsWithMediaState(ListGroupsWithMediaSt
   return result;
 }
 
+@riverpod
+Stream<List<GroupMediaReaction>> watchReactionsByMediaId(WatchReactionsByMediaIdRef ref, String mediaId) {
+  return ref.watch(groupMediaRepositoryProvider).watchReactions(mediaId);
+}
+
 class GroupMediaRepository {
   final supabase = Supabase.instance.client;
   final table = "group_media";
 
   GroupMediaRepository();
-
-  // Future<Map<String, dynamic>> _getMedia(int tmdbId, String mediaType) async {
-  //   final Media response;
-  //   switch (mediaType) {
-  //     case 'movie':
-  //       response = await ref.read(getMovieByIdProvider(tmdbId).future);
-  //       break;
-  //     case 'tv':
-  //       response = await ref.read(getTvByIdProvider(tmdbId).future);
-  //       break;
-  //     default:
-  //       throw Exception('Unknown media type');
-  //   }
-  //   return response.toJson();
-  // }
-  //
-  // Future<Map<String, dynamic>> _getProfile(String userId) async {
-  //   final user = await ref.read(getProfileByIdProvider(userId).future);
-  //   return user.toJson();
-  // }
-  //
-  // Future<List<GroupMedia>> _toGroup(List<Map<String, dynamic>> data) async {
-  //   for (final e in data) {
-  //     e['profile'] = await _getProfile(e['added_by']);
-  //     e['media'] = await _getMedia(e['tmdb_id'], e['media_type']);
-  //   }
-  //
-  //   return data.map((e) => GroupMedia.fromJson(e)).toList();
-  // }
 
   Stream<List<GroupMedia>> watch() {
     return supabase
@@ -83,6 +61,30 @@ class GroupMediaRepository {
         .stream(primaryKey: ['id'])
         .order('created_at', ascending: false)
         .map((event) => event.map((e) => GroupMedia.fromJson(e)).toList());
+  }
+
+  Stream<List<GroupMediaReaction>> watchReactions(String groupMediaId) {
+    return supabase
+        .from('group_media_reactions')
+        .stream(primaryKey: ['group_media_id', 'user_id'])
+        .eq('group_media_id', groupMediaId)
+        .map((event) => event.map((e) => GroupMediaReaction.fromJson(e)).toList());
+  }
+
+  Future<GroupMediaReaction> createReaction(String userId, String mediaId, MediaReaction reaction) async {
+    final request = GroupMediaReaction(groupMediaId: mediaId, userId: userId, reaction: reaction, createdAt: DateTime.now());
+    final response = await supabase.from('group_media_reactions').insert(request.toJson()).single();
+    return GroupMediaReaction.fromJson(response);
+  }
+
+  Future<GroupMediaReaction> updateReaction(GroupMediaReaction reaction) async {
+    final request = reaction.copyWith(updatedAt: DateTime.now());
+    final response = await supabase.from('group_media_reactions').update(request.toJson()).single();
+    return GroupMediaReaction.fromJson(response);
+  }
+
+  Future deleteReaction(String userId, String mediaId) async {
+    await supabase.from('group_media_reactions').delete().eq('group_media_id', mediaId).eq('user_id', userId);
   }
 
   Stream<List<GroupMedia>> watchByGroupId(String groupId) {

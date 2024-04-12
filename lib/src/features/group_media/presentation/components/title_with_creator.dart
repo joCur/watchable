@@ -10,7 +10,7 @@ import '../../../profile/domain/profile.dart';
 import '../../../profile/presentation/components/profile_avatar.dart';
 
 class TitleWithCreator extends StatelessWidget {
-  final Profile creator;
+  final Profile? creator;
   final String title;
 
   const TitleWithCreator({required this.title, required this.creator, super.key});
@@ -21,12 +21,13 @@ class TitleWithCreator extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(child: Text(title, overflow: TextOverflow.ellipsis)),
-        gapW4,
-        ElTooltip(
-          color: context.theme.dialogBackgroundColor,
-          content: Text(LocaleKeys.groupMedia_addedBy.tr(args: [creator.username])),
-          child: ProfileAvatar(AsyncData(creator), size: 12),
-        ),
+        if (creator != null) gapW4,
+        if (creator != null)
+          ElTooltip(
+            color: context.theme.dialogBackgroundColor,
+            content: Text(LocaleKeys.groupMedia_addedBy.tr(args: [creator!.username])),
+            child: ProfileAvatar(AsyncData(creator!), size: 12),
+          ),
       ],
     );
   }

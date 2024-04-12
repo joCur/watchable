@@ -13,7 +13,7 @@ class GroupMedia with _$GroupMedia {
     @JsonKey(name: "tmdb_id") int tmdbId,
     @JsonKey(name: "media_type") GroupMediaType mediaType,
     @JsonKey(name: "created_at") DateTime createdAt,
-    @JsonKey(name: "added_by") String addedBy,
+    @JsonKey(name: "added_by") String? addedBy,
   ) = _GroupMedia;
 
   factory GroupMedia.fromJson(Map<String, dynamic> json) => _$GroupMediaFromJson(json);
