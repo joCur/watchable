@@ -21,10 +21,9 @@ class GroupJoinRequestsScreen extends ConsumerWidget {
     final joinRequests = joinRequestState.maybeWhen(data: (data) => data, orElse: () => []);
 
     return Scaffold(
-      appBar: AppBar(title: Text(LocaleKeys.groups_members.tr())),
+      appBar: AppBar(title: Text(LocaleKeys.groups_joinRequests.tr())),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(pinned: true, automaticallyImplyLeading: false, title: Text(LocaleKeys.groups_joinRequests.tr())),
           SliverList.separated(
             itemCount: joinRequests.length,
             separatorBuilder: (context, index) => divider,
