@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:tuple/tuple.dart';
@@ -6,6 +7,7 @@ import 'package:watchable/src/features/group_media/domain/group_media_reaction.d
 
 import '../../groups/data/group_repository.dart';
 import '../../groups/domain/group.dart';
+import '../../startup/application/startup_providers.dart';
 import '../domain/group_media.dart';
 import '../domain/media_reaction.dart';
 
@@ -49,6 +51,14 @@ Stream<List<GroupMediaReaction>> watchReactionsByMediaId(WatchReactionsByMediaId
   return ref.watch(groupMediaRepositoryProvider).watchReactions(mediaId);
 }
 
+@riverpod
+GroupMediaReaction? findOwnReactionByMediaId(FindOwnReactionByMediaIdRef ref, String mediaId) {
+  final userId = ref.watch(supabaseProvider).auth.currentUser!.id;
+  return ref
+      .watch(watchReactionsByMediaIdProvider(mediaId))
+      .maybeWhen(data: (data) => data.firstWhereOrNull((element) => element.userId == userId), orElse: () => null);
+}
+
 class GroupMediaRepository {
   final supabase = Supabase.instance.client;
   final table = "group_media";
@@ -73,13 +83,13 @@ class GroupMediaRepository {
 
   Future<GroupMediaReaction> createReaction(String userId, String mediaId, MediaReaction reaction) async {
     final request = GroupMediaReaction(groupMediaId: mediaId, userId: userId, reaction: reaction, createdAt: DateTime.now());
-    final response = await supabase.from('group_media_reactions').insert(request.toJson()).single();
+    final response = await supabase.from('group_media_reactions').insert(request.toJson()).select().single();
     return GroupMediaReaction.fromJson(response);
   }
 
   Future<GroupMediaReaction> updateReaction(GroupMediaReaction reaction) async {
     final request = reaction.copyWith(updatedAt: DateTime.now());
-    final response = await supabase.from('group_media_reactions').update(request.toJson()).single();
+    final response = await supabase.from('group_media_reactions').update(request.toJson()).select().single();
     return GroupMediaReaction.fromJson(response);
   }
 

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/features/group_media/domain/group_media_type.dart';
 import 'package:watchable/src/features/group_media/presentation/components/loading_group_media_item.dart';
+import 'package:watchable/src/features/group_media/presentation/components/media_reaction_widget.dart';
 import 'package:watchable/src/features/groups/data/group_repository.dart';
 import 'package:watchable/src/features/groups/presentation/group_detail_screen.dart';
 import 'package:watchable/src/features/profile/data/profile_repository.dart';
@@ -49,7 +50,7 @@ class CombinedGroupMediaItem extends ConsumerWidget {
           ),
           const Spacer(),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ActionChip(
                 padding: EdgeInsets.zero,
@@ -61,7 +62,7 @@ class CombinedGroupMediaItem extends ConsumerWidget {
                 label: Text(ref.watch(getCurrentUserGroupByIdProvider(item.groupId)).name),
               ),
               const Spacer(),
-              // MediaVotingWidget(onVote: (_) {}),
+              MediaReactionWidget(item.id),
             ],
           ),
         ],

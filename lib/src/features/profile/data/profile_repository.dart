@@ -34,13 +34,18 @@ Future<Profile> getProfileById(GetProfileByIdRef ref, String id) async {
   return ref.watch(profileRepositoryProvider).getByIdAsync(id);
 }
 
+@riverpod
+Future<List<Profile>> listProfilesByGroupId(ListProfilesByGroupIdRef ref, String groupId) async {
+  return ref.watch(profileRepositoryProvider).listByGroupIdAsync(groupId);
+}
+
 class ProfileRepository {
   final supabase = Supabase.instance.client;
   final table = 'profiles';
   final storage = 'profile_pictures';
 
   Future<List<Profile>> listByGroupIdAsync(String groupId) async {
-    final response = await supabase.from(table).select("*, group_users!inner(user_id,group_id").eq('group_id', groupId);
+    final response = await supabase.from(table).select("*, group_users!inner(user_id,group_id)").eq('group_users.group_id', groupId);
     return response.map((e) => Profile.fromJson(e)).toList();
   }
 

@@ -612,5 +612,138 @@ class _WatchReactionsByMediaIdProviderElement
   @override
   String get mediaId => (origin as WatchReactionsByMediaIdProvider).mediaId;
 }
+
+String _$findOwnReactionByMediaIdHash() =>
+    r'4e820154cb817b07f79a542b9b32956bb7375a13';
+
+/// See also [findOwnReactionByMediaId].
+@ProviderFor(findOwnReactionByMediaId)
+const findOwnReactionByMediaIdProvider = FindOwnReactionByMediaIdFamily();
+
+/// See also [findOwnReactionByMediaId].
+class FindOwnReactionByMediaIdFamily extends Family<GroupMediaReaction?> {
+  /// See also [findOwnReactionByMediaId].
+  const FindOwnReactionByMediaIdFamily();
+
+  /// See also [findOwnReactionByMediaId].
+  FindOwnReactionByMediaIdProvider call(
+    String mediaId,
+  ) {
+    return FindOwnReactionByMediaIdProvider(
+      mediaId,
+    );
+  }
+
+  @override
+  FindOwnReactionByMediaIdProvider getProviderOverride(
+    covariant FindOwnReactionByMediaIdProvider provider,
+  ) {
+    return call(
+      provider.mediaId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'findOwnReactionByMediaIdProvider';
+}
+
+/// See also [findOwnReactionByMediaId].
+class FindOwnReactionByMediaIdProvider
+    extends AutoDisposeProvider<GroupMediaReaction?> {
+  /// See also [findOwnReactionByMediaId].
+  FindOwnReactionByMediaIdProvider(
+    String mediaId,
+  ) : this._internal(
+          (ref) => findOwnReactionByMediaId(
+            ref as FindOwnReactionByMediaIdRef,
+            mediaId,
+          ),
+          from: findOwnReactionByMediaIdProvider,
+          name: r'findOwnReactionByMediaIdProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$findOwnReactionByMediaIdHash,
+          dependencies: FindOwnReactionByMediaIdFamily._dependencies,
+          allTransitiveDependencies:
+              FindOwnReactionByMediaIdFamily._allTransitiveDependencies,
+          mediaId: mediaId,
+        );
+
+  FindOwnReactionByMediaIdProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.mediaId,
+  }) : super.internal();
+
+  final String mediaId;
+
+  @override
+  Override overrideWith(
+    GroupMediaReaction? Function(FindOwnReactionByMediaIdRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FindOwnReactionByMediaIdProvider._internal(
+        (ref) => create(ref as FindOwnReactionByMediaIdRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        mediaId: mediaId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<GroupMediaReaction?> createElement() {
+    return _FindOwnReactionByMediaIdProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FindOwnReactionByMediaIdProvider &&
+        other.mediaId == mediaId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, mediaId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin FindOwnReactionByMediaIdRef
+    on AutoDisposeProviderRef<GroupMediaReaction?> {
+  /// The parameter `mediaId` of this provider.
+  String get mediaId;
+}
+
+class _FindOwnReactionByMediaIdProviderElement
+    extends AutoDisposeProviderElement<GroupMediaReaction?>
+    with FindOwnReactionByMediaIdRef {
+  _FindOwnReactionByMediaIdProviderElement(super.provider);
+
+  @override
+  String get mediaId => (origin as FindOwnReactionByMediaIdProvider).mediaId;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

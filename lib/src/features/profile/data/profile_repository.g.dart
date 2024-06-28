@@ -204,5 +204,136 @@ class _GetProfileByIdProviderElement
   @override
   String get id => (origin as GetProfileByIdProvider).id;
 }
+
+String _$listProfilesByGroupIdHash() =>
+    r'f587395dd7202cab638f2789bafb964a553b783c';
+
+/// See also [listProfilesByGroupId].
+@ProviderFor(listProfilesByGroupId)
+const listProfilesByGroupIdProvider = ListProfilesByGroupIdFamily();
+
+/// See also [listProfilesByGroupId].
+class ListProfilesByGroupIdFamily extends Family<AsyncValue<List<Profile>>> {
+  /// See also [listProfilesByGroupId].
+  const ListProfilesByGroupIdFamily();
+
+  /// See also [listProfilesByGroupId].
+  ListProfilesByGroupIdProvider call(
+    String groupId,
+  ) {
+    return ListProfilesByGroupIdProvider(
+      groupId,
+    );
+  }
+
+  @override
+  ListProfilesByGroupIdProvider getProviderOverride(
+    covariant ListProfilesByGroupIdProvider provider,
+  ) {
+    return call(
+      provider.groupId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'listProfilesByGroupIdProvider';
+}
+
+/// See also [listProfilesByGroupId].
+class ListProfilesByGroupIdProvider
+    extends AutoDisposeFutureProvider<List<Profile>> {
+  /// See also [listProfilesByGroupId].
+  ListProfilesByGroupIdProvider(
+    String groupId,
+  ) : this._internal(
+          (ref) => listProfilesByGroupId(
+            ref as ListProfilesByGroupIdRef,
+            groupId,
+          ),
+          from: listProfilesByGroupIdProvider,
+          name: r'listProfilesByGroupIdProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$listProfilesByGroupIdHash,
+          dependencies: ListProfilesByGroupIdFamily._dependencies,
+          allTransitiveDependencies:
+              ListProfilesByGroupIdFamily._allTransitiveDependencies,
+          groupId: groupId,
+        );
+
+  ListProfilesByGroupIdProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.groupId,
+  }) : super.internal();
+
+  final String groupId;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Profile>> Function(ListProfilesByGroupIdRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: ListProfilesByGroupIdProvider._internal(
+        (ref) => create(ref as ListProfilesByGroupIdRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        groupId: groupId,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Profile>> createElement() {
+    return _ListProfilesByGroupIdProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is ListProfilesByGroupIdProvider && other.groupId == groupId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, groupId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin ListProfilesByGroupIdRef on AutoDisposeFutureProviderRef<List<Profile>> {
+  /// The parameter `groupId` of this provider.
+  String get groupId;
+}
+
+class _ListProfilesByGroupIdProviderElement
+    extends AutoDisposeFutureProviderElement<List<Profile>>
+    with ListProfilesByGroupIdRef {
+  _ListProfilesByGroupIdProviderElement(super.provider);
+
+  @override
+  String get groupId => (origin as ListProfilesByGroupIdProvider).groupId;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

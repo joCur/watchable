@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/features/common/presentation/image_list_tile.dart';
+import 'package:watchable/src/features/group_media/presentation/components/media_reaction_widget.dart';
 import 'package:watchable/src/features/group_media/presentation/components/title_with_creator.dart';
 import 'package:watchable/src/features/tmdb/presentation/components/poster_image.dart';
 
@@ -44,11 +45,11 @@ class GroupMediaItem extends ConsumerWidget {
             overflow: TextOverflow.ellipsis,
             style: context.textTheme.bodySmall!.copyWith(color: Colors.grey),
           ),
-          const Row(
+          Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Spacer(),
-              // MediaVotingWidget(onVote: (_) {}),
+              const Spacer(),
+              MediaReactionWidget(item.id),
             ],
           )
         ],

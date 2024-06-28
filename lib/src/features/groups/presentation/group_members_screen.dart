@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:watchable/src/constants/locale_keys.dart';
-import 'package:watchable/src/features/groups/data/group_member_repository.dart';
-import 'package:watchable/src/features/groups/presentation/components/group_member_widget.dart';
 
 import '../../../constants/app_sizes.dart';
+import '../../../constants/locale_keys.dart';
+import '../data/group_member_repository.dart';
+import 'components/group_member_widget.dart';
 
 class GroupMembersScreen extends ConsumerWidget {
   static const String route = 'members';
