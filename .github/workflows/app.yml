@@ -13,15 +13,15 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     
-    - uses: actions/setup-java@v2
+    - uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
         java-version: '17'
   
     - name: Install Flutter
-      uses: subosito/flutter-action@v2.8.0
+      uses: subosito/flutter-action@v2
       with:
         flutter-version: '3.19.3'
         cache: true
@@ -52,7 +52,7 @@ jobs:
       working-directory: .
       run: flutter build appbundle --release --no-tree-shake-icons --build-number=${{github.run_number}}
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       name: Upload android appbundle artifact 
       with:
         name: appbundle
@@ -64,11 +64,11 @@ jobs:
     needs: [build-android]
     steps:
     - name: Download a Build Artifact
-      uses: actions/download-artifact@v3.0.2
+      uses: actions/download-artifact@v4
       with:
         name: appbundle
     - name: Upload Android Release to Play Store
-      uses: r0adkll/upload-google-play@v1.1.3
+      uses: r0adkll/upload-google-play@v1
       with:
         serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}
         packageName: dev.curth.watchable
