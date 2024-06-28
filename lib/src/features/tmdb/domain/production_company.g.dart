@@ -9,7 +9,7 @@ part of 'production_company.dart';
 _$ProductionCompanyImpl _$$ProductionCompanyImplFromJson(
         Map<String, dynamic> json) =>
     _$ProductionCompanyImpl(
-      json['id'] as int,
+      (json['id'] as num).toInt(),
       json['logo_path'] as String?,
       json['name'] as String,
       json['origin_country'] as String,

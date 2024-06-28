@@ -8,15 +8,15 @@ part of 'episode.dart';
 
 _$EpisodeImpl _$$EpisodeImplFromJson(Map<String, dynamic> json) =>
     _$EpisodeImpl(
-      id: json['id'] as int,
-      episodeNumber: json['episode_number'] as int,
+      id: (json['id'] as num).toInt(),
+      episodeNumber: (json['episode_number'] as num).toInt(),
       airDate: DateTime.parse(json['air_date'] as String),
       name: json['name'] as String,
       overview: json['overview'] as String,
       stillPath: json['still_path'] as String,
       voteAverage: (json['vote_average'] as num).toDouble(),
-      voteCount: json['vote_count'] as int,
-      runtime: json['runtime'] as int,
+      voteCount: (json['vote_count'] as num).toInt(),
+      runtime: (json['runtime'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$EpisodeImplToJson(_$EpisodeImpl instance) =>

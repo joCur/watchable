@@ -9,7 +9,7 @@ part of 'media_preview.dart';
 _$MoviePreviewImpl _$$MoviePreviewImplFromJson(Map<String, dynamic> json) =>
     _$MoviePreviewImpl(
       json['adult'] as bool,
-      json['id'] as int,
+      (json['id'] as num).toInt(),
       json['overview'] as String,
       json['title'] as String,
       json['poster_path'] as String?,
@@ -33,7 +33,7 @@ Map<String, dynamic> _$$MoviePreviewImplToJson(_$MoviePreviewImpl instance) =>
 _$TvPreviewImpl _$$TvPreviewImplFromJson(Map<String, dynamic> json) =>
     _$TvPreviewImpl(
       json['adult'] as bool,
-      json['id'] as int,
+      (json['id'] as num).toInt(),
       json['original_name'] as String,
       json['name'] as String,
       json['poster_path'] as String?,
@@ -57,7 +57,7 @@ Map<String, dynamic> _$$TvPreviewImplToJson(_$TvPreviewImpl instance) =>
 _$PersonPreviewImpl _$$PersonPreviewImplFromJson(Map<String, dynamic> json) =>
     _$PersonPreviewImpl(
       json['adult'] as bool,
-      json['id'] as int,
+      (json['id'] as num).toInt(),
       json['original_name'] as String,
       json['name'] as String,
       json['profile_path'] as String?,

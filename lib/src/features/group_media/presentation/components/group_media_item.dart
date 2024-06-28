@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/features/common/presentation/image_list_tile.dart';
 import 'package:watchable/src/features/group_media/presentation/components/media_reaction_widget.dart';
@@ -11,6 +12,7 @@ import '../../../profile/data/profile_repository.dart';
 import '../../../tmdb/data/tmdb_repository.dart';
 import '../../domain/group_media.dart';
 import '../../domain/group_media_type.dart';
+import '../group_media_details_screen.dart';
 import 'loading_group_media_item.dart';
 
 class GroupMediaItem extends ConsumerWidget {
@@ -32,11 +34,13 @@ class GroupMediaItem extends ConsumerWidget {
     return ImageListTile(
       leading: PosterImage(media.value!.posterPath),
       title: TitleWithCreator(title: media.value!.title, creator: profile?.value!),
+      onTap: () => context.pushNamed(GroupMediaDetailScreen.name, pathParameters: {'id': item.groupId, 'media_id': item.id}),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(media.value!.releaseDate.year.toString(), style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
+          if (media.value!.releaseDate != null)
+            Text(media.value!.releaseDate!.year.toString(), style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
           gapH4,
           Text(
             media.value!.overview,

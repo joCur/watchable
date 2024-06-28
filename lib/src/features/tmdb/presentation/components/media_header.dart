@@ -65,7 +65,7 @@ class _MediaHeaderState extends State<MediaHeader> {
               padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
               child: Tagline(
                 widget.media,
-                runtime: widget.media is Movie ? (widget.media as Movie).runtime : (widget.media as Tv).lastEpisodeToAir.runtime,
+                runtime: widget.media is Movie ? (widget.media as Movie).runtime : (widget.media as Tv).lastEpisodeToAir?.runtime,
                 episodeCount: widget.media is Tv ? (widget.media as Tv).numberOfEpisodes : null,
                 seasonCount: widget.media is Tv ? (widget.media as Tv).numberOfSeasons : null,
               )),

@@ -11,6 +11,7 @@ import 'package:watchable/src/features/profile/presentation/create_profile_scree
 import 'package:watchable/src/features/tmdb/presentation/movie_detail_screen.dart';
 import 'package:watchable/src/features/tmdb/presentation/tv_detail_screen.dart';
 
+import '../features/group_media/presentation/group_media_details_screen.dart';
 import '../features/groups/presentation/group_edit_screen.dart';
 import '../features/groups/presentation/group_join_requests_screen.dart';
 import '../features/profile/data/profile_repository.dart';
@@ -146,6 +147,14 @@ GoRouter router(RouterRef ref) {
                           child: GroupJoinRequestsScreen(state.pathParameters['id']!),
                         ),
                       ),
+                      GoRoute(
+                        name: GroupMediaDetailScreen.name,
+                        path: GroupMediaDetailScreen.route,
+                        pageBuilder: (context, state) => NoTransitionPage(
+                          key: state.pageKey,
+                          child: GroupMediaDetailScreen(state.pathParameters['media_id']!),
+                        ),
+                      )
                     ],
                   ),
                 ],

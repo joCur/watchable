@@ -7,12 +7,12 @@ part of 'season.dart';
 // **************************************************************************
 
 _$SeasonImpl _$$SeasonImplFromJson(Map<String, dynamic> json) => _$SeasonImpl(
-      json['id'] as int,
-      json['season_number'] as int,
+      (json['id'] as num).toInt(),
+      (json['season_number'] as num).toInt(),
       json['air_date'] == null
           ? null
           : DateTime.parse(json['air_date'] as String),
-      json['episode_count'] as int,
+      (json['episode_count'] as num).toInt(),
       json['name'] as String,
       json['overview'] as String,
       json['poster_path'] as String?,

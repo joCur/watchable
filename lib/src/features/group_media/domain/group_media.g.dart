@@ -10,7 +10,7 @@ _$GroupMediaImpl _$$GroupMediaImplFromJson(Map<String, dynamic> json) =>
     _$GroupMediaImpl(
       json['id'] as String,
       json['group_id'] as String,
-      json['tmdb_id'] as int,
+      (json['tmdb_id'] as num).toInt(),
       $enumDecode(_$GroupMediaTypeEnumMap, json['media_type']),
       DateTime.parse(json['created_at'] as String),
       json['added_by'] as String?,

@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:watchable/src/features/group_media/domain/group_media_type.dart';
 import 'package:watchable/src/features/group_media/presentation/components/loading_group_media_item.dart';
 import 'package:watchable/src/features/group_media/presentation/components/media_reaction_widget.dart';
+import 'package:watchable/src/features/group_media/presentation/group_media_details_screen.dart';
 import 'package:watchable/src/features/groups/data/group_repository.dart';
 import 'package:watchable/src/features/groups/presentation/group_detail_screen.dart';
 import 'package:watchable/src/features/profile/data/profile_repository.dart';
@@ -35,11 +36,13 @@ class CombinedGroupMediaItem extends ConsumerWidget {
     return ImageListTile(
       leading: PosterImage(media.value!.posterPath),
       title: TitleWithCreator(title: media.value!.title, creator: profile?.value!),
+      onTap: () => context.pushNamed(GroupMediaDetailScreen.name, pathParameters: {'id': item.groupId, 'media_id': item.id}),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(media.value!.releaseDate.year.toString(), style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
+          if (media.value!.releaseDate != null)
+            Text(media.value!.releaseDate!.year.toString(), style: context.textTheme.bodySmall!.copyWith(color: Colors.grey)),
           gapH4,
           Text(
             media.value!.overview,

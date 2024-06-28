@@ -10,7 +10,7 @@ _$CreateGroupMediaImpl _$$CreateGroupMediaImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateGroupMediaImpl(
       groupId: json['group_id'] as String,
-      tmdbId: json['tmdb_id'] as int,
+      tmdbId: (json['tmdb_id'] as num).toInt(),
       mediaType: $enumDecode(_$GroupMediaTypeEnumMap, json['media_type']),
       addedBy: json['added_by'] as String,
     );

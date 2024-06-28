@@ -13,7 +13,7 @@ _$VideoImpl _$$VideoImplFromJson(Map<String, dynamic> json) => _$VideoImpl(
       json['key'] as String,
       json['name'] as String,
       json['site'] as String,
-      json['size'] as int,
+      (json['size'] as num).toInt(),
       json['type'] as String,
       json['official'] as bool,
       DateTime.parse(json['published_at'] as String),

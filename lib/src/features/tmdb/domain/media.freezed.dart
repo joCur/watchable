@@ -35,7 +35,10 @@ mixin _$Media {
   String? get backdropPath => throw _privateConstructorUsedError;
   List<Genre> get genres => throw _privateConstructorUsedError;
   @JsonKey(name: "original_language")
-  String get originalLanguage => throw _privateConstructorUsedError;
+  String? get originalLanguage => throw _privateConstructorUsedError;
+  @JsonKey(name: "original_title")
+  String? get originalTitle => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: "")
   String get overview => throw _privateConstructorUsedError;
   @JsonKey(name: "poster_path")
   String? get posterPath => throw _privateConstructorUsedError;
@@ -46,10 +49,11 @@ mixin _$Media {
   List<ProductionCountry> get productionCountries =>
       throw _privateConstructorUsedError;
   @JsonKey(name: "release_date")
-  DateTime get releaseDate => throw _privateConstructorUsedError;
+  DateTime? get releaseDate => throw _privateConstructorUsedError;
   @JsonKey(name: "spoken_languages")
   List<Language> get spokenLanguages => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
+  @JsonKey(defaultValue: "")
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: "vote_average")
   double get voteAverage => throw _privateConstructorUsedError;
@@ -64,24 +68,24 @@ mixin _$Media {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -89,29 +93,29 @@ mixin _$Media {
         movie,
     required TResult Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)
         tv,
   }) =>
@@ -124,24 +128,24 @@ mixin _$Media {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -149,29 +153,29 @@ mixin _$Media {
         movie,
     TResult? Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)?
         tv,
   }) =>
@@ -184,24 +188,24 @@ mixin _$Media {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -209,29 +213,29 @@ mixin _$Media {
         movie,
     TResult Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)?
         tv,
     required TResult orElse(),
@@ -271,17 +275,18 @@ abstract class $MediaCopyWith<$Res> {
       bool adult,
       @JsonKey(name: "backdrop_path") String? backdropPath,
       List<Genre> genres,
-      @JsonKey(name: "original_language") String originalLanguage,
-      String overview,
+      @JsonKey(name: "original_language") String? originalLanguage,
+      @JsonKey(name: "original_title") String? originalTitle,
+      @JsonKey(defaultValue: "") String overview,
       @JsonKey(name: "poster_path") String? posterPath,
       @JsonKey(name: "production_companies")
       List<ProductionCompany> productionCompanies,
       @JsonKey(name: "production_countries")
       List<ProductionCountry> productionCountries,
-      @JsonKey(name: "release_date") DateTime releaseDate,
+      @JsonKey(name: "release_date") DateTime? releaseDate,
       @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
       String status,
-      String title,
+      @JsonKey(defaultValue: "") String title,
       @JsonKey(name: "vote_average") double voteAverage,
       @JsonKey(name: "vote_count") int voteCount,
       Videos videos});
@@ -306,12 +311,13 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
     Object? adult = null,
     Object? backdropPath = freezed,
     Object? genres = null,
-    Object? originalLanguage = null,
+    Object? originalLanguage = freezed,
+    Object? originalTitle = freezed,
     Object? overview = null,
     Object? posterPath = freezed,
     Object? productionCompanies = null,
     Object? productionCountries = null,
-    Object? releaseDate = null,
+    Object? releaseDate = freezed,
     Object? spokenLanguages = null,
     Object? status = null,
     Object? title = null,
@@ -336,10 +342,14 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
               as List<Genre>,
-      originalLanguage: null == originalLanguage
+      originalLanguage: freezed == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      originalTitle: freezed == originalTitle
+          ? _value.originalTitle
+          : originalTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       overview: null == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -356,16 +366,16 @@ class _$MediaCopyWithImpl<$Res, $Val extends Media>
           ? _value.productionCountries
           : productionCountries // ignore: cast_nullable_to_non_nullable
               as List<ProductionCountry>,
-      releaseDate: null == releaseDate
+      releaseDate: freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       spokenLanguages: null == spokenLanguages
           ? _value.spokenLanguages
           : spokenLanguages // ignore: cast_nullable_to_non_nullable
               as List<Language>,
       status: null == status
-          ? _value.status
+          ? _value.status!
           : status // ignore: cast_nullable_to_non_nullable
               as String,
       title: null == title
@@ -409,24 +419,24 @@ abstract class _$$MovieImplCopyWith<$Res> implements $MediaCopyWith<$Res> {
       @JsonKey(name: "backdrop_path") String? backdropPath,
       int budget,
       List<Genre> genres,
-      String homepage,
-      @JsonKey(name: "imdb_id") String imdbId,
-      @JsonKey(name: "original_language") String originalLanguage,
-      @JsonKey(name: "original_title") String originalTitle,
-      String overview,
+      String? homepage,
+      @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+      @JsonKey(name: "original_language") String? originalLanguage,
+      @JsonKey(name: "original_title") String? originalTitle,
+      @JsonKey(defaultValue: "") String overview,
       double popularity,
       @JsonKey(name: "poster_path") String? posterPath,
       @JsonKey(name: "production_companies")
       List<ProductionCompany> productionCompanies,
       @JsonKey(name: "production_countries")
       List<ProductionCountry> productionCountries,
-      @JsonKey(name: "release_date") DateTime releaseDate,
+      @JsonKey(name: "release_date") DateTime? releaseDate,
       int revenue,
       int runtime,
       @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
       String status,
       String tagline,
-      String title,
+      @JsonKey(defaultValue: "") String title,
       bool video,
       @JsonKey(name: "vote_average") double voteAverage,
       @JsonKey(name: "vote_count") int voteCount,
@@ -452,16 +462,16 @@ class __$$MovieImplCopyWithImpl<$Res>
     Object? backdropPath = freezed,
     Object? budget = null,
     Object? genres = null,
-    Object? homepage = null,
+    Object? homepage = freezed,
     Object? imdbId = null,
-    Object? originalLanguage = null,
-    Object? originalTitle = null,
+    Object? originalLanguage = freezed,
+    Object? originalTitle = freezed,
     Object? overview = null,
     Object? popularity = null,
     Object? posterPath = freezed,
     Object? productionCompanies = null,
     Object? productionCountries = null,
-    Object? releaseDate = null,
+    Object? releaseDate = freezed,
     Object? revenue = null,
     Object? runtime = null,
     Object? spokenLanguages = null,
@@ -494,22 +504,22 @@ class __$$MovieImplCopyWithImpl<$Res>
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
               as List<Genre>,
-      null == homepage
+      freezed == homepage
           ? _value.homepage
           : homepage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       null == imdbId
           ? _value.imdbId
           : imdbId // ignore: cast_nullable_to_non_nullable
               as String,
-      null == originalLanguage
+      freezed == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == originalTitle
+              as String?,
+      freezed == originalTitle
           ? _value.originalTitle
           : originalTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       null == overview
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -530,10 +540,10 @@ class __$$MovieImplCopyWithImpl<$Res>
           ? _value._productionCountries
           : productionCountries // ignore: cast_nullable_to_non_nullable
               as List<ProductionCountry>,
-      null == releaseDate
+      freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       null == revenue
           ? _value.revenue
           : revenue // ignore: cast_nullable_to_non_nullable
@@ -588,10 +598,10 @@ class _$MovieImpl implements Movie {
       this.budget,
       final List<Genre> genres,
       this.homepage,
-      @JsonKey(name: "imdb_id") this.imdbId,
+      @JsonKey(name: "imdb_id", defaultValue: "") this.imdbId,
       @JsonKey(name: "original_language") this.originalLanguage,
       @JsonKey(name: "original_title") this.originalTitle,
-      this.overview,
+      @JsonKey(defaultValue: "") this.overview,
       this.popularity,
       @JsonKey(name: "poster_path") this.posterPath,
       @JsonKey(name: "production_companies")
@@ -604,7 +614,7 @@ class _$MovieImpl implements Movie {
       @JsonKey(name: "spoken_languages") final List<Language> spokenLanguages,
       this.status,
       this.tagline,
-      this.title,
+      @JsonKey(defaultValue: "") this.title,
       this.video,
       @JsonKey(name: "vote_average") this.voteAverage,
       @JsonKey(name: "vote_count") this.voteCount,
@@ -637,17 +647,18 @@ class _$MovieImpl implements Movie {
   }
 
   @override
-  final String homepage;
+  final String? homepage;
   @override
-  @JsonKey(name: "imdb_id")
+  @JsonKey(name: "imdb_id", defaultValue: "")
   final String imdbId;
   @override
   @JsonKey(name: "original_language")
-  final String originalLanguage;
+  final String? originalLanguage;
   @override
   @JsonKey(name: "original_title")
-  final String originalTitle;
+  final String? originalTitle;
   @override
+  @JsonKey(defaultValue: "")
   final String overview;
   @override
   final double popularity;
@@ -676,7 +687,7 @@ class _$MovieImpl implements Movie {
 
   @override
   @JsonKey(name: "release_date")
-  final DateTime releaseDate;
+  final DateTime? releaseDate;
   @override
   final int revenue;
   @override
@@ -695,6 +706,7 @@ class _$MovieImpl implements Movie {
   @override
   final String tagline;
   @override
+  @JsonKey(defaultValue: "")
   final String title;
   @override
   final bool video;
@@ -806,24 +818,24 @@ class _$MovieImpl implements Movie {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -831,29 +843,29 @@ class _$MovieImpl implements Movie {
         movie,
     required TResult Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)
         tv,
   }) {
@@ -894,24 +906,24 @@ class _$MovieImpl implements Movie {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -919,29 +931,29 @@ class _$MovieImpl implements Movie {
         movie,
     TResult? Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)?
         tv,
   }) {
@@ -982,24 +994,24 @@ class _$MovieImpl implements Movie {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -1007,29 +1019,29 @@ class _$MovieImpl implements Movie {
         movie,
     TResult Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)?
         tv,
     required TResult orElse(),
@@ -1111,24 +1123,24 @@ abstract class Movie implements Media {
       @JsonKey(name: "backdrop_path") final String? backdropPath,
       final int budget,
       final List<Genre> genres,
-      final String homepage,
-      @JsonKey(name: "imdb_id") final String imdbId,
-      @JsonKey(name: "original_language") final String originalLanguage,
-      @JsonKey(name: "original_title") final String originalTitle,
-      final String overview,
+      final String? homepage,
+      @JsonKey(name: "imdb_id", defaultValue: "") final String imdbId,
+      @JsonKey(name: "original_language") final String? originalLanguage,
+      @JsonKey(name: "original_title") final String? originalTitle,
+      @JsonKey(defaultValue: "") final String overview,
       final double popularity,
       @JsonKey(name: "poster_path") final String? posterPath,
       @JsonKey(name: "production_companies")
       final List<ProductionCompany> productionCompanies,
       @JsonKey(name: "production_countries")
       final List<ProductionCountry> productionCountries,
-      @JsonKey(name: "release_date") final DateTime releaseDate,
+      @JsonKey(name: "release_date") final DateTime? releaseDate,
       final int revenue,
       final int runtime,
       @JsonKey(name: "spoken_languages") final List<Language> spokenLanguages,
       final String status,
       final String tagline,
-      final String title,
+      @JsonKey(defaultValue: "") final String title,
       final bool video,
       @JsonKey(name: "vote_average") final double voteAverage,
       @JsonKey(name: "vote_count") final int voteCount,
@@ -1146,15 +1158,17 @@ abstract class Movie implements Media {
   int get budget;
   @override
   List<Genre> get genres;
-  String get homepage;
-  @JsonKey(name: "imdb_id")
+  String? get homepage;
+  @JsonKey(name: "imdb_id", defaultValue: "")
   String get imdbId;
   @override
   @JsonKey(name: "original_language")
-  String get originalLanguage;
-  @JsonKey(name: "original_title")
-  String get originalTitle;
+  String? get originalLanguage;
   @override
+  @JsonKey(name: "original_title")
+  String? get originalTitle;
+  @override
+  @JsonKey(defaultValue: "")
   String get overview;
   double get popularity;
   @override
@@ -1168,7 +1182,7 @@ abstract class Movie implements Media {
   List<ProductionCountry> get productionCountries;
   @override
   @JsonKey(name: "release_date")
-  DateTime get releaseDate;
+  DateTime? get releaseDate;
   int get revenue;
   int get runtime;
   @override
@@ -1178,6 +1192,7 @@ abstract class Movie implements Media {
   String get status;
   String get tagline;
   @override
+  @JsonKey(defaultValue: "")
   String get title;
   bool get video;
   @override
@@ -1202,32 +1217,32 @@ abstract class _$$TvImplCopyWith<$Res> implements $MediaCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: "name") String title,
-      String overview,
+      @JsonKey(name: "name", defaultValue: "") String title,
+      @JsonKey(defaultValue: "") String overview,
       @JsonKey(name: 'backdrop_path') String? backdropPath,
-      @JsonKey(name: 'first_air_date') DateTime releaseDate,
-      @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+      @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+      @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
       @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
       @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
       @JsonKey(name: 'poster_path') String? posterPath,
       @JsonKey(name: 'vote_average') double voteAverage,
       @JsonKey(name: 'vote_count') int voteCount,
       bool adult,
-      @JsonKey(name: 'original_language') String originalLanguage,
-      @JsonKey(name: 'original_name') String originalName,
+      @JsonKey(name: 'original_language') String? originalLanguage,
+      @JsonKey(name: 'original_name') String? originalTitle,
       @JsonKey(name: 'origin_country') List<String> originCountry,
       @JsonKey(name: 'production_companies')
       List<ProductionCompany> productionCompanies,
       @JsonKey(name: 'production_countries')
       List<ProductionCountry> productionCountries,
       @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-      String status,
+      String? status,
       List<Genre> genres,
       @JsonKey(name: 'seasons') List<Season> seasons,
-      @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+      @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
       Videos videos});
 
-  $EpisodeCopyWith<$Res> get lastEpisodeToAir;
+  $EpisodeCopyWith<$Res>? get lastEpisodeToAir;
   @override
   $VideosCopyWith<$Res> get videos;
 }
@@ -1245,24 +1260,24 @@ class __$$TvImplCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res, _$TvImpl>
     Object? title = null,
     Object? overview = null,
     Object? backdropPath = freezed,
-    Object? releaseDate = null,
-    Object? lastAirDate = null,
+    Object? releaseDate = freezed,
+    Object? lastAirDate = freezed,
     Object? numberOfEpisodes = null,
     Object? numberOfSeasons = null,
     Object? posterPath = freezed,
     Object? voteAverage = null,
     Object? voteCount = null,
     Object? adult = null,
-    Object? originalLanguage = null,
-    Object? originalName = null,
+    Object? originalLanguage = freezed,
+    Object? originalTitle = freezed,
     Object? originCountry = null,
     Object? productionCompanies = null,
     Object? productionCountries = null,
     Object? spokenLanguages = null,
-    Object? status = null,
+    Object? status = freezed,
     Object? genres = null,
     Object? seasons = null,
-    Object? lastEpisodeToAir = null,
+    Object? lastEpisodeToAir = freezed,
     Object? videos = null,
   }) {
     return _then(_$TvImpl(
@@ -1282,14 +1297,14 @@ class __$$TvImplCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res, _$TvImpl>
           ? _value.backdropPath
           : backdropPath // ignore: cast_nullable_to_non_nullable
               as String?,
-      null == releaseDate
+      freezed == releaseDate
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      null == lastAirDate
+              as DateTime?,
+      freezed == lastAirDate
           ? _value.lastAirDate
           : lastAirDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       null == numberOfEpisodes
           ? _value.numberOfEpisodes
           : numberOfEpisodes // ignore: cast_nullable_to_non_nullable
@@ -1314,14 +1329,14 @@ class __$$TvImplCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res, _$TvImpl>
           ? _value.adult
           : adult // ignore: cast_nullable_to_non_nullable
               as bool,
-      null == originalLanguage
+      freezed == originalLanguage
           ? _value.originalLanguage
           : originalLanguage // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == originalName
-          ? _value.originalName
-          : originalName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      freezed == originalTitle
+          ? _value.originalTitle
+          : originalTitle // ignore: cast_nullable_to_non_nullable
+              as String?,
       null == originCountry
           ? _value._originCountry
           : originCountry // ignore: cast_nullable_to_non_nullable
@@ -1338,10 +1353,10 @@ class __$$TvImplCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res, _$TvImpl>
           ? _value._spokenLanguages
           : spokenLanguages // ignore: cast_nullable_to_non_nullable
               as List<Language>,
-      null == status
+      freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       null == genres
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
@@ -1350,10 +1365,10 @@ class __$$TvImplCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res, _$TvImpl>
           ? _value._seasons
           : seasons // ignore: cast_nullable_to_non_nullable
               as List<Season>,
-      null == lastEpisodeToAir
+      freezed == lastEpisodeToAir
           ? _value.lastEpisodeToAir
           : lastEpisodeToAir // ignore: cast_nullable_to_non_nullable
-              as Episode,
+              as Episode?,
       null == videos
           ? _value.videos
           : videos // ignore: cast_nullable_to_non_nullable
@@ -1363,8 +1378,12 @@ class __$$TvImplCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res, _$TvImpl>
 
   @override
   @pragma('vm:prefer-inline')
-  $EpisodeCopyWith<$Res> get lastEpisodeToAir {
-    return $EpisodeCopyWith<$Res>(_value.lastEpisodeToAir, (value) {
+  $EpisodeCopyWith<$Res>? get lastEpisodeToAir {
+    if (_value.lastEpisodeToAir == null) {
+      return null;
+    }
+
+    return $EpisodeCopyWith<$Res>(_value.lastEpisodeToAir!, (value) {
       return _then(_value.copyWith(lastEpisodeToAir: value));
     });
   }
@@ -1375,8 +1394,8 @@ class __$$TvImplCopyWithImpl<$Res> extends _$MediaCopyWithImpl<$Res, _$TvImpl>
 class _$TvImpl implements Tv {
   const _$TvImpl(
       this.id,
-      @JsonKey(name: "name") this.title,
-      this.overview,
+      @JsonKey(name: "name", defaultValue: "") this.title,
+      @JsonKey(defaultValue: "") this.overview,
       @JsonKey(name: 'backdrop_path') this.backdropPath,
       @JsonKey(name: 'first_air_date') this.releaseDate,
       @JsonKey(name: 'last_air_date') this.lastAirDate,
@@ -1387,7 +1406,7 @@ class _$TvImpl implements Tv {
       @JsonKey(name: 'vote_count') this.voteCount,
       this.adult,
       @JsonKey(name: 'original_language') this.originalLanguage,
-      @JsonKey(name: 'original_name') this.originalName,
+      @JsonKey(name: 'original_name') this.originalTitle,
       @JsonKey(name: 'origin_country') final List<String> originCountry,
       @JsonKey(name: 'production_companies')
       final List<ProductionCompany> productionCompanies,
@@ -1414,19 +1433,20 @@ class _$TvImpl implements Tv {
   @override
   final int id;
   @override
-  @JsonKey(name: "name")
+  @JsonKey(name: "name", defaultValue: "")
   final String title;
   @override
+  @JsonKey(defaultValue: "")
   final String overview;
   @override
   @JsonKey(name: 'backdrop_path')
   final String? backdropPath;
   @override
   @JsonKey(name: 'first_air_date')
-  final DateTime releaseDate;
+  final DateTime? releaseDate;
   @override
   @JsonKey(name: 'last_air_date')
-  final DateTime lastAirDate;
+  final DateTime? lastAirDate;
   @override
   @JsonKey(name: 'number_of_episodes')
   final int numberOfEpisodes;
@@ -1446,10 +1466,10 @@ class _$TvImpl implements Tv {
   final bool adult;
   @override
   @JsonKey(name: 'original_language')
-  final String originalLanguage;
+  final String? originalLanguage;
   @override
   @JsonKey(name: 'original_name')
-  final String originalName;
+  final String? originalTitle;
   final List<String> _originCountry;
   @override
   @JsonKey(name: 'origin_country')
@@ -1489,7 +1509,7 @@ class _$TvImpl implements Tv {
   }
 
   @override
-  final String status;
+  final String? status;
   final List<Genre> _genres;
   @override
   List<Genre> get genres {
@@ -1509,7 +1529,7 @@ class _$TvImpl implements Tv {
 
   @override
   @JsonKey(name: 'last_episode_to_air')
-  final Episode lastEpisodeToAir;
+  final Episode? lastEpisodeToAir;
   @override
   final Videos videos;
 
@@ -1518,7 +1538,7 @@ class _$TvImpl implements Tv {
 
   @override
   String toString() {
-    return 'Media.tv(id: $id, title: $title, overview: $overview, backdropPath: $backdropPath, releaseDate: $releaseDate, lastAirDate: $lastAirDate, numberOfEpisodes: $numberOfEpisodes, numberOfSeasons: $numberOfSeasons, posterPath: $posterPath, voteAverage: $voteAverage, voteCount: $voteCount, adult: $adult, originalLanguage: $originalLanguage, originalName: $originalName, originCountry: $originCountry, productionCompanies: $productionCompanies, productionCountries: $productionCountries, spokenLanguages: $spokenLanguages, status: $status, genres: $genres, seasons: $seasons, lastEpisodeToAir: $lastEpisodeToAir, videos: $videos)';
+    return 'Media.tv(id: $id, title: $title, overview: $overview, backdropPath: $backdropPath, releaseDate: $releaseDate, lastAirDate: $lastAirDate, numberOfEpisodes: $numberOfEpisodes, numberOfSeasons: $numberOfSeasons, posterPath: $posterPath, voteAverage: $voteAverage, voteCount: $voteCount, adult: $adult, originalLanguage: $originalLanguage, originalTitle: $originalTitle, originCountry: $originCountry, productionCompanies: $productionCompanies, productionCountries: $productionCountries, spokenLanguages: $spokenLanguages, status: $status, genres: $genres, seasons: $seasons, lastEpisodeToAir: $lastEpisodeToAir, videos: $videos)';
   }
 
   @override
@@ -1549,8 +1569,8 @@ class _$TvImpl implements Tv {
             (identical(other.adult, adult) || other.adult == adult) &&
             (identical(other.originalLanguage, originalLanguage) ||
                 other.originalLanguage == originalLanguage) &&
-            (identical(other.originalName, originalName) ||
-                other.originalName == originalName) &&
+            (identical(other.originalTitle, originalTitle) ||
+                other.originalTitle == originalTitle) &&
             const DeepCollectionEquality()
                 .equals(other._originCountry, _originCountry) &&
             const DeepCollectionEquality()
@@ -1584,7 +1604,7 @@ class _$TvImpl implements Tv {
         voteCount,
         adult,
         originalLanguage,
-        originalName,
+        originalTitle,
         const DeepCollectionEquality().hash(_originCountry),
         const DeepCollectionEquality().hash(_productionCompanies),
         const DeepCollectionEquality().hash(_productionCountries),
@@ -1611,24 +1631,24 @@ class _$TvImpl implements Tv {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -1636,29 +1656,29 @@ class _$TvImpl implements Tv {
         movie,
     required TResult Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)
         tv,
   }) {
@@ -1676,7 +1696,7 @@ class _$TvImpl implements Tv {
         voteCount,
         adult,
         originalLanguage,
-        originalName,
+        originalTitle,
         originCountry,
         productionCompanies,
         productionCountries,
@@ -1697,24 +1717,24 @@ class _$TvImpl implements Tv {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -1722,29 +1742,29 @@ class _$TvImpl implements Tv {
         movie,
     TResult? Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)?
         tv,
   }) {
@@ -1762,7 +1782,7 @@ class _$TvImpl implements Tv {
         voteCount,
         adult,
         originalLanguage,
-        originalName,
+        originalTitle,
         originCountry,
         productionCompanies,
         productionCountries,
@@ -1783,24 +1803,24 @@ class _$TvImpl implements Tv {
             @JsonKey(name: "backdrop_path") String? backdropPath,
             int budget,
             List<Genre> genres,
-            String homepage,
-            @JsonKey(name: "imdb_id") String imdbId,
-            @JsonKey(name: "original_language") String originalLanguage,
-            @JsonKey(name: "original_title") String originalTitle,
-            String overview,
+            String? homepage,
+            @JsonKey(name: "imdb_id", defaultValue: "") String imdbId,
+            @JsonKey(name: "original_language") String? originalLanguage,
+            @JsonKey(name: "original_title") String? originalTitle,
+            @JsonKey(defaultValue: "") String overview,
             double popularity,
             @JsonKey(name: "poster_path") String? posterPath,
             @JsonKey(name: "production_companies")
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: "production_countries")
             List<ProductionCountry> productionCountries,
-            @JsonKey(name: "release_date") DateTime releaseDate,
+            @JsonKey(name: "release_date") DateTime? releaseDate,
             int revenue,
             int runtime,
             @JsonKey(name: "spoken_languages") List<Language> spokenLanguages,
             String status,
             String tagline,
-            String title,
+            @JsonKey(defaultValue: "") String title,
             bool video,
             @JsonKey(name: "vote_average") double voteAverage,
             @JsonKey(name: "vote_count") int voteCount,
@@ -1808,29 +1828,29 @@ class _$TvImpl implements Tv {
         movie,
     TResult Function(
             int id,
-            @JsonKey(name: "name") String title,
-            String overview,
+            @JsonKey(name: "name", defaultValue: "") String title,
+            @JsonKey(defaultValue: "") String overview,
             @JsonKey(name: 'backdrop_path') String? backdropPath,
-            @JsonKey(name: 'first_air_date') DateTime releaseDate,
-            @JsonKey(name: 'last_air_date') DateTime lastAirDate,
+            @JsonKey(name: 'first_air_date') DateTime? releaseDate,
+            @JsonKey(name: 'last_air_date') DateTime? lastAirDate,
             @JsonKey(name: 'number_of_episodes') int numberOfEpisodes,
             @JsonKey(name: 'number_of_seasons') int numberOfSeasons,
             @JsonKey(name: 'poster_path') String? posterPath,
             @JsonKey(name: 'vote_average') double voteAverage,
             @JsonKey(name: 'vote_count') int voteCount,
             bool adult,
-            @JsonKey(name: 'original_language') String originalLanguage,
-            @JsonKey(name: 'original_name') String originalName,
+            @JsonKey(name: 'original_language') String? originalLanguage,
+            @JsonKey(name: 'original_name') String? originalTitle,
             @JsonKey(name: 'origin_country') List<String> originCountry,
             @JsonKey(name: 'production_companies')
             List<ProductionCompany> productionCompanies,
             @JsonKey(name: 'production_countries')
             List<ProductionCountry> productionCountries,
             @JsonKey(name: 'spoken_languages') List<Language> spokenLanguages,
-            String status,
+            String? status,
             List<Genre> genres,
             @JsonKey(name: 'seasons') List<Season> seasons,
-            @JsonKey(name: 'last_episode_to_air') Episode lastEpisodeToAir,
+            @JsonKey(name: 'last_episode_to_air') Episode? lastEpisodeToAir,
             Videos videos)?
         tv,
     required TResult orElse(),
@@ -1850,7 +1870,7 @@ class _$TvImpl implements Tv {
           voteCount,
           adult,
           originalLanguage,
-          originalName,
+          originalTitle,
           originCountry,
           productionCompanies,
           productionCountries,
@@ -1906,29 +1926,29 @@ class _$TvImpl implements Tv {
 abstract class Tv implements Media {
   const factory Tv(
       final int id,
-      @JsonKey(name: "name") final String title,
-      final String overview,
+      @JsonKey(name: "name", defaultValue: "") final String title,
+      @JsonKey(defaultValue: "") final String overview,
       @JsonKey(name: 'backdrop_path') final String? backdropPath,
-      @JsonKey(name: 'first_air_date') final DateTime releaseDate,
-      @JsonKey(name: 'last_air_date') final DateTime lastAirDate,
+      @JsonKey(name: 'first_air_date') final DateTime? releaseDate,
+      @JsonKey(name: 'last_air_date') final DateTime? lastAirDate,
       @JsonKey(name: 'number_of_episodes') final int numberOfEpisodes,
       @JsonKey(name: 'number_of_seasons') final int numberOfSeasons,
       @JsonKey(name: 'poster_path') final String? posterPath,
       @JsonKey(name: 'vote_average') final double voteAverage,
       @JsonKey(name: 'vote_count') final int voteCount,
       final bool adult,
-      @JsonKey(name: 'original_language') final String originalLanguage,
-      @JsonKey(name: 'original_name') final String originalName,
+      @JsonKey(name: 'original_language') final String? originalLanguage,
+      @JsonKey(name: 'original_name') final String? originalTitle,
       @JsonKey(name: 'origin_country') final List<String> originCountry,
       @JsonKey(name: 'production_companies')
       final List<ProductionCompany> productionCompanies,
       @JsonKey(name: 'production_countries')
       final List<ProductionCountry> productionCountries,
       @JsonKey(name: 'spoken_languages') final List<Language> spokenLanguages,
-      final String status,
+      final String? status,
       final List<Genre> genres,
       @JsonKey(name: 'seasons') final List<Season> seasons,
-      @JsonKey(name: 'last_episode_to_air') final Episode lastEpisodeToAir,
+      @JsonKey(name: 'last_episode_to_air') final Episode? lastEpisodeToAir,
       final Videos videos) = _$TvImpl;
 
   factory Tv.fromJson(Map<String, dynamic> json) = _$TvImpl.fromJson;
@@ -1936,18 +1956,19 @@ abstract class Tv implements Media {
   @override
   int get id;
   @override
-  @JsonKey(name: "name")
+  @JsonKey(name: "name", defaultValue: "")
   String get title;
   @override
+  @JsonKey(defaultValue: "")
   String get overview;
   @override
   @JsonKey(name: 'backdrop_path')
   String? get backdropPath;
   @override
   @JsonKey(name: 'first_air_date')
-  DateTime get releaseDate;
+  DateTime? get releaseDate;
   @JsonKey(name: 'last_air_date')
-  DateTime get lastAirDate;
+  DateTime? get lastAirDate;
   @JsonKey(name: 'number_of_episodes')
   int get numberOfEpisodes;
   @JsonKey(name: 'number_of_seasons')
@@ -1965,9 +1986,10 @@ abstract class Tv implements Media {
   bool get adult;
   @override
   @JsonKey(name: 'original_language')
-  String get originalLanguage;
+  String? get originalLanguage;
+  @override
   @JsonKey(name: 'original_name')
-  String get originalName;
+  String? get originalTitle;
   @JsonKey(name: 'origin_country')
   List<String> get originCountry;
   @override
@@ -1980,13 +2002,13 @@ abstract class Tv implements Media {
   @JsonKey(name: 'spoken_languages')
   List<Language> get spokenLanguages;
   @override
-  String get status;
+  String? get status;
   @override
   List<Genre> get genres;
   @JsonKey(name: 'seasons')
   List<Season> get seasons;
   @JsonKey(name: 'last_episode_to_air')
-  Episode get lastEpisodeToAir;
+  Episode? get lastEpisodeToAir;
   @override
   Videos get videos;
   @override

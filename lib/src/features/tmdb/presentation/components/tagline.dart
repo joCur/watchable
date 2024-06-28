@@ -8,7 +8,7 @@ import '../../domain/media.dart';
 
 class Tagline extends StatelessWidget {
   final Media item;
-  final int runtime;
+  final int? runtime;
   final int? episodeCount;
   final int? seasonCount;
 
@@ -43,10 +43,10 @@ class Tagline extends StatelessWidget {
       spacing: Sizes.p12,
       runSpacing: Sizes.p8,
       children: [
-        _buildItem(context, Icons.calendar_month, item.releaseDate.year.toString()),
-        _buildItem(context, Icons.schedule, LocaleKeys.discover_runtime.tr(args: [runtime.toString()])),
-        _buildItem(context, Icons.language, item.spokenLanguages.firstOrNull?.englishName ?? ""),
-        _buildItem(context, Icons.videocam_outlined, item.status),
+        _buildItem(context, Icons.calendar_month, item.releaseDate?.year.toString() ?? "N/A"),
+        _buildItem(context, Icons.schedule, runtime == null ? "-" : LocaleKeys.discover_runtime.tr(args: [runtime.toString()])),
+        _buildItem(context, Icons.language, item.spokenLanguages.firstOrNull?.englishName ?? "N/A"),
+        _buildItem(context, Icons.videocam_outlined, item.status ?? "N/A"),
         if (episodeCount != null)
           _buildCountIcon(context, Icons.fiber_manual_record_rounded, LocaleKeys.discover_episodes.plural(episodeCount!)),
         if (seasonCount != null)
