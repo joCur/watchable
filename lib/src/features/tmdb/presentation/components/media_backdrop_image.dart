@@ -33,7 +33,7 @@ class MediaBackdropImage extends StatelessWidget {
     }
 
     return CachedNetworkImage(
-      imageUrl: backdropPath!,
+      imageUrl: "https://image.tmdb.org/t/p/w1280${backdropPath!}",
       fit: BoxFit.cover,
       placeholder: (_, __) => const _ShimmerBackdropImage(),
     );
