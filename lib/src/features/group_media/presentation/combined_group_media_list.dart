@@ -7,7 +7,7 @@ import 'package:watchable/src/features/group_media/data/group_media_repository.d
 import 'package:watchable/src/features/group_media/presentation/components/loading_group_media_item.dart';
 
 import '../../common/presentation/shimmer/shimmer_list.dart';
-import 'components/combined_group_media_item.dart';
+import 'components/group_media_item.dart';
 
 class CombinedGroupMediaList extends ConsumerWidget {
   const CombinedGroupMediaList({super.key});
@@ -30,15 +30,14 @@ class CombinedGroupMediaList extends ConsumerWidget {
         child: Chip(
           padding: EdgeInsets.zero,
           label: Text(
-            DateFormat(DateFormat.YEAR_MONTH_DAY, EasyLocalization.of(context)!.currentLocale!.languageCode)
-                .format(element.createdAt),
+            DateFormat(DateFormat.YEAR_MONTH_DAY, EasyLocalization.of(context)!.currentLocale!.languageCode).format(element.createdAt),
           ),
         ),
       ),
       order: GroupedListOrder.DESC,
       sort: true,
       itemComparator: (a, b) => a.createdAt.compareTo(b.createdAt),
-      itemBuilder: (context, element) => CombinedGroupMediaItem(element),
+      itemBuilder: (context, element) => GroupMediaItem(element, showGroup: true),
     );
   }
 }

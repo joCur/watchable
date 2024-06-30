@@ -18,6 +18,11 @@ Stream<List<Group>> watchGroups(WatchGroupsRef ref) {
 }
 
 @riverpod
+Future<Group> getGroupById(GetGroupByIdRef ref, String id) async {
+  return (await ref.watch(watchGroupsProvider.future)).firstWhere((element) => element.id == id);
+}
+
+@riverpod
 Future<List<Group>> listOtherGroupsForCurrentUser(ListOtherGroupsForCurrentUserRef ref) async {
   final supabase = ref.watch(supabaseProvider);
   final groups = await ref.watch(watchGroupsProvider.future);
