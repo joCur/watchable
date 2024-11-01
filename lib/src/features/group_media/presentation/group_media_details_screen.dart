@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:watchable/src/extensions/async_value_extensions.dart';
 
 import '../../../constants/app_sizes.dart';
-import '../../../extensions/async_value_extensions.dart';
 import '../../../extensions/build_context_extensions.dart';
 import '../../common/presentation/shimmer/shimmer_text.dart';
 import '../../groups/data/group_repository.dart';
@@ -28,7 +28,7 @@ class GroupMediaDetailScreen extends HookConsumerWidget {
     final item = ref.watch(getGroupMediaItemByIdProvider(id));
     final isLoading = item.maybeWhen(data: (_) => false, orElse: () => true);
 
-    ref.listen(getGroupMediaItemByIdProvider(id), (_, value) => value.showToastOnError(context));
+    ref.listen(getGroupMediaItemByIdProvider(id), (previous, value) => value.showToastOnError(context, previous: previous));
 
     final groupMedia = item.valueOrNull?.item;
     final media = item.valueOrNull?.media;

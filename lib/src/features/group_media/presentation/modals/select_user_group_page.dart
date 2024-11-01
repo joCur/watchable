@@ -47,7 +47,7 @@ class SelectUserGroupPageBuilder {
           );
         },
       ),
-      mainContentSlivers: [
+      mainContentSliversBuilder: (context) => [
         Consumer(
           builder: (context, ref, child) {
             final state = ref.watch(listGroupsWithMediaStateProvider(tmdbId));
@@ -95,7 +95,7 @@ class SelectUserGroupPageBuilder {
             );
           },
         ),
-        const SliverPadding(padding: EdgeInsets.all(Sizes.p16)),
+        const SliverPadding(padding: EdgeInsets.all(Sizes.p16))
       ],
     );
   }

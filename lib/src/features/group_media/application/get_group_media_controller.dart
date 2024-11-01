@@ -21,8 +21,9 @@ class GroupMediaState {
 @riverpod
 Future<GroupMediaState> getGroupMediaItemById(GetGroupMediaItemByIdRef ref, String id) async {
   final item = (await ref.watch(watchGroupMediaProvider.future)).firstWhere((element) => element.id == id);
-  final media =
-      item.mediaType == GroupMediaType.movie ? ref.watch(getMovieByIdProvider(item.tmdbId)) : ref.watch(getTvByIdProvider(item.tmdbId));
+  final media = item.mediaType == GroupMediaType.movie
+      ? await ref.watch(getMovieByIdProvider(item.tmdbId).future)
+      : await ref.watch(getTvByIdProvider(item.tmdbId).future);
 
-  return GroupMediaState(item: item, media: media.requireValue);
+  return GroupMediaState(item: item, media: media);
 }
