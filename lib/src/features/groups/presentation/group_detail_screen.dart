@@ -21,7 +21,8 @@ class GroupDetailScreen extends ConsumerWidget {
   const GroupDetailScreen(this.id, {super.key});
 
   void showRandomMedia(BuildContext context, List<GroupMedia> items) {
-    final item = items[Random().nextInt(items.length)];
+    final filteredItems = items.where((item) => !item.isWatched).toList();
+    final item = filteredItems[Random().nextInt(filteredItems.length)];
 
     if (!context.mounted) return;
     context.pushNamed(GroupMediaDetailScreen.name, pathParameters: {'id': id, 'media_id': item.id});

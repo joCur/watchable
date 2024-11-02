@@ -118,6 +118,11 @@ class GroupMediaRepository {
     return GroupMedia.fromJson(response);
   }
 
+  Future<GroupMedia> updateAsync(String id, bool isWatched) async {
+    final response = await supabase.from(table).update({'is_watched': isWatched}).eq('id', id).select().single();
+    return GroupMedia.fromJson(response);
+  }
+
   Future deleteAsync(String id) async {
     await supabase.from(table).delete().eq('id', id);
   }

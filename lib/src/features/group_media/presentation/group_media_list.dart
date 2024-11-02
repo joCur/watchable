@@ -25,7 +25,7 @@ class GroupMediaList extends ConsumerWidget {
 
     if (isLoading) return const ShimmerList(item: LoadingMediaItem());
 
-    return ListView.builder(
-        itemCount: media.value!.length, itemBuilder: (context, index) => GroupMediaItem(media.value![index]));
+    final unwatchedMedia = media.value!.where((element) => !element.isWatched).toList();
+    return ListView.builder(itemCount: unwatchedMedia.length, itemBuilder: (context, index) => GroupMediaItem(unwatchedMedia[index]));
   }
 }

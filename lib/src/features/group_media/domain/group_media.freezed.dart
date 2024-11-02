@@ -25,6 +25,8 @@ mixin _$GroupMedia {
   String get groupId => throw _privateConstructorUsedError;
   @JsonKey(name: "tmdb_id")
   int get tmdbId => throw _privateConstructorUsedError;
+  @JsonKey(name: "is_watched")
+  bool get isWatched => throw _privateConstructorUsedError;
   @JsonKey(name: "media_type")
   GroupMediaType get mediaType => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
@@ -48,6 +50,7 @@ abstract class $GroupMediaCopyWith<$Res> {
       {String id,
       @JsonKey(name: "group_id") String groupId,
       @JsonKey(name: "tmdb_id") int tmdbId,
+      @JsonKey(name: "is_watched") bool isWatched,
       @JsonKey(name: "media_type") GroupMediaType mediaType,
       @JsonKey(name: "created_at") DateTime createdAt,
       @JsonKey(name: "added_by") String? addedBy});
@@ -69,6 +72,7 @@ class _$GroupMediaCopyWithImpl<$Res, $Val extends GroupMedia>
     Object? id = null,
     Object? groupId = null,
     Object? tmdbId = null,
+    Object? isWatched = null,
     Object? mediaType = null,
     Object? createdAt = null,
     Object? addedBy = freezed,
@@ -86,6 +90,10 @@ class _$GroupMediaCopyWithImpl<$Res, $Val extends GroupMedia>
           ? _value.tmdbId
           : tmdbId // ignore: cast_nullable_to_non_nullable
               as int,
+      isWatched: null == isWatched
+          ? _value.isWatched
+          : isWatched // ignore: cast_nullable_to_non_nullable
+              as bool,
       mediaType: null == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -114,6 +122,7 @@ abstract class _$$GroupMediaImplCopyWith<$Res>
       {String id,
       @JsonKey(name: "group_id") String groupId,
       @JsonKey(name: "tmdb_id") int tmdbId,
+      @JsonKey(name: "is_watched") bool isWatched,
       @JsonKey(name: "media_type") GroupMediaType mediaType,
       @JsonKey(name: "created_at") DateTime createdAt,
       @JsonKey(name: "added_by") String? addedBy});
@@ -133,6 +142,7 @@ class __$$GroupMediaImplCopyWithImpl<$Res>
     Object? id = null,
     Object? groupId = null,
     Object? tmdbId = null,
+    Object? isWatched = null,
     Object? mediaType = null,
     Object? createdAt = null,
     Object? addedBy = freezed,
@@ -150,6 +160,10 @@ class __$$GroupMediaImplCopyWithImpl<$Res>
           ? _value.tmdbId
           : tmdbId // ignore: cast_nullable_to_non_nullable
               as int,
+      null == isWatched
+          ? _value.isWatched
+          : isWatched // ignore: cast_nullable_to_non_nullable
+              as bool,
       null == mediaType
           ? _value.mediaType
           : mediaType // ignore: cast_nullable_to_non_nullable
@@ -173,6 +187,7 @@ class _$GroupMediaImpl implements _GroupMedia {
       this.id,
       @JsonKey(name: "group_id") this.groupId,
       @JsonKey(name: "tmdb_id") this.tmdbId,
+      @JsonKey(name: "is_watched") this.isWatched,
       @JsonKey(name: "media_type") this.mediaType,
       @JsonKey(name: "created_at") this.createdAt,
       @JsonKey(name: "added_by") this.addedBy);
@@ -189,6 +204,9 @@ class _$GroupMediaImpl implements _GroupMedia {
   @JsonKey(name: "tmdb_id")
   final int tmdbId;
   @override
+  @JsonKey(name: "is_watched")
+  final bool isWatched;
+  @override
   @JsonKey(name: "media_type")
   final GroupMediaType mediaType;
   @override
@@ -200,7 +218,7 @@ class _$GroupMediaImpl implements _GroupMedia {
 
   @override
   String toString() {
-    return 'GroupMedia(id: $id, groupId: $groupId, tmdbId: $tmdbId, mediaType: $mediaType, createdAt: $createdAt, addedBy: $addedBy)';
+    return 'GroupMedia(id: $id, groupId: $groupId, tmdbId: $tmdbId, isWatched: $isWatched, mediaType: $mediaType, createdAt: $createdAt, addedBy: $addedBy)';
   }
 
   @override
@@ -211,6 +229,8 @@ class _$GroupMediaImpl implements _GroupMedia {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.groupId, groupId) || other.groupId == groupId) &&
             (identical(other.tmdbId, tmdbId) || other.tmdbId == tmdbId) &&
+            (identical(other.isWatched, isWatched) ||
+                other.isWatched == isWatched) &&
             (identical(other.mediaType, mediaType) ||
                 other.mediaType == mediaType) &&
             (identical(other.createdAt, createdAt) ||
@@ -220,8 +240,8 @@ class _$GroupMediaImpl implements _GroupMedia {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, groupId, tmdbId, mediaType, createdAt, addedBy);
+  int get hashCode => Object.hash(runtimeType, id, groupId, tmdbId, isWatched,
+      mediaType, createdAt, addedBy);
 
   @JsonKey(ignore: true)
   @override
@@ -242,6 +262,7 @@ abstract class _GroupMedia implements GroupMedia {
       final String id,
       @JsonKey(name: "group_id") final String groupId,
       @JsonKey(name: "tmdb_id") final int tmdbId,
+      @JsonKey(name: "is_watched") final bool isWatched,
       @JsonKey(name: "media_type") final GroupMediaType mediaType,
       @JsonKey(name: "created_at") final DateTime createdAt,
       @JsonKey(name: "added_by") final String? addedBy) = _$GroupMediaImpl;
@@ -257,6 +278,9 @@ abstract class _GroupMedia implements GroupMedia {
   @override
   @JsonKey(name: "tmdb_id")
   int get tmdbId;
+  @override
+  @JsonKey(name: "is_watched")
+  bool get isWatched;
   @override
   @JsonKey(name: "media_type")
   GroupMediaType get mediaType;

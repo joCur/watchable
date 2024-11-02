@@ -85,6 +85,8 @@
   },
   "errors": {
     "couldNotCreateGroup": "Could not create group.",
+    "markAsWatchedFailed": "Marking as watched failed.",
+    "deleteGroupMediaFailed": "Deleting group media failed.",
     "unknown": "An error occurred, please try again later."
   }
 }

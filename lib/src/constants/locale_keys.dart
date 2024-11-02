@@ -66,6 +66,8 @@ abstract class  LocaleKeys {
   static const groupMedia_modalDescription = 'groupMedia.modalDescription';
   static const groupMedia = 'groupMedia';
   static const errors_couldNotCreateGroup = 'errors.couldNotCreateGroup';
+  static const errors_markAsWatchedFailed = 'errors.markAsWatchedFailed';
+  static const errors_deleteGroupMediaFailed = 'errors.deleteGroupMediaFailed';
   static const errors_unknown = 'errors.unknown';
   static const errors = 'errors';
 

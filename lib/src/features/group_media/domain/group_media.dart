@@ -11,6 +11,7 @@ class GroupMedia with _$GroupMedia {
     String id,
     @JsonKey(name: "group_id") String groupId,
     @JsonKey(name: "tmdb_id") int tmdbId,
+    @JsonKey(name: "is_watched") bool isWatched,
     @JsonKey(name: "media_type") GroupMediaType mediaType,
     @JsonKey(name: "created_at") DateTime createdAt,
     @JsonKey(name: "added_by") String? addedBy,

@@ -7,14 +7,14 @@ import 'package:toastification/toastification.dart';
 import '../constants/locale_keys.dart';
 
 extension AsyncValueExtensions on AsyncValue {
-  void showToastOnError(BuildContext context, {bool shouldPop = false, AsyncValue? previous}) {
+  void showToastOnError(BuildContext context, {bool shouldPop = false, String? message, AsyncValue? previous}) {
     if (previous != null && previous.hasError) return;
     if (!isRefreshing && !isLoading && hasError) {
       if (shouldPop) context.pop();
       toastification.show(
         context: context,
         type: ToastificationType.error,
-        title: Text(LocaleKeys.errors_unknown.tr()),
+        title: Text(message ?? LocaleKeys.errors_unknown.tr()),
         autoCloseDuration: const Duration(seconds: 3),
         alignment: Alignment.bottomCenter,
       );

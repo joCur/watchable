@@ -7,7 +7,7 @@ part of 'get_group_media_controller.dart';
 // **************************************************************************
 
 String _$getGroupMediaItemByIdHash() =>
-    r'33e861c980463f71693c06cdd59e5c32edb5c374';
+    r'2cd77114e9a867afe8a3c5b403f149bbcfbbe9e2';
 
 /// Copied from Dart SDK
 class _SystemHash {

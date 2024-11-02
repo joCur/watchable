@@ -85,6 +85,8 @@
   },
   "errors": {
     "couldNotCreateGroup": "Gruppe konnte nicht erstellt werden.",
+    "markAsWatchedFailed": "Fehler beim Markieren als gesehen. Bitte versuche es später erneut.",
+    "deleteGroupMediaFailed": "Beim löschen ist ein Fehler aufgetreten. Bitte versuche es später erneut.",
     "unknown": "Ein Fehler ist aufgetreten, bitte versuche es später erneut."
   }
 }
